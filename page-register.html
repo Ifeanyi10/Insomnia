@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Health enSuite Patient User Registration</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
+
+    <script language="javascript">
+
+        window.onload = function getPatientsProfile(){
+                            let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/id';
+                            var lastPart = window.location.href.split("code").pop();
+                            window.localStorage.setItem("patientToken", lastPart);
+                            $.ajax({
+                                url: url,
+                                type: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json', 
+                                    'Accept': '*/*',
+                                    'Authorization': 'Bearer '+ lastPart
+                                },
+                                success: function(result){
+                                    console.log(result);
+                                    
+                                    window.localStorage.setItem("patientsID", result.id);
+
+                                    window.localStorage.setItem("patientLastName", result.lastName);
+                                    window.localStorage.setItem("patientFirstName", result.firstName);
+                                    window.localStorage.setItem("patientPhone", result.phoneNumber);
+                                    window.localStorage.setItem("patientEmail", result.email);
+                                    console.log(window.localStorage.getItem("patientsID"));
+                                }, 
+                                error: function(msg){
+                                    console.log("Loading Patients details failed");
+                                }
+                            });
+                        }
+    
+          </script>
+    
+</head>
+
+<body class="h-100">
+    
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    
+
+
+
+    <div class="login-form-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-xl-6">
+                    <div class="form-input-content">
+                        <div class="card login-form mb-0">
+                            <div class="card-body pt-5">
+                                
+                                    <a class="text-center" href="page-login.html"> <h4>Health enSuite Patient User Registration</h4></a>
+
+                                    <div class="justifyDiv">
+                                        Welcome to <strong>Health enSuite: Insomnia.</strong> This app is designed to help you learn new strategies that will relieve your insomnia symptoms and help you sleep better.
+                                    </div>
+        
+                                <form class="mt-5 mb-5 login-input" id="regForm">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="firstN" placeholder="First Name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="lastN" placeholder="Last Name" required>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <select id="inputGender" class="form-control">
+                                            <option value="">Gender</option>
+                                            <option value="MALE">Male</option>
+                                            <option value="FEMALE">Female</option>
+                                            <option value="OTHER">Other</option>
+                                        </select>
+                                    </div> -->
+                                    <div class="form-group">
+                                        <input type="email" class="form-control"  id="email"  placeholder="Email" pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?" max="120" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="phone" name="phone" placeholder="Mobile Number" pattern="([0|\+[0-9]{1,5})?([7-9][0-9]{9})$" min="10" max="25"/>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="mailAdd" placeholder="Mailing Address" >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="usName" placeholder="Username (should be your email address)" pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?" max="120" required>
+                                    </div>
+
+                                    <div class="form-group" id="divCheckUsernameMatch"></div>
+
+                                    <div class="form-group">
+                                        <!-- <input type="password" class="form-control" id="pass" placeholder="Password" required> -->
+                                        <div id="passInstruction">A strong password contains at least 1 uppercase, 1 lowercase, 1 special character, and not less than 8 character long</div>
+                                        <div ng-controller="PasswordController">
+                                            
+                                                <input type="password" ng-model="password" ng-change="analyze(password)" id="pass" placeholder="Password" class="form-control" required />
+                                            <div class="block_container">
+                                                <div ng-style="passwordStrength" id="arrrowBlock"></div>
+                                                <div id="textBlock"><h5 id="pStrength"></h5></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" id="confirmPass" placeholder="Re-Enter Password" required>
+                                    </div>
+                                    <div class="form-group" id="divCheckPasswordMatch"></div>
+
+                                    <div class="form-group">
+
+                                        <label class="lblQuestion">Preferred communication method (check all that apply): </label>
+
+                                        <div class="form-check mb-3">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input" name="abt" value="Email">Email</label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <label class="form-check-label" id="sms" data-trigger="hover">
+                                                <input type="checkbox" class="form-check-input" name="abt" value="SMS">SMS/Text Message</label>
+                                                
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input" name="abt" value="In App">Notifications within the app</label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input" name="abt" value="No Notification">I do not want to receive any notifications.</label>
+                                        </div>
+                                       
+
+                                    </div>
+
+                                    <button class="btn login-form__btn submit w-100" id="btnSubmit">Submit</button>
+                                </form>
+                                    <p class="mt-5 login-form__footer">Have account? <a href="index.html" class="text-primary">Sign In </a> instead</p>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
+    <script src="js/MoreFunction.js"></script>
+    <script src="js/regAPICall.js"></script>
+    <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>
+</body>
+</html>
+
+
+
+
+
