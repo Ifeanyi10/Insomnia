@@ -1,30 +1,162 @@
-$(function () {
-    $("#otherBox").click(function () {
-        if ($(this).is(":checked")) {
-            $("#otherDiv").show();
-        } else {
-            $("#otherDiv").hide();
+
+function getAllLinks(dayValue){
+
+    var dayNumber1 = 0; var dayNumber2 = 0; 
+    var galLinks = document.getElementById('sleepLink');
+    var anchors = galLinks.getElementsByTagName('a');
+    for (i = 0; i < anchors.length; i++) {  
+        var thisLink = anchors[i];
+        
+        if(dayValue == 1){
+            thisLink.style.display = 'block';
+            thisLink.innerHTML = window.localStorage.getItem("currentDate");
+            return;
+        }
+        
+        dayNumber1 += 1;
+        if(dayNumber1 == (dayValue - 1)){
+            thisLink.style.display = 'block';
+            thisLink.innerHTML = window.localStorage.getItem("currentDate");
+        }
+        
+        if(dayNumber1 == dayValue){
+            thisLink.style.display = 'block';
+            thisLink.innerHTML = window.localStorage.getItem("prevDate");
+            return;
+        }
+    }
+}
+
+$(document).ready(function () {
+
+    var theArrayLength = window.localStorage.getItem("arrayLength");
+    getAllLinks(theArrayLength);  
+
+    $('#sleepLink a').click(function(e) {
+        var submitDate = '';
+        var txt = $(e.target).text();
+        window.localStorage.setItem("linkText", txt);
+
+        var date1 = window.localStorage.getItem("currentDate");
+
+        if(txt == date1){
+            submitDate = window.localStorage.getItem("currentDateUnformatted");
+            window.localStorage.setItem("submitDate", submitDate);
+        }else{
+            submitDate = window.localStorage.getItem("prevDateUnformatted");
+            window.localStorage.setItem("submitDate", submitDate);
         }
     });
+
+    $('#todayLink a').click(function(e) {
+        var txt = window.localStorage.getItem("currentDate");
+        window.localStorage.setItem("linkText", txt);
+        var submitDate = window.localStorage.getItem("currentDateUnformatted");
+        window.localStorage.setItem("submitDate", submitDate);
+    });
+
+    $("#sympID").click(function() {  
+        $("#symps").css('display', 'block');     
+   });  
+
 });
 
 
-$('#sms').tooltip({
-    title: "Extra charges for SMS may apply depending on your phone plan.",
-    placement: "right",
-    trigger: 'hover'
-})
+function hideDisplay(firstDisplay, secondDisplay){
+    var x = document.getElementById(firstDisplay);
+    var y = document.getElementById(secondDisplay);
+    
+    x.style.display = 'none';
+    y.style.display = 'block';
+}
 
-$('#sms').on('show.bs.tooltip change', function (e) {
-    $this = $(this);
-    if (e.type == 'show' && $this.find(":checkbox").is(":checked")) {
-        e.preventDefault();
-    } else if (e.type == 'change') {
-        $this.find(":checkbox").is(":checked") ? $this.tooltip('hide') : $this.tooltip('show');
+
+function fillModalValue(){
+    let averageValue = 94;
+    var modalTitle = document.getElementById('modalTitle');
+    var modalBody = document.getElementById('modalBd');
+    modalTitle.innerHTML = 'Sleep Efficiency Message';
+
+    if(averageValue < 85){
+        modalBody.innerHTML = 'Your sleep efficiency is less than 85%. This means there is room for improvement.  To increase your sleep efficiency the length of sleep window should be reduced by 15 minutes.  We recommend moving your bed time 15 minutes later. ';
+        return;
     }
-});
+
+    if(averageValue >= 85 && averageValue < 90){
+        modalBody.innerHTML = 'Your sleep efficiency is between 85%-89%. This means you are right on track. Your sleep window should stay the same.';
+        return;
+    }
+
+    if(averageValue >= 90 && averageValue < 95){
+        modalBody.innerHTML = 'Your sleep efficiency is between 90%-94%. This is a great result! At this point, you can extend your sleep window by 15 minutes. We recommend moving your bed time 15 minutes earlier.';
+        return;
+    }
+
+    if(averageValue >= 95 && averageValue < 101){
+        modalBody.innerHTML = 'Your sleep efficiency is over 95%. With a result like this, your sleep window can be increased by 30 minutes.';
+        return;
+    }
+
+    if(averageValue >100){
+        modalTitle.innerHTML = 'Error!!!';
+        modalBody.innerHTML = 'Check that you have entered your sleep times accurately. Sleep efficiency cannot be over 100%.';
+        return;
+    }
+}
+
+function showNote(itemName){
+    var item = document.getElementById(itemName);
+
+    if (item.style.display === 'block'){
+        if(itemName == 'content4-2'){document.getElementById('btnContSleepPill').value = 'Continue...';}
+        return item.style.display = 'none';
+    }else{
+        if(itemName == 'content4-2'){document.getElementById('btnContSleepPill').value = 'Revert...';}
+        return item.style.display = 'block';
+    }
 
 
+}
+
+function fillModalContentValue(checkID){
+    var modalTitle = document.getElementById('modalContentTitle');
+    var modalBody = document.getElementById('modalContentBd');
+
+    if(checkID == 'confident'){
+        modalTitle.innerHTML = 'Great!';
+        modalBody.innerHTML = 'You can track your progress in the Medication Log.';
+        return;
+    }
+
+    if(checkID == 'difficult'){
+        modalTitle.innerHTML = 'Change can be difficult!';
+        modalBody.innerHTML = 'This app provides tools that should help make it easier for you. If you need to modify the plan please consult your health care provider.';
+        return;
+    }
+
+    if(checkID == 'unknown'){
+        modalTitle.innerHTML = 'Attention!';
+        modalBody.innerHTML = 'Use the medications tab on the dashboard to view your tapering schedule.';
+        return;
+    }
+}
+
+function showQuestion(divName1, divName2, divName3, supportDiv){
+    var x = document.getElementById(divName1);
+    var y = document.getElementById(divName2);
+    var z = document.getElementById(divName3);
+    var sp = document.getElementById(supportDiv);
+
+    x.style.display = 'block';
+    y.style.display = 'none';
+    z.style.display = 'none';
+    sp.style.display = 'none';
+}
+
+function showSupport(){
+    var sp = document.getElementById('supportForm');
+    sp.style.display = 'block';
+}
 
 
 // $(document).ready(function(){ swal("Hey, Good job !!", "You clicked the button !!", "success") });

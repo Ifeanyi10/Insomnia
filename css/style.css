@@ -143,6 +143,19 @@ html {
     text-align: justify;
   }
 
+  .buttonPlainTxt{
+    padding: 0;
+    border: none;
+    background: none;
+    font-weight: bolder;
+    margin-right: 30px;
+    color: rgb(69, 126, 192);
+  }
+
+  .buttonPlainTxt:hover {
+    text-decoration: underline;
+  }
+
   #divCheckPasswordMatch,
   #errorEmailContainer, #divResetPasswordMatch,
   #divCheckUsernameMatch, #errorFinalContainer{
@@ -156,6 +169,20 @@ html {
     font-weight: bold;
     font-size: 18px;
     color: #8898aa; 
+  }
+
+  .entity{
+    margin-top: 10px;
+    margin-bottom: 12px;
+  }
+
+  .branchLink{
+    color: rgb(69, 126, 192);
+    font-style: italic;
+  }
+
+  .linkDiv{
+    font-weight: bolder;
   }
 
   .consentInfoHeadSmall{

@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Health enSuite Patient Daily Sleep Diary</title>
+    <title>Health enSuite Patient Sleep Clock</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-    <!-- Custom Stylesheet -->
+    <!-- Pignose Calender -->
     <link href="./plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
     <!-- Page plugins css -->
     <link href="./plugins/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet">
@@ -19,9 +19,41 @@
     <!-- Daterange picker plugins css -->
     <link href="./plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
     <link href="./plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
 
-    <link href="css/style.css" rel="stylesheet">
+    <!-- <script language="javascript">
+
+                    window.onload = function getPatientsProfile(){
+                            let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/accessid';
+                            let authToken = window.localStorage.getItem("patientToken");
+                            alert(authToken);
+                            $.ajax({
+                                url: url,
+                                type: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json', 
+                                    'Accept': '*/*',
+                                    'Authorization': 'Bearer '+ authToken
+                                },
+                                success: function(result){
+                                    console.log(result);
+                                    
+                                    window.localStorage.setItem("patientsID", result.id);
+
+                                    window.localStorage.setItem("patientLastName", result.lastName);
+                                    window.localStorage.setItem("patientFirstName", result.firstName);
+                                    window.localStorage.setItem("patientPhone", result.phoneNumber);
+                                    window.localStorage.setItem("patientEmail", result.email);
+                                    console.log(window.localStorage.getItem("patientsID"));
+                                }, 
+                                error: function(msg){
+                                    console.log("Loading Patients details failed");
+                                }
+                            });
+                        }
+    
+          </script> -->
 
 </head>
 
@@ -71,6 +103,24 @@
         <div class="header">    
             <div class="header-content clearfix">
                 
+                <!-- <div class="nav-control">
+                    <div class="hamburger">
+                        <span class="toggle-icon"><i class="icon-menu"></i></span>
+                    </div>
+                </div> -->
+                <div class="header-left">
+                    <!-- <div class="input-group icons">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
+                        </div>
+                        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
+                        <div class="drop-down animated flipInX d-md-none">
+                            <form action="#">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </form>
+                        </div>
+                    </div> -->
+                </div>
                 <div class="header-right">
                     <ul class="clearfix">
                         
@@ -79,12 +129,13 @@
                                 <span class="activity active"></span>
                                 <img src="images/user/1.png" height="40" width="40" alt="">
                             </div>
-                            <div class="drop-down dropdown-profile   dropdown-menu">
+                            <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-body">
                                     <ul>
                                         <li>
                                             <a href="patient-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
                                         </li>
+
                                         <li><a href="index.html"><i class="icon-key"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
@@ -191,6 +242,7 @@
                         </ul>
                     </li>
                     
+                    
                 </ul>
             </div>
         </div>
@@ -203,123 +255,131 @@
         ***********************************-->
         <div class="content-body">
 
-            <!-- row -->
-
-            <div class="container-fluid">
+            <div class="container-fluid mt-3">
                 <div class="row">
-                    <div class="col-12">
-                        <!-- Card -->
-                        
-                        <!-- Card -->
-                        <!-- Card -->
+                    <!-- <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title" id="diaryHeader"></h4>
-
-                                <div class="headerMargin">
-                                    <div class="justifyDiv textDeco">
-                                        It’s time to answer some questions about your sleep last night.
-                                    </div>
-                                    <div class="justifyDiv textDeco">
-                                        How did you sleep last night?
-                                    </div>
-                                    <div class="justifyDiv textDeco">
-                                        Tracking your experience is important. Take a few minutes to complete today’s sleep diary. 
+                                <h4 class="card-title">SLEEP DIARY</h4>
+                                <h5 class="mt-3">Completed <span class="float-right">10%</span></h5>
+                                <div class="progress" style="height: 9px">
+                                    <div class="progress-bar bg-danger wow  progress-" style="width: 10%;" role="progressbar"><span class="sr-only">60% Complete</span>
                                     </div>
                                 </div>
                                 
+                            </div>
+                        </div>
+
+                    </div> -->
+                    
+                    <div class="col-lg-12 col-md-12 col-sm-12" id="sleepClock1">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Sleep Clock</h4>
+                                <div class="justifyDiv">
+                                    It’s time to adjust your sleep clock.
+                                    Let’s review your sleep patterns from the past week.
+                                </div>
+
+                                <div>
+                                    <h4 class="card-title sleepDiv">Sleep Window</h4>
+                                </div>
+
+                                <div>
+                                    <label class="consentInfoBody">Your Bed Time:</label>
+                                    <label class="consentInfoBody" id="yBedTime"></label>
+                                </div>
                                 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="m-t-20">What time did you get into bed last? </label>
-                                        <div class="input-group clockpicker">
-                                            <input type="text" class="form-control" id="bedTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
-                                        </div>
-                                        <label class="m-t-40 sleepMargin">What time did you try to go to sleep?</label>
-                                        <div class="input-group clockpicker">
-                                            <input type="text" class="form-control" id="trySleepTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="m-t-20">What time did you fall asleep?</label>
-                                        <div class="input-group clockpicker">
-                                            <input type="text" class="form-control" id="sleepTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
-                                        </div>
-                                        <label class="m-t-40 sleepMargin">How many times did you wake up, not counting your final awakening?</label>
-                                        <div class="input-group">
-                                            <input type="number" class="form-control" id="wakeUpCount" value="1"> 
-                                        </div>
-                                    </div>
+                                <div>
+                                    <label class="consentInfoBody">Your Rise Time:</label>
+                                    <label class="consentInfoBody" id="yRiseTime"></label>
+                                </div>
+                                
+                                <div>
+                                    <h4 class="card-title sleepDiv">Sleep Time & Efficiency</h4>
+                                </div>
 
-                                    <div class="col-md-6">
-                                        <label class="m-t-40 sleepMargin">What time was your final awakening?</label>
-                                        <div class="input-group clockpicker">
-                                            <input type="text" class="form-control" id="finalAwakeTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
-                                        </div>
-                                    </div>
+                                <div>
+                                    <label class="consentInfoBody">Average Time in Bed per Night:</label>
+                                    <label class="consentInfoBody" id="avTimePerNight"></label>
+                                </div>
 
-                                    <div class="col-md-6">
-                                        <label class="m-t-40 sleepMargin">What time did you get out of bed?</label>
-                                        <div class="input-group clockpicker">
-                                            <input type="text" class="form-control" id="outOfBedTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
-                                        </div>
-                                    </div>
+                                <div>
+                                    <label class="consentInfoBody">Average Total Sleep Time per Night:</label>
+                                    <label class="consentInfoBody" id="avTotalTimePerNight"></label>
+                                </div>
+                                
+                                <div>
+                                    <label class="consentInfoBody">Average Sleep Efficiency:</label>
+                                    <label class="consentInfoBody" id="avSleepEff">95%</label>
+                                </div>
 
-                                    <div class="col-md-6">
-                                        <label class="m-t-40 sleepMargin">In total, how long did these awakenings last? (Please fill this way <strong>5:30</strong>)</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="awakeLast" placeholder="Example 5:30 (Where 5 is the hours and 30 is the minutes)">
-                                        </div>
-                                    </div>
-
-                                    <!-- <div class="col-md-6">
-                                        <label class="m-t-40 sleepMargin">In total, how long did these awakenings last? (Please fill the box this way: <strong>5H:2OM</strong>)</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="awakeLast" placeholder="Example: 5H:2OM"> 
-                                        </div>
-                                    </div> -->
-
-                                    <div class="col-md-6 sleepMargin">
-                                        <label class="m-t-40 ">Anything else you would like to note:</label>
-                                        <div class="input-group">
-                                        <textarea rows="4" cols="85" name="comment" id="otherNote" form="usrform" placeholder="Enter note here..."> </textarea>
-                                        </div>
-                                    </div>
+                                <div class="justifyDiv">
                                     
-                                    <div class="col-md-6 sleepMargin" id="qtyBox">
-                                        <label class="m-t-40 ">Please rate the overall quality of your sleep:</label>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="checkbox-1" name="rate" value="Very Poor">
-                                            <label class="custom-control-label" for="checkbox-1">Very Poor</label>
-                                        </div><br/>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="checkbox-2" name="rate" value="Poor">
-                                            <label class="custom-control-label" for="checkbox-2">Poor</label>
-                                        </div><br/>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="checkbox-3" name="rate" value="Fair">
-                                            <label class="custom-control-label" for="checkbox-3">Fair</label>
-                                        </div><br/>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="checkbox-4" name="rate" value="Good">
-                                            <label class="custom-control-label" for="checkbox-4">Good</label>
-                                        </div><br/>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="checkbox-5" name="rate" value="Very Good">
-                                            <label class="custom-control-label" for="checkbox-5" checked>Very Good</label>
-                                        </div><br/>
+                                    <div class="bootstrap-modal">
+                                        <!-- Button trigger modal -->
+                                        <input type='button' class='buttonPlainTxt' data-toggle="modal" data-target="#exampleModalCenter" onclick="fillModalValue();" value='View Recommendation Info'/>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModalCenter">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="modalTitle"></h5>
+                                                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p id="modalBd"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="general-button">
-                                    <button type="submit" id="btnBackMain" class="btn btn-dark mb-2" style="margin-right: 30px;">Back</button>
-                                    <button type="button" id="btnSubmitDairy" class="btn mb-1 btn-outline-light" disabled>Next</button>
+                                
+
+                                <div class="sleepDiv">
+                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('sleepClock1','sleepClock2');" value='Set your sleep window for the next week'/>
                                 </div>
                             </div>
                         </div>
-                        <!-- Card -->
-                        
                     </div>
+
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 hidden" id="sleepClock2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Sleep Clock Window</h4>
+                                <div class="justifyDiv">
+                                    Your sleep window for the next week is <strong id="nextHour">15</strong> hours and <strong id="nextMinute">50</strong> minutes long. You can change the bed time or rise time if you want. 
+                                    Pick times that you can maintain for the next 7 days and that will allow you to get to work or school on time.  
+                                    If the length of your sleep window has increased, we recommend adjusting your bed time and keeping your rise time the same.
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label class="m-t-20 sleepMargin">Your Bed Time:</label>
+                                        <div class="input-group clockpicker">
+                                            <input type="text" class="form-control" id="clockBedTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
+                                        </div>
+                                        <label class="m-t-40 sleepMargin">Your Rise Time:</label>
+                                        <div class="input-group clockpicker">
+                                            <input type="text" class="form-control" id="clockRiseTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+                                <div class="sleepDiv">
+                                    <input type='button' class='buttonPlainTxt' id="btnConfirmClock" value='Click button to confirm sleep window for the next week'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
+                    
             </div>
             <!-- #/ container -->
         </div>
@@ -369,7 +429,7 @@
 
     <script src="./js/plugins-init/form-pickers-init.js"></script>
     <script src="./js/plugins-init/form-pickers-init.js"></script>
-    <script src="js/sleepDiaryAPI.js"></script>
+
     <script src="js/MoreFunction.js"></script>
     <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>
 

@@ -28,45 +28,12 @@ function getQuality(){
     return sleepQty;
 }
 
-function getAllLinks(dayValue){
-
-    var dayNumber1 = 1; var dayNumber2 = 0; 
-    var galLinks = document.getElementById('sleepLink');
-    var anchors = galLinks.getElementsByTagName('a');
-    for (i = 0; i < anchors.length; i++) {  
-        var thisLink = anchors[i];
-        
-        if(dayValue == 1){
-            thisLink.style.display = 'block';
-            return;
-        }
-        
-        dayNumber1 += 1;
-        if(dayNumber1 == dayValue){
-            thisLink.style.display = 'block';
-        }
-        
-        if(dayNumber1 == (dayValue + 1)){
-            thisLink.style.display = 'block';
-            var txt = 'Sleep Diary: ' + dayValue;
-            window.localStorage.setItem("linkText", txt);
-            return;
-        }
-    }
-}
-
 
 $(document).ready(function () {
 
-    getAllLinks(6);  
-
-    $('#sleepLink a').click(function(e) {
-        var txt = $(e.target).text();
-        window.localStorage.setItem("linkText", txt);
-      });
-
     var bt = document.getElementById('btnSubmitDairy');
     bt.disabled = true;
+
     $('#bedTime, #trySleepTime, #sleepTime, #wakeUpCount, #finalAwakeTime, #outOfBedTime, #awakeLast').keyup(fillSleepDiaryFields);
 
     document.getElementById('diaryHeader').innerHTML = window.localStorage.getItem("linkText");
@@ -109,9 +76,11 @@ $(document).ready(function () {
         var wakeUpCount = document.getElementById("wakeUpCount").value;
         let wakeUpCountInt = parseInt(wakeUpCount);
 
-        //var pID = window.localStorage.setItem("patientID");
+        let pID = parseInt(window.localStorage.getItem("patientsID"));
         var otherNote = document.getElementById("otherNote").value;
         var sleepQty = getQuality();
+        var sleepDate =  window.localStorage.getItem("submitDate");
+        let authToken = window.localStorage.getItem("patientToken");
 
 
         let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/submit-sleepdiary';
@@ -120,7 +89,8 @@ $(document).ready(function () {
             type: 'POST',
             headers: {
                 'Content-Type': 'application/json', 
-                'Accept': '*/*'
+                'Accept': '*/*',
+                'Authorization': 'Bearer '+ authToken
             },
             data: JSON.stringify({
                 "bedTime": {
@@ -129,6 +99,7 @@ $(document).ready(function () {
                   "nano": 0,
                   "second": 0
                 },
+                "date_Created": sleepDate,
                 "finalWakeupTime": {
                   "hour": finalAwakeTimeHrs,
                   "minute": finalAwakeTimeMins,
@@ -164,6 +135,7 @@ $(document).ready(function () {
                   "second": 0
                 },
                 "wakeUptimeCount": wakeUpCountInt
+                
               }),
             success: function(result){
                 console.log(result);

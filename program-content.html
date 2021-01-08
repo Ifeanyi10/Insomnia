@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Health enSuite Patient Dashboard</title>
+    <title>Health enSuite Patient Program Content</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Pignose Calender -->
@@ -16,57 +16,6 @@
     <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
-
-    <script language="javascript">
-
-                    window.onload = function getPatientsProfile(){
-                            let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/accessid';
-                            let authToken = window.localStorage.getItem("patientToken");
-                            //alert(authToken);
-                            $.ajax({
-                                url: url,
-                                type: 'GET',
-                                headers: {
-                                    'Content-Type': 'application/json', 
-                                    'Accept': '*/*',
-                                    'Authorization': 'Bearer '+ authToken
-                                },
-                                success: function(result){
-                                    console.log(result);
-                                    var arrayLength = 0;
-                                    var currentDate = '';
-                                    var prevDate = '';
-                                    window.localStorage.setItem("patientsID", result.id);
-                                    window.localStorage.setItem("patientLastName", result.lastName);
-                                    window.localStorage.setItem("patientFirstName", result.firstName);
-                                    window.localStorage.setItem("patientPhone", result.phoneNumber);
-                                    window.localStorage.setItem("patientEmail", result.email);
-                                    console.log(window.localStorage.getItem("patientsID"));
-
-                                    $.each(result.sleepDiaries, function(i, def) {
-                                        if(arrayLength == 0){
-                                            currentDate = def.date_Created;
-                                        } else if(arrayLength == 1){
-                                            prevDate = def.date_Created;
-                                        }
-                                        arrayLength += 1;
-                                    });
-                                    window.localStorage.setItem("currentDateUnformatted", currentDate);
-                                    currentDate = currentDate.split("T", 1)
-                                    window.localStorage.setItem("currentDate", currentDate);
-                                    
-                                    window.localStorage.setItem("prevDateUnformatted", prevDate);
-                                    prevDate = prevDate.split("T", 1)
-                                    window.localStorage.setItem("prevDate", prevDate);
-                                    window.localStorage.setItem("arrayLength", arrayLength);
-                                }, 
-                                error: function(msg){
-                                    console.log("Loading Patients details failed");
-                                }
-                            });
-                        }
-    
-          </script>
 
 </head>
 
@@ -169,15 +118,15 @@
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label">Patient Dashboard</li>
-                    <!-- <li>
+                    <li>
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-grid menu-icon"></i><span class="nav-text">Dashboard</span>
+                            <i class="icon-grid menu-icon"></i><span class="nav-text">My Dashboard</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./index.html">Home</a></li>
-                            <li><a href="./index-2.html">Home 2</a></li>
+                            <li><a href="./patient-dashboard.html">Home</a></li>
+                            <!-- <li><a href="./index-2.html">Home 2</a></li> -->
                         </ul>
-                    </li> -->
+                    </li>
 
                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -288,58 +237,52 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Baseline Sleep Diary</h4>
-                                <div class="justifyDiv">
-                                    The next step is to begin tracking your sleep patterns. Please take a few minutes to fill out a sleep diary each morning for the next 2 weeks. This lets us know your starting point. If you forget to record your answers one morning, you can go back and fill them in up to a day later. 
+                                <h4 class="card-title">Intervention Group Content</h4>
+                                <div class="justifyDiv" style="font-style: italic;">
+                                    Navigation. Only current or previous levels are available to access
                                 </div>
 
                                 <div>
-                                    <h4 class="card-title sleepDiv">Sleep diary instructions:</h4>
+                                    <h4 class="card-title sleepDiv">Table of Contents:</h4>
                                 </div>
-                                <div class="justifyDiv">
+                                <!-- <div class="justifyDiv">
                                     The sleep diary is very brief. It should only take a few minutes to complete. 
                                 </div>
                                 <div class="justifyDiv">
                                     If you don’t know the exact times, record your best guess. 
-                                </div>
+                                </div> -->
                                 <div class="consentInfoBody">
-                                    •	Record the time you got into bed. 
-                                </div>
-                                <div class="consentInfoBody">
-                                    •	Record the time you began to try to fall asleep. 
-                                </div>
-                                <div class="consentInfoBody">
-                                    •	Estimate the time when you fell asleep. 
-                                </div>
-                                <div class="consentInfoBody">
-                                    •	Record how many times you woke up during the night. 
-                                </div>
-
-                                <div class="consentInfoBody">
-                                    •	Record how long you were awake each time. 
-                                </div>
-                                <div class="consentInfoBody">
-                                    •	Record the time you woke up and stayed awake. 
-                                </div>
-                                <div class="consentInfoBody">
-                                    •	Record the time you got out of bed to start your day. This should be after your final awakening. 
-                                </div>
-                                <div class="consentInfoBody">
-                                    •	Rate the overall quality of your sleep.
-                                </div>
-                                <div class="consentInfoBody">
-                                    •	Note any medications or other sleep aids taken before going to bed. 
-                                </div>
-
-                                <div class="justifyDiv">
-                                    Please fill out a sleep diary each day. It is best to do this as soon as you get out of bed so that you don’t forget. You can also use the Medication log at any time to record any medications you are taking.
-                                </div>
-
-                                <div class="sleepDiv" id="todayLink">
-                                    <a href="sleep-diary.html" class="txt1">
-                                        <strong>Complete today’s sleep diary</strong>
+                                    <a href="content-level-1.html" class="txt1">
+                                        <strong>Level 1: Introduction to Health enSuite Insomnia</strong>
                                     </a>
                                 </div>
+                                <div class="consentInfoBody">
+                                    <a href="sleep-diary.html" class="txt1">
+                                        <strong>Level 2: Introduction to Sleep Restriction</strong>
+                                    </a> 
+                                </div>
+                                <div class="consentInfoBody">
+                                    <a href="sleep-diary.html" class="txt1">
+                                        <strong>Level 3: Sleep Hygiene</strong>
+                                    </a>
+                                </div>
+                                <div class="consentInfoBody">
+                                    <a href="sleep-diary.html" class="txt1">
+                                        <strong>Level 4: Relaxation techniques</strong>
+                                    </a>
+                                </div>
+
+                                <div class="consentInfoBody">
+                                    <a href="sleep-diary.html" class="txt1">
+                                        <strong>Level 5: Changing Thoughts</strong>
+                                    </a>
+                                </div>
+                                <div class="consentInfoBody">
+                                    <a href="sleep-diary.html" class="txt1">
+                                        <strong>Level 6: Maintaining Your Progress</strong>
+                                    </a>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -381,23 +324,7 @@
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
 
-    <!-- Chartjs -->
-    <script src="./plugins/chart.js/Chart.bundle.min.js"></script>
-    <!-- Circle progress -->
-    <script src="./plugins/circle-progress/circle-progress.min.js"></script>
-    <!-- Datamap -->
-    <script src="./plugins/d3v3/index.js"></script>
-    <script src="./plugins/topojson/topojson.min.js"></script>
-    <script src="./plugins/datamaps/datamaps.world.min.js"></script>
-    <!-- Morrisjs -->
-    <script src="./plugins/raphael/raphael.min.js"></script>
-    <script src="./plugins/morris/morris.min.js"></script>
-    <!-- Pignose Calender -->
-    <script src="./plugins/moment/moment.min.js"></script>
-    <script src="./plugins/pg-calendar/js/pignose.calendar.min.js"></script>
-    <!-- ChartistJS -->
-    <script src="./plugins/chartist/js/chartist.min.js"></script>
-    <script src="./plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
+
 
     <script src="js/MoreFunction.js"></script>
     <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>

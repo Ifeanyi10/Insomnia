@@ -20,7 +20,7 @@ $(document).ready(function () {
                 //console.log(result);
                 //set timeer (30 minutes) to disable the token 
                 window.localStorage.setItem("patientToken", result);
-                alert(window.localStorage.getItem("patientToken"));
+                //alert(window.localStorage.getItem("patientToken"));
                 window.location.href = "patient-dashboard.html";
             }, 
             error: function(msg){

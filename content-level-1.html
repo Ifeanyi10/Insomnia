@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Health enSuite Patient Level 1 Program Content</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <!-- Pignose Calender -->
+    <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="./plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="./plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+    <!-- Custom Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <div class="brand-logo">
+                <a href="index.html">
+                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
+                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <span class="brand-title">
+                        <img src="images/logo-text.png" alt="">
+                    </span>
+                </a>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">    
+            <div class="header-content clearfix">
+                
+                <!-- <div class="nav-control">
+                    <div class="hamburger">
+                        <span class="toggle-icon"><i class="icon-menu"></i></span>
+                    </div>
+                </div> -->
+                <div class="header-left">
+                    <!-- <div class="input-group icons">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
+                        </div>
+                        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
+                        <div class="drop-down animated flipInX d-md-none">
+                            <form action="#">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </form>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="header-right">
+                    <ul class="clearfix">
+                        
+                        <li class="icons dropdown">
+                            <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                                <span class="activity active"></span>
+                                <img src="images/user/1.png" height="40" width="40" alt="">
+                            </div>
+                            <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="patient-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
+                                        </li>
+
+                                        <li><a href="index.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar">           
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label">Patient Dashboard</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-grid menu-icon"></i><span class="nav-text">My Dashboard</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./patient-dashboard.html">Home</a></li>
+                            <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-user menu-icon"></i><span class="nav-text">Patient Profile</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./patient-profile.html">My Profile</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-note menu-icon"></i><span class="nav-text">Sleep Diary</span>
+                        </a>
+                        <ul aria-expanded="false" id="sleepLink">
+                            <li><a href="./sleep-diary.html" style="display: none;"></a></li>
+                            <li><a href="./sleep-diary.html" style="display: none;"></a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Sleep Clock</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./patient-sleep-clock.html">My Sleep Clock</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">Sleep Report</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./patient-profile.html">My Sleep Report</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Sleep Medication</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./program-content.html">My Sleep Medication</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-user menu-icon"></i><span class="nav-text">Task & Progress</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./patient-profile.html">My Task List</a></li>
+                            <li><a href="./patient-profile.html">My Progress</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-user menu-icon"></i><span class="nav-text">User Guide</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./patient-profile.html">My User Guide</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-envelope menu-icon"></i><span class="nav-text">Contact Us</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./voluntary-withdrawal.html">Voluntory Withdrawal</a></li>
+                            <li><a href="./feedback.html">Feedback</a></li>
+                            <li><a href="./patient-profile.html">Contact Us</a></li>
+                        </ul>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+
+            <div class="container-fluid mt-3">
+                <div class="row">
+                    <!-- <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">SLEEP DIARY</h4>
+                                <h5 class="mt-3">Completed <span class="float-right">10%</span></h5>
+                                <div class="progress" style="height: 9px">
+                                    <div class="progress-bar bg-danger wow  progress-" style="width: 10%;" role="progressbar"><span class="sr-only">60% Complete</span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div> -->
+                    
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Level 1 – Introduction to Health EnSuite Insomnia </h4>
+                                <div class="justifyDiv">
+                                    Health enSuite Insomnia is designed to support you in changing your habits and improving your sleep. The advice it contains should complement, but does not replace, the services you receive from your health care provider. 
+                                </div>
+                                <div class="justifyDiv">
+                                    The main goals for this first week are for you to continue tracking your sleep patterns using the sleep diaries, and learn about some of the common causes and consequences of insomnia.  
+                                </div>
+                                <div class="justifyDiv">
+                                    It may also be time to start reducing your use of sleeping pills. Follow the medication schedule recommended by your health care provider. 
+                                </div>
+
+
+                                <div>
+                                    <h4 class="card-title sleepDiv">To advance to the next level you will need to:</h4>
+                                </div>
+                                <div class="consentInfoBody">
+                                    - 	Complete at least 5 sleep diaries within a week
+                                </div>
+                                <div class="consentInfoBody">
+                                    - 	Complete the readings and activities for level 1 (Introduction to Health enSuite)
+                                </div>
+
+
+                                <!-- <div>
+                                    <h3 class="consentInfoHeadSmall">Introduction to Health enSuite:</h3>
+                                </div>
+                                <div class="consentInfoBody">
+                                    <input type='button' class='buttonPlainTxt' value='What is insomnia?'/>
+                                </div>
+                                <div class="consentInfoBody">
+                                    <input type='button' class='buttonPlainTxt' value='What causes insomnia?'/>
+                                </div>
+                                <div class="consentInfoBody">
+                                    <input type='button' class='buttonPlainTxt' value='How does this program work?'/>
+                                </div>
+                                <div class="consentInfoBody">
+                                    <input type='button' class='buttonPlainTxt' value='Sleeping pills'/>
+                                </div>
+                                <div class="consentInfoBody">
+                                    <input type='button' class='buttonPlainTxt' value='Getting support and involving your partner'/>
+                                </div> -->
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Introduction to Health enSuite:</h4>
+                                <ul class="nav nav-pills mb-3">
+                                    <li class="nav-item"><a href="#navpills-1" class="nav-link active" data-toggle="tab" aria-expanded="false">What is insomnia?</a>
+                                    </li>
+                                    <li class="nav-item"><a href="#navpills-2" class="nav-link" data-toggle="tab" aria-expanded="false">What causes insomnia?</a>
+                                    </li>
+                                    <li class="nav-item"><a href="#navpills-3" class="nav-link" data-toggle="tab" aria-expanded="true">How program work?</a>
+                                    </li>
+                                    <li class="nav-item"><a href="#navpills-4" class="nav-link" data-toggle="tab" aria-expanded="true">Sleeping pills</a>
+                                    </li>
+                                    <li class="nav-item"><a href="#navpills-5" class="nav-link" data-toggle="tab" aria-expanded="true">Getting support</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content br-n pn">
+                                    <div id="navpills-1" class="tab-pane active">
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-6 col-md-4 col-xl-2">
+                                                <img src="images/big/Insomnia-img.jpg" alt="" class="img-fluid thumbnail m-r-15">
+                                            </div>
+                                            <div class="col-sm-6 col-md-8 col-xl-10">
+                                                <h3 class="consentInfoHeadSmall">What is insomnia?</h3>
+                                                <p>Insomnia is more than just getting a poor night’s sleep. Everyone can have difficulty sleeping from time to time. For people with insomnia, difficulty sleeping becomes a regular and persistent problem. This could involve difficulty falling asleep, difficulty staying asleep, or both. Some people with insomnia wake up frequently throughout the night and have trouble getting back to sleep. Others wake up too early in the morning.</p>
+                                                <p>Insomnia is not the result of a lack of opportunity to sleep. People with insomnia experience sleep disruptions even though they had a reasonable chance to sleep.</p>
+                                                <div class="form-group">
+                                                    <label class="lblQuestion">Which of the following best describes your situation (check all that apply):</label>
+            
+                                                    <div class="form-check mb-3">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" name="abt" value="It often takes me more than 30 minutes to fall asleep.">It often takes me more than 30 minutes to fall asleep.</label>
+                                                    </div>
+                                                    <div class="form-check mb-3">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" name="abt" value="I wake up frequently throughout the night and have trouble getting back to sleep.">I wake up frequently throughout the night and have trouble getting back to sleep.</label>   
+                                                    </div>
+                                                    <div class="form-check mb-3">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" name="abt" value="I regularly wake up too early in the morning and cannot get back to sleep.">I regularly wake up too early in the morning and cannot get back to sleep.</label>
+                                                    </div>
+                                                    <div class="form-check mb-3">
+                                                        <label class="form-check-label">
+                                                            <input type="checkbox" class="form-check-input" name="abt" value="My sleep quality is poor. I would like to improve the quality of my sleep.">My sleep quality is poor. I would like to improve the quality of my sleep.</label>
+                                                    </div>
+                                                </div>
+                                                <p>Over the next few weeks you will learn strategies to help resolve this problem.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="navpills-2" class="tab-pane">
+
+                                        <div class="row align-items-center">
+                                            <div class="col-sm-6 col-md-4 col-xl-2">
+                                                <img src="images/big/causesInsomnia-img.jpg" alt="" class="img-fluid thumbnail m-r-15">
+                                            </div>
+                                            <div class="col-sm-6 col-md-8 col-xl-10">
+                                                <h3 class="consentInfoHeadSmall">What causes insomnia?</h3>
+                                                <p>Usually, insomnia is not caused by a chemical imbalance. Most of the time it is caused by habits, lifestyle, and problematic ways of thinking about sleep. Solutions that focus on these underlying causes of insomnia have the best chance of long-term success.</p>
+                                                <p>Sometimes medical conditions interfere with sleep.  If these are left untreated, changes to your sleep routine might not be enough. Talk with your health care provider about any medical conditions you may have that may be affecting your sleep.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="navpills-3" class="tab-pane">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-12">
+                                                <h3 class="consentInfoHeadSmall">How does this program work?</h3>
+                                                <p>Health enSuite Insomnia is based on a cognitive behavioural approach to treating insomnia.  The goal is to change old ways of thinking and behaving and learn new, more effective ways of thinking and behaving. Every week, you will learn new skills to help you sleep better at night and feel better during the day. Here is an outline of what to expect in the weeks to come.</p>
+                                                <div class="consentInfoBody">
+                                                    Week 1 (this week): Introduction to Health EnSuite: Insomnia
+                                                </div>
+                                                <div class="consentInfoBody">
+                                                    Week 2: Introduction sleep restriction therapy and using the sleep restriction clock
+                                                </div>
+                                                <div class="consentInfoBody">
+                                                    Week 3: Changing behaviours and improving sleep hygiene
+                                                </div>
+                                                <div class="consentInfoBody">
+                                                    Week 4: Relaxation techniques
+                                                </div>
+                                                <div class="consentInfoBody">
+                                                    Week 5: Changing negative thoughts related to sleep
+                                                </div>
+                                                <div class="consentInfoBody">
+                                                    Week 6: Setback prevention and planning for the future
+                                                </div>
+                                                <p>It may take a few weeks before you start to notice a difference in your sleep quality. Don’t get discouraged. Changing habits can be difficult and take time. The key to success is to stick with the program and practice the skills you are learning every day.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="navpills-4" class="tab-pane">
+
+                                        <div id="content4-1">
+                                            <div class="row align-items-center">                                           
+                                                <div class="col-sm-6 col-md-4 col-xl-2">
+                                                    <img src="images/big/sleepPills1-img.jpg" alt="" class="img-fluid thumbnail m-r-15">
+                                                </div>
+                                                <div class="col-sm-6 col-md-8 col-xl-10">
+                                                    <h3 class="consentInfoHeadSmall">Sleeping pills</h3>
+                                                    <p>Sleeping pills may seem like an easy way to manage your sleep. Unfortunately sleeping pills only work as a short term remedy for sleep problems. After a few weeks, sleeping pills can become less effective in promoting good sleep. But many people continue using sleeping pills for weeks or even years. This can happen even when there are adverse side effects like daytime drowsiness and difficulty concentrating.</p>
+                                                    <p>Your health care provider has recommended a plan that will gradually reduce the amount  of the sleeping pills you are taking. The goal is for you to eventually be able to stop taking sleeping pills and get a good night’s sleep.</p>
+                                                    <p>How is it going so far?</p>
+                                                    <div class="form-group">
+                                                        <label class="lblQuestion">Which of the following best describes your feelings about this plan?</label>
+                
+                                                        <div class="form-check mb-3">
+                                                            <label class="form-check-label">
+                                                                <input type="radio" class="form-check-input" data-toggle="modal" data-target="#exampleModalCenter" onclick="fillModalContentValue('confident');" name="abt" value="confident">I feel confident I will be able to stick to this plan. </label>
+                                                        </div>
+                                                        <div class="form-check mb-3">
+                                                            <label class="form-check-label">
+                                                                <input type="radio" class="form-check-input" data-toggle="modal" data-target="#exampleModalCenter" onclick="fillModalContentValue('difficult');" name="abt" value="difficult">I think it will be very difficult for me to stick to this plan.</label>   
+                                                        </div>
+                                                        <div class="form-check mb-3">
+                                                            <label class="form-check-label">
+                                                                <input type="radio" class="form-check-input" data-toggle="modal" data-target="#exampleModalCenter" onclick="fillModalContentValue('unknown');" name="abt" value="unknown">I don’t know what the plan is. What can I do to find out?</label>
+                                                        </div>
+
+                                                        <div class="modal fade" id="exampleModalCenter">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="modalContentTitle"></h5>
+                                                                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p id="modalContentBd"></p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <input type='button' class='buttonPlainTxt' id="btnContSleepPill" onclick="showNote('content4-2');" value='Continue...'/>
+                                        </div>
+
+                                        <div class="hidden" id="content4-2">
+
+                                            <div class="row align-items-center">
+                                                <div class="col-md-12">
+                                                    <h3 class="consentInfoHeadSmall">Why is it a good idea to reduce my medications gradually?</h3>
+                                                    <p>Sudden changes in medications increase your risk of <a class='branchLink' id="sympID" href="#symps">withdrawal symptoms.</a></p>
+                                                    <div class="linkDiv hidden" id="symps">Withdrawal symptoms might include: insomnia, anxiety, irritability, headaches, sweating, shaking or tremors, pounding heart, nausea, dizziness, unsteadiness, difficulty concentrating, sensitivity to noise and light, ringing in the ears, confusion/delirium, depression, seizures</div>
+
+                                                    <p>The risk of withdrawal symptoms is reduced when medication changes are slow and gradual. The plan your health care provider has recommended takes this slow, gradual approach. Your sleeping pill dose is reduced slowly over a period of many weeks or months. A small change happens each time you start a new dose.</p>
+                                                </div>
+                                            </div>
+
+                                            <div class="row align-items-center">                                           
+                                                <div class="col-sm-6 col-md-4 col-xl-2">
+                                                    <img src="images/big/sleepPills2-img.jpg" alt="" class="img-fluid thumbnail m-r-15">
+                                                </div>
+                                                <div class="col-sm-6 col-md-8 col-xl-10">
+                                                    
+                                                    <p>You might find that your insomnia initially gets worse after you reduce your medication. Try your best to stick to the medication plan even if this happens. Over time, your body will adjust to the new dose. It should get easier within a few days.</p>
+                                                    <p>Sometimes people think that they need the pills to sleep. This is a myth.</p>
+                                                    <p>Even if your sleep problems initially get worse when you reduce your medications, this does not mean that you will never be able to sleep well without taking medication.</p>
+                                                    <p>Over the next few weeks you will learn strategies for managing your sleep that will make it possible for you stop taking sleeping pills and get a good night’s sleep.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div id="navpills-5" class="tab-pane">
+                                        <div class="row align-items-center">
+                                            <div class="col-md-12">
+                                                <h3 class="consentInfoHeadSmall">Getting support and involving your partner</h3>
+                                                <p>Having someone to support you can make changing your thoughts and behaviours easier. Is there someone who can support you? This could be a romantic partner, family member, friend or someone else you feel supports you. If you regularly share a bed with another person, it is good idea to involve this person. They can play an important role in helping you change your routines around sleep.</p>
+                                                
+                                                <div class="form-group">
+                                                    <label class="lblQuestion">Which of these best describes your situation? (Choose the option that describes your typical sleeping arrangement)</label>
+            
+                                                    <div class="form-check mb-3">
+                                                        <label class="form-check-label">
+                                                            <input type="radio" class="form-check-input" onclick="showQuestion('Q1','Q2','Q3','supportForm');" name="abt" value="alone">I sleep alone. </label>
+                                                    </div>
+                                                    <div class="form-check mb-3">
+                                                        <label class="form-check-label">
+                                                            <input type="radio" class="form-check-input" onclick="showQuestion('Q2','Q1','Q3','supportForm');" name="abt" value="bedroom">I share my bedroom with another person, but I sleep in my own bed.</label>   
+                                                    </div>
+                                                    <div class="form-check mb-3">
+                                                        <label class="form-check-label">
+                                                            <input type="radio" class="form-check-input" onclick="showQuestion('Q3','Q1','Q2','supportForm');" name="abt" value="person">I share a bed with another person.</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group hidden" id="Q1">
+                                                    <label class="lblQuestion">Would you like to nominate a support person to help you throughout this program? This person will be sent tips and information related to the skills you are learning.</label><br/>
+                                                    <label class="radio-inline mr-3">
+                                                        <input type="radio" onclick="showSupport();" id="willingYes" name="optradio1"> Yes</label>
+                                                    <label class="radio-inline mr-3">
+                                                        <input type="radio" data-toggle="modal" data-target="#recommendModalCenter" id="willingNo" name="optradio1"> No</label><br/>
+        
+                                                </div>
+
+                                                <div class="form-group hidden" id="Q2">
+                                                    <label class="lblQuestion">Would you like to nominate your roommate to support you throughout this program? This person will be sent tips and information related to the skills you are learning.</label><br/>
+                                                    <label class="radio-inline mr-3">
+                                                        <input type="radio" onclick="showSupport();" id="nominateYes" name="optradio2"> I would like to nominate this person. </label><br/>
+                                                    <label class="radio-inline mr-3">
+                                                        <input type="radio" onclick="showSupport();" id="someoneYes" name="optradio2"> I would like to nominate someone else.</label><br/>
+                                                    <label class="radio-inline mr-3">
+                                                        <input type="radio" data-toggle="modal" data-target="#recommendModalCenter" id="nominateNo" name="optradio2"> I do not want to nominate a support person.</label><br/>
+        
+                                                </div>
+
+                                                <div class="form-group hidden" id="Q3">
+                                                    <label class="lblQuestion">Would you like to nominate your bed partner to support you throughout this program? This person will be sent tips and information related to the skills you are learning.</label><br/>
+                                                    <label class="radio-inline mr-3">
+                                                        <input type="radio" onclick="showSupport();" id="bedNominateYes" name="optradio3"> I would like to nominate this person. </label><br/>
+                                                    <label class="radio-inline mr-3">
+                                                        <input type="radio" onclick="showSupport();" id="bedSomeoneYes" name="optradio3"> I would like to nominate someone else.</label><br/>
+                                                    <label class="radio-inline mr-3">
+                                                        <input type="radio" data-toggle="modal" data-target="#recommendModalCenter" id="bedNominateNo" name="optradio3"> I do not want to nominate a support person.</label><br/>
+        
+                                                </div>
+
+                                                <div class="modal fade" id="recommendModalCenter">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title">Remember!!!</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Having someone to support you can make changing your thoughts and behaviours easier.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hidden" id="supportForm">
+
+                                                    <div id='errorContainer2'></div>
+        
+                                                    <label class="lblQuestion">Support Person</label>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="pat2FName" placeholder="Support Person Name" required>
+                                                    </div>
+        
+                                                    <!-- <div class="form-group">
+                                                        <label class="lblQuestion">Gender:</label>
+                                                        <label class="radio-inline mr-3">
+                                                            <input type="radio" id="t2Male" value="MALE" name="optradio21" checked> MALE</label>
+                                                        <label class="radio-inline mr-3">
+                                                            <input type="radio" id="t2Female" value="FEMALE" name="optradio21"> FEMALE</label>
+                                                        <label class="radio-inline mr-3">
+                                                            <input type="radio" id="t2Other" value="OTHER" name="optradio21"> OTHER</label>
+                                                    </div> -->
+        
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control" id="pat2Email"  placeholder="Support Person Email" pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?" max="120" required>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="pat2LName"  placeholder="My relationship to this person (spouse, relative, friend, etc.)" required>
+                                                    </div>
+        
+                                                    <div class="general-button">
+                                                        <!-- <button type="submit" id="btnBackTrial2" onclick="goBack('trial2Demo','fifthQ1');" class="btn btn-dark mb-2" style="margin-right: 30px;">Back</button> -->
+                                                        <button type="button" class="btn mb-1 btn-outline-light" id="btnTrial2">Submit</button>
+                                                    </div>
+        
+                                                </div>
+
+                                                <div class="hidden">
+                                                    <label class="lblQuestion">Things to do this week:</label>
+                                                    <p>Use the sleep diary to track when you go to bed at night and when you get up in the morning. Record your sleep quality each day. Note the dose of any medications you are taking. To advance to the next level you will need to complete at least 5 of these entries.</p>
+                                                    <div class="sleepDiv" id="todayLink">
+                                                        <a href="sleep-diary.html" class="txt1">
+                                                            <strong>Complete today’s sleep diary</strong>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+               
+                    
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        
+        
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Health enSuite Research Team</a> 2020</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
+
+
+    <script src="js/MoreFunction.js"></script>
+    <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>
+
+</body>
+
+</html>
