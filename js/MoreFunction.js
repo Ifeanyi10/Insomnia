@@ -153,9 +153,14 @@ function showQuestion(divName1, divName2, divName3, supportDiv){
     sp.style.display = 'none';
 }
 
-function showSupport(){
-    var sp = document.getElementById('supportForm');
+function showSupport(diSupport){
+    var sp = document.getElementById(diSupport);
     sp.style.display = 'block';
+}
+
+function removeSupport(diSupport){
+    var sp = document.getElementById(diSupport);
+    sp.style.display = 'none';
 }
 
 

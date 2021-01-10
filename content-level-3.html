@@ -5,55 +5,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Health enSuite Patient Sleep Clock</title>
+    <title>Health enSuite Patient Level 3 Program Content</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Pignose Calender -->
-    <link href="./plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
-    <!-- Page plugins css -->
-    <link href="./plugins/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet">
-    <!-- Color picker plugins css -->
-    <link href="./plugins/jquery-asColorPicker-master/css/asColorPicker.css" rel="stylesheet">
-    <!-- Date picker plugins css -->
-    <link href="./plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
-    <!-- Daterange picker plugins css -->
-    <link href="./plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
-    <link href="./plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="./plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="./plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+    <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
-
-    <!-- <script language="javascript">
-
-                    window.onload = function getPatientsProfile(){
-                            let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/accessid';
-                            let authToken = window.localStorage.getItem("patientToken");
-                            alert(authToken);
-                            $.ajax({
-                                url: url,
-                                type: 'GET',
-                                headers: {
-                                    'Content-Type': 'application/json', 
-                                    'Accept': '*/*',
-                                    'Authorization': 'Bearer '+ authToken
-                                },
-                                success: function(result){
-                                    console.log(result);
-                                    
-                                    window.localStorage.setItem("patientsID", result.id);
-
-                                    window.localStorage.setItem("patientLastName", result.lastName);
-                                    window.localStorage.setItem("patientFirstName", result.firstName);
-                                    window.localStorage.setItem("patientPhone", result.phoneNumber);
-                                    window.localStorage.setItem("patientEmail", result.email);
-                                    console.log(window.localStorage.getItem("patientsID"));
-                                }, 
-                                error: function(msg){
-                                    console.log("Loading Patients details failed");
-                                }
-                            });
-                        }
-    
-          </script> -->
 
 </head>
 
@@ -271,113 +233,92 @@
 
                     </div> -->
                     
-                    <div class="col-lg-12 col-md-12 col-sm-12" id="sleepClock1">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Sleep Clock</h4>
+                                <h4 class="card-title">Level 3: Sleep Hygiene</h4>
                                 <div class="justifyDiv">
-                                    It’s time to adjust your sleep clock.
-                                    Let’s review your sleep patterns from the past week.
+                                    Sleep hygiene rules are tips for maintaining good sleep health. You may have heard some of these tips before. Although sleep hygiene alone might not be enough to resolve chronic insomnia, it is important to address behaviours that are obviously interfering with good sleep. Improving sleep hygiene can be a key step on the way to a good night’s sleep.  
                                 </div>
-
-                                <div>
-                                    <h4 class="card-title sleepDiv">Sleep Window</h4>
-                                </div>
-
-                                <div>
-                                    <label class="consentInfoBody">Your Bed Time:</label>
-                                    <label class="consentInfoBody" id="yBedTime"></label>
-                                </div>
-                                
-                                <div>
-                                    <label class="consentInfoBody">Your Rise Time:</label>
-                                    <label class="consentInfoBody" id="yRiseTime"></label>
-                                </div>
-                                
-                                <div>
-                                    <h4 class="card-title sleepDiv">Sleep Time & Efficiency</h4>
-                                </div>
-
-                                <div>
-                                    <label class="consentInfoBody">Average Time in Bed per Night:</label>
-                                    <label class="consentInfoBody" id="avTimePerNight"></label>
-                                </div>
-
-                                <div>
-                                    <label class="consentInfoBody">Average Total Sleep Time per Night:</label>
-                                    <label class="consentInfoBody" id="avTotalTimePerNight"></label>
-                                </div>
-                                
-                                <div>
-                                    <label class="consentInfoBody">Average Sleep Efficiency:</label>
-                                    <label class="consentInfoBody" id="avSleepEff">95%</label>
-                                </div>
-
                                 <div class="justifyDiv">
-                                    
-                                    <div class="bootstrap-modal">
-                                        <!-- Button trigger modal -->
-                                        <input type='button' class='buttonPlainTxt' data-toggle="modal" data-target="#exampleModalCenter" onclick="fillModalValue();" value='View Recommendation Info'/>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModalCenter">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="modalTitle"></h5>
-                                                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p id="modalBd"></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    Use the Sleep Hygiene Checklist to keep track of the things you are doing during the day, before going to bed, and when you are in bed to help you sleep well. Some people find it helpful to set themselves reminders to remember to practice the things that are especially helpful for them.
+                                </div>
+                                <div class="justifyDiv">
+                                    Sleep hygiene checklist
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="lblQuestion">Check off the things you have done today:</label>
+
+                                    <div class="form-check mb-3">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="done" value="Bed for sleep only"><strong>Use your bed only for sleeping.</strong> Don’t use your bed as a place to watch TV, eat, read, work on your laptop, pay bills, etc.</label>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="done" value="Get up and fall asleep"><strong>Get up and try again if you don’t fall asleep within 15-20 minutes.</strong> Get up and do something calming or boring until you feel sleepy, then go back to bed and try again. Avoid turning on bright lights or doing anything that is too stimulating or interesting. This could wake you up even more.</label>   
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="done" value="Don’t take naps"><strong>Don’t take naps.</strong> If you can’t make it through the day without a nap, keep it under 1 hour and before 3pm. </label>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="done" value="Exercise regularly"><strong>Exercise regularly, but not right before bed.</strong> Getting regular exercise that raises your heart rate and gets you to sweat a little can be a great way to improve your sleep. Exercising in the evening can make it more difficult to relax when it is time to go to sleep. Try exercising in the mornings instead.</label>
+                                    </div>
+
+                                    <div class="form-check mb-3">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="done" value="Eat right"><strong>Eat right.</strong> Feeling hungry or too full can make it more difficult to fall asleep. Try to avoid having a heavy meal right before bed. If you feel hungry, try having a light snack.</label>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="done" value="Avoid stimulants"><strong>Avoid stimulants.</strong> It is not a good idea to have caffeine, nicotine, or other stimulants 4-6 hours before going to bed. If you drink coffee or tea try to keep it early in the day.</label>   
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="done" value="Avoid alcohol"><strong>Avoid alcohol.</strong> Many people believe that alcohol helps them to relax and get to sleep more easily, but it actually leads to poorer quality sleep. It is best to avoid drinking alcohol 4-6 hours before bed.</label>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="done" value="Create a comfortable space"><strong>Create a comfortable space.</strong> Make sure your room is not too hot or too cold. Use earplugs to block out noise and an eye mask or curtains to block out the light.</label>
+                                    </div>
+
+                                    <div class="form-check mb-3">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="done" value="Limit screen time before bed"><strong>Limit screen time before bed.</strong> Stop watching TV or working on your computer at least one hour before bed time.  Set your phone to night mode (do not disturb) and keep it away from your bed. This will decrease the temptation to use it while you are trying to sleep.</label>
+                                    </div>
+                                    <div class="form-check mb-3">
+                                        <label class="form-check-label">
+                                            <input type="checkbox" class="form-check-input" name="done" value="Create a routine"><strong>Create a routine to help you unwind.</strong> Many people find it helpful to do some stretching or deep breathing to help them relax before bed. This can also be a time to work through your thoughts and worries before bed. Try write them down so that you can deal with them in the morning.</label>
                                     </div>
                                 </div>
-                                
 
-                                <div class="sleepDiv">
-                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('sleepClock1','sleepClock2');" value='Set your sleep window for the next week'/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-12 col-md-12 col-sm-12 hidden" id="sleepClock2">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Sleep Clock Window</h4>
-                                <div class="justifyDiv">
-                                    Your sleep window for the next week is <strong id="nextHour">15</strong> hours and <strong id="nextMinute">50</strong> minutes long. You can change the bed time or rise time if you want. 
-                                    Pick times that you can maintain for the next 7 days and that will allow you to get to work or school on time.  
-                                    If the length of your sleep window has increased, we recommend adjusting your bed time and keeping your rise time the same.
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="m-t-20 sleepMargin">Your Bed Time:</label>
-                                        <div class="input-group clockpicker">
-                                            <input type="text" class="form-control" id="clockBedTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
-                                        </div>
-                                        <label class="m-t-40 sleepMargin">Your Rise Time:</label>
-                                        <div class="input-group clockpicker">
-                                            <input type="text" class="form-control" id="clockRiseTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
-                                        </div>
+                                <div id="suggestMessage" style="margin-top: 10px;">
+                                    <div>
+                                        <h3 class="consentInfoHeadSmall justifyDiv">Additional Note About Today</h3>
+                                    </div>
+                                    <div class="input-group">
+                                        <textarea rows="4" cols="85" name="comment" id="contAddNote" form="usrform" placeholder="Enter note here..."> </textarea>
+                                    </div>
+                                    <div class="sleepDiv">
+                                        <input type='button' class='buttonPlainTxt' value='Submit Checklist'/>
                                     </div>
                                 </div>
-                                
 
                                 <div class="sleepDiv">
-                                    <input type='button' class='buttonPlainTxt' id="btnConfirmClock" value='Click button to confirm sleep window for the next week'/>
+                                    <a href="program-content.html" class="txt1">
+                                        <strong>Return to Dashboard</strong>
+                                    </a>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>
 
                 </div>
 
+               
                     
             </div>
             <!-- #/ container -->
@@ -412,22 +353,6 @@
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
 
-    <script src="./plugins/moment/moment.js"></script>
-    <script src="./plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-    <!-- Clock Plugin JavaScript -->
-    <script src="./plugins/clockpicker/dist/jquery-clockpicker.min.js"></script>
-    <!-- Color Picker Plugin JavaScript -->
-    <script src="./plugins/jquery-asColorPicker-master/libs/jquery-asColor.js"></script>
-    <script src="./plugins/jquery-asColorPicker-master/libs/jquery-asGradient.js"></script>
-    <script src="./plugins/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js"></script>
-    <!-- Date Picker Plugin JavaScript -->
-    <script src="./plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <!-- Date range Plugin JavaScript -->
-    <script src="./plugins/timepicker/bootstrap-timepicker.min.js"></script>
-    <script src="./plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
-
-    <script src="./js/plugins-init/form-pickers-init.js"></script>
-    <script src="./js/plugins-init/form-pickers-init.js"></script>
 
     <script src="js/MoreFunction.js"></script>
     <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>

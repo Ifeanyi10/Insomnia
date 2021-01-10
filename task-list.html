@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Health enSuite Patient Sleep Clock</title>
+    <title>Health enSuite Patient Task List</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Pignose Calender -->
@@ -208,7 +208,7 @@
                             <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Sleep Medication</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./sleep-medication.html">My Sleep Medication</a></li>
+                            <li><a href="./program-content.html">My Sleep Medication</a></li>
                         </ul>
                     </li>
 
@@ -218,7 +218,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./task-list.html">My Task List</a></li>
-                            <li><a href="./program-content.html">My Progress</a></li>
+                            <li><a href="./patient-profile.html">My Progress</a></li>
                         </ul>
                     </li>
 
@@ -238,6 +238,7 @@
                         <ul aria-expanded="false">
                             <li><a href="./voluntary-withdrawal.html">Voluntory Withdrawal</a></li>
                             <li><a href="./feedback.html">Feedback</a></li>
+                            <li><a href="./patient-profile.html">Contact Us</a></li>
                         </ul>
                     </li>
                     
@@ -271,110 +272,21 @@
 
                     </div> -->
                     
-                    <div class="col-lg-12 col-md-12 col-sm-12" id="sleepClock1">
+                    <div class="col-lg-12 col-md-12 col-sm-12" >
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Sleep Clock</h4>
-                                <div class="justifyDiv">
-                                    It’s time to adjust your sleep clock.
-                                    Let’s review your sleep patterns from the past week.
-                                </div>
-
-                                <div>
-                                    <h4 class="card-title sleepDiv">Sleep Window</h4>
-                                </div>
-
-                                <div>
-                                    <label class="consentInfoBody">Your Bed Time:</label>
-                                    <label class="consentInfoBody" id="yBedTime"></label>
-                                </div>
+                                <h4 class="card-title">My Task List</h4>
                                 
-                                <div>
-                                    <label class="consentInfoBody">Your Rise Time:</label>
-                                    <label class="consentInfoBody" id="yRiseTime"></label>
-                                </div>
-                                
-                                <div>
-                                    <h4 class="card-title sleepDiv">Sleep Time & Efficiency</h4>
-                                </div>
+                               <div id="pendTask">
 
-                                <div>
-                                    <label class="consentInfoBody">Average Time in Bed per Night:</label>
-                                    <label class="consentInfoBody" id="avTimePerNight"></label>
-                                </div>
+                                <h3 class="consentInfoHeadSmall">Your pending task include:</h3>
 
-                                <div>
-                                    <label class="consentInfoBody">Average Total Sleep Time per Night:</label>
-                                    <label class="consentInfoBody" id="avTotalTimePerNight"></label>
-                                </div>
-                                
-                                <div>
-                                    <label class="consentInfoBody">Average Sleep Efficiency:</label>
-                                    <label class="consentInfoBody" id="avSleepEff">95%</label>
-                                </div>
+                               </div>
 
-                                <div class="justifyDiv">
-                                    
-                                    <div class="bootstrap-modal">
-                                        <!-- Button trigger modal -->
-                                        <input type='button' class='buttonPlainTxt' data-toggle="modal" data-target="#exampleModalCenter" onclick="fillModalValue();" value='View Recommendation Info'/>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModalCenter">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="modalTitle"></h5>
-                                                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p id="modalBd"></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-
-                                <div class="sleepDiv">
-                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('sleepClock1','sleepClock2');" value='Set your sleep window for the next week'/>
-                                </div>
                             </div>
                         </div>
                     </div>
 
-
-                    <div class="col-lg-12 col-md-12 col-sm-12 hidden" id="sleepClock2">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Sleep Clock Window</h4>
-                                <div class="justifyDiv">
-                                    Your sleep window for the next week is <strong id="nextHour">15</strong> hours and <strong id="nextMinute">50</strong> minutes long. You can change the bed time or rise time if you want. 
-                                    Pick times that you can maintain for the next 7 days and that will allow you to get to work or school on time.  
-                                    If the length of your sleep window has increased, we recommend adjusting your bed time and keeping your rise time the same.
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label class="m-t-20 sleepMargin">Your Bed Time:</label>
-                                        <div class="input-group clockpicker">
-                                            <input type="text" class="form-control" id="clockBedTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
-                                        </div>
-                                        <label class="m-t-40 sleepMargin">Your Rise Time:</label>
-                                        <div class="input-group clockpicker">
-                                            <input type="text" class="form-control" id="clockRiseTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-
-                                <div class="sleepDiv">
-                                    <input type='button' class='buttonPlainTxt' id="btnConfirmClock" value='Click button to confirm sleep window for the next week'/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 

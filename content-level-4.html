@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Health enSuite Patient Level 4 Program Content</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <!-- Pignose Calender -->
+    <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="./plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="./plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+    <!-- Custom Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <div class="brand-logo">
+                <a href="index.html">
+                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
+                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <span class="brand-title">
+                        <img src="images/logo-text.png" alt="">
+                    </span>
+                </a>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">    
+            <div class="header-content clearfix">
+                
+                <!-- <div class="nav-control">
+                    <div class="hamburger">
+                        <span class="toggle-icon"><i class="icon-menu"></i></span>
+                    </div>
+                </div> -->
+                <div class="header-left">
+                    <!-- <div class="input-group icons">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
+                        </div>
+                        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
+                        <div class="drop-down animated flipInX d-md-none">
+                            <form action="#">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </form>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="header-right">
+                    <ul class="clearfix">
+                        
+                        <li class="icons dropdown">
+                            <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                                <span class="activity active"></span>
+                                <img src="images/user/1.png" height="40" width="40" alt="">
+                            </div>
+                            <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="patient-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
+                                        </li>
+
+                                        <li><a href="index.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar">           
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label">Patient Dashboard</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-grid menu-icon"></i><span class="nav-text">My Dashboard</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./patient-dashboard.html">Home</a></li>
+                            <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-user menu-icon"></i><span class="nav-text">Patient Profile</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./patient-profile.html">My Profile</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-note menu-icon"></i><span class="nav-text">Sleep Diary</span>
+                        </a>
+                        <ul aria-expanded="false" id="sleepLink">
+                            <li><a href="./sleep-diary.html" style="display: none;"></a></li>
+                            <li><a href="./sleep-diary.html" style="display: none;"></a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Sleep Clock</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./patient-sleep-clock.html">My Sleep Clock</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-graph menu-icon"></i><span class="nav-text">Sleep Report</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./patient-profile.html">My Sleep Report</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Sleep Medication</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./sleep-medication.html">My Sleep Medication</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">Task & Progress</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./task-list.html">My Task List</a></li>
+                            <li><a href="./program-content.html">My Progress</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-user menu-icon"></i><span class="nav-text">User Guide</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./patient-profile.html">My User Guide</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-envelope menu-icon"></i><span class="nav-text">Contact Us</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./voluntary-withdrawal.html">Voluntory Withdrawal</a></li>
+                            <li><a href="./feedback.html">Feedback</a></li>
+                        </ul>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+
+            <div class="container-fluid mt-3">
+                <div class="row">
+                    <!-- <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">SLEEP DIARY</h4>
+                                <h5 class="mt-3">Completed <span class="float-right">10%</span></h5>
+                                <div class="progress" style="height: 9px">
+                                    <div class="progress-bar bg-danger wow  progress-" style="width: 10%;" role="progressbar"><span class="sr-only">60% Complete</span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div> -->
+                    
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Level 4: Relaxation Techniques </h4>
+                                <div id="sect1">
+                                    <div class="row align-items-center">                                           
+                                        <div class="col-sm-6 col-md-4 col-xl-2">
+                                            <img src="images/big/relaxation-img.jpg" alt="" class="img-fluid thumbnail m-r-15">
+                                        </div>
+                                        <div class="col-sm-6 col-md-8 col-xl-10">
+                                            
+                                            <p>Relaxation of one the core components of cognitive behavioral therapy for insomnia. Relaxation techniques include things you can do to reduce tension and stress as a way to promote better sleep. If you are not already doing so, we encourage you to try adding relaxation techniques to your nightly routine.</p>
+                                            
+                                            <div>
+                                                <h4 class="consentInfoHeadSmall">You can choose from a variety of techniques:</h4>
+                                            </div>
+                                            <div class="consentInfoBody">
+                                                •	progressive muscle relaxation 
+                                            </div>
+                                            <div class="consentInfoBody">
+                                                •	deep breathing
+                                            </div>
+                                            <div class="consentInfoBody">
+                                                •	meditation
+                                            </div>
+                                            <div class="consentInfoBody">
+                                                •	stretching or yoga
+                                            </div>
+                                            <div class="consentInfoBody">
+                                                •	listening to relaxing sounds or soft music 
+                                            </div>
+                                            <div class="consentInfoBody">
+                                                •	aromatherapy
+                                            </div>
+                                            <div class="consentInfoBody">
+                                                •	gentle massage 
+                                            </div>
+                                                                                
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12">
+                                            <h3 class="consentInfoHeadSmall">Stress and insomnia</h3>
+                                            <p>Stress is one of the most common triggers for insomnia. Relaxation helps decrease the physical signs of stress such as increased heart rate, blood pressure, breathing rate, and muscle tension. It also increases positive feelings of calmness and peacefulness.</p>
+                                            <p>Do you notice a relationship between how stressed you are feeling and your ability to get a good night’s sleep? Your sleep diary can be a useful tool for helping you notice these kinds of patterns. Even if stress is not a major trigger for your insomnia, relaxation can still be useful in helping you unwind.</p>
+                                            <p>This app contains some information and videos to introduce you to some common relaxation techniques. Your aim should be to adopt one or more of these relaxation strategies and make them a part of your daily nighttime routine.</p>
+    
+                                            <div>
+                                                <h3 class="consentInfoHeadSmall">Progressive Muscle Relaxation</h3>
+                                                <p>Progressive muscle relaxation involves systematically contracting specific muscle groups for a few seconds and then releasing them. Starting with your toes and feet, you can move through all the major muscle groups in your body, tensing and relaxing as you go. Pay attention to how your muscles feel as you release and relax them. With practice, you will learn to notice the difference between tensed and relaxed muscles.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('sect1', 'sect2');" value='Next'/>
+                                </div>
+                                
+
+                                <div class="hidden" id="sect2">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12">
+                                            <div>
+                                                <h3 class="consentInfoHeadSmall formatItalics">Give it a try!</h3>
+                                                <p>Choose a quiet place where you can sit comfortably or lie down. It is a good idea to set aside about 15 minutes for the entire exercise.</p>
+                                                <p>Start at your feet and slowly move up to your head. Tense and relax each muscle group for 3 to 6 seconds each. Move from the feet and toes, to the knees, thighs, glutes, abdomen, chest, hands, arm, shoulders, neck, jaw, muscles around the eyes, and forehead. Be careful not tense your toes and feet too vigorously. This can sometimes cause painful muscle cramps.</p>
+                                                <p>Maintain calm, slow breathing throughout the exercise. As you tense you muscles, breathe in through your nose. As you release your muscles, breathe out through your mouth.</p>
+                                                <p>At the end of progressive muscle relaxation exercises, you will feel calm and relaxed ready for a sound peaceful sleep.</p>
+                                                <p>Here are some videos that demonstrate the progressive muscle relaxation technique. You can use them to help you practice the technique.</p>
+    
+                                                <div class="sleepDiv">
+                                                    <a href="https://vimeo.com/298219000" target="_blank" class="txt1">
+                                                        <strong>PMR_neck_legs_feet</strong>
+                                                    </a>
+                                                </div>
+                                                <div class="sleepDiv">
+                                                    <a href="https://vimeo.com/298216677" target="_blank" class="txt1">
+                                                        <strong>PMR_Chest_Shoulders_Back_Abdomen</strong>
+                                                    </a>
+                                                </div>
+                                                <div class="sleepDiv">
+                                                    <a href="https://vimeo.com/298217212" target="_blank" class="txt1">
+                                                        <strong>PMR_hands_arms_face_head</strong>
+                                                    </a>
+                                                </div>
+    
+                                                <p class="formatItalics">Please note these videos will use your mobile or Wi-Fi data for streaming.</p>
+                                            </div>
+
+                                            <div>
+                                                <h3 class="consentInfoHeadSmall">Passive muscle relaxation</h3>
+                                                <p>When you are able to notice the difference between tensed and relaxed muscles you can use this strategy. It is similar to the progressive muscle relaxation strategy, except that you do not have to tense your muscles first. Instead, you notice when your muscles are tense and focus on releasing the tension.</p>
+                                                <p>It is a quick and easy way to relax any time or place.</p> 
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('sect2', 'sect1');" value='Back'/>
+                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('sect2', 'sect3');" value='Next'/>
+                                </div>
+
+                                <div class="hidden" id="sect3">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12">
+                                            <div>
+                                                <h3 class="consentInfoHeadSmall">Belly Breathing</h3>
+                                                <p>Breathing usually occurs naturally without much thought. A number of relaxation techniques involve taking a moment to focus on your breath. One strategy is to breathe from your belly rather than your chest. When you breathe in your chest, only a part of your lungs are filled. Your breath is shallower and your heart rate is faster. In contrast, belly breathe makes it easier to take slow deep breaths.</p>
+
+                                                <div class="sleepDiv">
+                                                    <a href="https://vimeo.com/298215611" target="_blank" class="txt1">
+                                                        <strong>Watch this video to find out the difference between these two types of breathing.</strong>
+                                                    </a>
+                                                </div>
+    
+                                                <p>Belly breathing is deep, fills your lungs with air, and is better for relaxation than chest breathing. Most people do not use belly breathing, but you can learn to do this with practice. </p>
+                                            </div>
+
+                                            <div>
+                                                <h3 class="consentInfoHeadSmall formatItalics">Give it a try!</h3>
+                                                <p>Lie down or sit comfortably.</p>
+                                                <p>Place one hand on your chest and the other hand on your belly.</p> 
+                                                <p>Take a slow, deep breath in through your nose. Feel your stomach push against your hand as air fills the deepest part of your lungs. Your chest should remain as still as possible.</p>
+                                                <p>Breathe out through your mouth. Push the air out by tightening your stomach muscles.</p>
+                                                <p>Continue breathing in and out in this way for about 5 to 10 minutes. You should feel your belly rise and fall with each breathe.</p>
+                                                <p>You find it difficult to breathe through your belly at first.  With practice your diaphragm and the other muscles you are using will get stronger. Eventually, you may be able to use this technique without placing your hands on your belly.</p>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('sect3', 'sect2');" value='Back'/>
+                                    <input type='button' class='buttonPlainTxt'  onclick="hideDisplay('sect3', 'sect4');" value='Next'/>
+                                </div>
+
+
+                                <div class="hidden" id="sect4">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12">
+                                            <div>
+                                                <h3 class="consentInfoHeadSmall">Relaxation using suggestions</h3>
+                                                <p>This strategy relies on your ability to focus and imagine that you are getting relaxed. You will experience relaxing sensations by repeating suggestions to yourself, such as “my arm is heavy,” “my breathing is calm”.</p>
+                                                <p class="formatItalics">This audio recording is a guided relaxation exercise that uses this strategy.</p>
+
+                                                <div class="sleepDiv">
+                                                    <a href="https://vimeo.com/298218903" target="_blank" class="txt1">
+                                                        <strong>Relaxation suggestion</strong>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <h3 class="consentInfoHeadSmall">How do I add relaxation strategies to my life?</h3>
+                                                <p>Relaxation strategies can be used before bed to help you unwind, or throughout the day to help you manage stressful events. Setting aside 15 to 20 minutes shortly before your bedtime is a great way to add these techniques into your sleep routine.</p>
+                                                <p>You may even try yoga or meditation to relax and reduce your stress. You may find you like one strategy more than others. The key is to choose something that works for you.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('sect4', 'sect3');" value='Back'/>
+
+                                    <div class="sleepDiv">
+                                        <a href="program-content.html" class="txt1">
+                                            <strong>Return to Dashboard</strong>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+               
+                    
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        
+        
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Health enSuite Research Team</a> 2020</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
+
+
+    <script src="js/MoreFunction.js"></script>
+    <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>
+
+</body>
+
+</html>

@@ -158,7 +158,7 @@
 
                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-notebook menu-icon"></i><span class="nav-text">Sleep Report</span>
+                            <i class="icon-graph menu-icon"></i><span class="nav-text">Sleep Report</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./patient-profile.html">My Sleep Report</a></li>
@@ -170,17 +170,17 @@
                             <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Sleep Medication</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./program-content.html">My Sleep Medication</a></li>
+                            <li><a href="./sleep-medication.html">My Sleep Medication</a></li>
                         </ul>
                     </li>
 
                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
-                            <i class="icon-user menu-icon"></i><span class="nav-text">Task & Progress</span>
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">Task & Progress</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./patient-profile.html">My Task List</a></li>
-                            <li><a href="./patient-profile.html">My Progress</a></li>
+                            <li><a href="./task-list.html">My Task List</a></li>
+                            <li><a href="./program-content.html">My Progress</a></li>
                         </ul>
                     </li>
 
@@ -200,7 +200,6 @@
                         <ul aria-expanded="false">
                             <li><a href="./voluntary-withdrawal.html">Voluntory Withdrawal</a></li>
                             <li><a href="./feedback.html">Feedback</a></li>
-                            <li><a href="./patient-profile.html">Contact Us</a></li>
                         </ul>
                     </li>
                     
@@ -314,19 +313,19 @@
             
                                                     <div class="form-check mb-3">
                                                         <label class="form-check-label">
-                                                            <input type="checkbox" class="form-check-input" name="abt" value="It often takes me more than 30 minutes to fall asleep.">It often takes me more than 30 minutes to fall asleep.</label>
+                                                            <input type="checkbox" class="form-check-input" name="sit" value="It often takes me more than 30 minutes to fall asleep.">It often takes me more than 30 minutes to fall asleep.</label>
                                                     </div>
                                                     <div class="form-check mb-3">
                                                         <label class="form-check-label">
-                                                            <input type="checkbox" class="form-check-input" name="abt" value="I wake up frequently throughout the night and have trouble getting back to sleep.">I wake up frequently throughout the night and have trouble getting back to sleep.</label>   
+                                                            <input type="checkbox" class="form-check-input" name="sit" value="I wake up frequently throughout the night and have trouble getting back to sleep.">I wake up frequently throughout the night and have trouble getting back to sleep.</label>   
                                                     </div>
                                                     <div class="form-check mb-3">
                                                         <label class="form-check-label">
-                                                            <input type="checkbox" class="form-check-input" name="abt" value="I regularly wake up too early in the morning and cannot get back to sleep.">I regularly wake up too early in the morning and cannot get back to sleep.</label>
+                                                            <input type="checkbox" class="form-check-input" name="sit" value="I regularly wake up too early in the morning and cannot get back to sleep.">I regularly wake up too early in the morning and cannot get back to sleep.</label>
                                                     </div>
                                                     <div class="form-check mb-3">
                                                         <label class="form-check-label">
-                                                            <input type="checkbox" class="form-check-input" name="abt" value="My sleep quality is poor. I would like to improve the quality of my sleep.">My sleep quality is poor. I would like to improve the quality of my sleep.</label>
+                                                            <input type="checkbox" class="form-check-input" name="sit" value="My sleep quality is poor. I would like to improve the quality of my sleep.">My sleep quality is poor. I would like to improve the quality of my sleep.</label>
                                                     </div>
                                                 </div>
                                                 <p>Over the next few weeks you will learn strategies to help resolve this problem.</p>
@@ -481,31 +480,31 @@
                                                 <div class="form-group hidden" id="Q1">
                                                     <label class="lblQuestion">Would you like to nominate a support person to help you throughout this program? This person will be sent tips and information related to the skills you are learning.</label><br/>
                                                     <label class="radio-inline mr-3">
-                                                        <input type="radio" onclick="showSupport();" id="willingYes" name="optradio1"> Yes</label>
+                                                        <input type="radio" onclick="showSupport('supportForm');" id="willingYes" name="optradio1"> Yes</label>
                                                     <label class="radio-inline mr-3">
-                                                        <input type="radio" data-toggle="modal" data-target="#recommendModalCenter" id="willingNo" name="optradio1"> No</label><br/>
+                                                        <input type="radio" onclick="removeSupport('supportForm');" data-toggle="modal" data-target="#recommendModalCenter" id="willingNo" name="optradio1"> No</label><br/>
         
                                                 </div>
 
                                                 <div class="form-group hidden" id="Q2">
                                                     <label class="lblQuestion">Would you like to nominate your roommate to support you throughout this program? This person will be sent tips and information related to the skills you are learning.</label><br/>
                                                     <label class="radio-inline mr-3">
-                                                        <input type="radio" onclick="showSupport();" id="nominateYes" name="optradio2"> I would like to nominate this person. </label><br/>
+                                                        <input type="radio" onclick="showSupport('supportForm');" id="nominateYes" name="optradio2"> I would like to nominate this person. </label><br/>
                                                     <label class="radio-inline mr-3">
-                                                        <input type="radio" onclick="showSupport();" id="someoneYes" name="optradio2"> I would like to nominate someone else.</label><br/>
+                                                        <input type="radio" onclick="showSupport('supportForm');" id="someoneYes" name="optradio2"> I would like to nominate someone else.</label><br/>
                                                     <label class="radio-inline mr-3">
-                                                        <input type="radio" data-toggle="modal" data-target="#recommendModalCenter" id="nominateNo" name="optradio2"> I do not want to nominate a support person.</label><br/>
+                                                        <input type="radio" onclick="removeSupport('supportForm');" data-toggle="modal" data-target="#recommendModalCenter" id="nominateNo" name="optradio2"> I do not want to nominate a support person.</label><br/>
         
                                                 </div>
 
                                                 <div class="form-group hidden" id="Q3">
                                                     <label class="lblQuestion">Would you like to nominate your bed partner to support you throughout this program? This person will be sent tips and information related to the skills you are learning.</label><br/>
                                                     <label class="radio-inline mr-3">
-                                                        <input type="radio" onclick="showSupport();" id="bedNominateYes" name="optradio3"> I would like to nominate this person. </label><br/>
+                                                        <input type="radio" onclick="showSupport('supportForm');" id="bedNominateYes" name="optradio3"> I would like to nominate this person. </label><br/>
                                                     <label class="radio-inline mr-3">
-                                                        <input type="radio" onclick="showSupport();" id="bedSomeoneYes" name="optradio3"> I would like to nominate someone else.</label><br/>
+                                                        <input type="radio" onclick="showSupport('supportForm');" id="bedSomeoneYes" name="optradio3"> I would like to nominate someone else.</label><br/>
                                                     <label class="radio-inline mr-3">
-                                                        <input type="radio" data-toggle="modal" data-target="#recommendModalCenter" id="bedNominateNo" name="optradio3"> I do not want to nominate a support person.</label><br/>
+                                                        <input type="radio" onclick="removeSupport('supportForm');" data-toggle="modal" data-target="#recommendModalCenter" id="bedNominateNo" name="optradio3"> I do not want to nominate a support person.</label><br/>
         
                                                 </div>
 
@@ -558,7 +557,7 @@
         
                                                 </div>
 
-                                                <div class="hidden">
+                                                <div>
                                                     <label class="lblQuestion">Things to do this week:</label>
                                                     <p>Use the sleep diary to track when you go to bed at night and when you get up in the morning. Record your sleep quality each day. Note the dose of any medications you are taking. To advance to the next level you will need to complete at least 5 of these entries.</p>
                                                     <div class="sleepDiv" id="todayLink">
@@ -566,6 +565,12 @@
                                                             <strong>Complete today’s sleep diary</strong>
                                                         </a>
                                                     </div>
+                                                </div>
+                                                
+                                                <div class="sleepDiv">
+                                                    <a href="program-content.html" class="txt1">
+                                                        <strong>Return to Dashboard</strong>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>

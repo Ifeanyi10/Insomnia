@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Health enSuite Patient Level 5 Program Content</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <!-- Pignose Calender -->
+    <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
+    <!-- Chartist -->
+    <link rel="stylesheet" href="./plugins/chartist/css/chartist.min.css">
+    <link rel="stylesheet" href="./plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
+    <!-- Custom Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Nav header start
+        ***********************************-->
+        <div class="nav-header">
+            <div class="brand-logo">
+                <a href="index.html">
+                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
+                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <span class="brand-title">
+                        <img src="images/logo-text.png" alt="">
+                    </span>
+                </a>
+            </div>
+        </div>
+        <!--**********************************
+            Nav header end
+        ***********************************-->
+
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <div class="header">    
+            <div class="header-content clearfix">
+                
+                <!-- <div class="nav-control">
+                    <div class="hamburger">
+                        <span class="toggle-icon"><i class="icon-menu"></i></span>
+                    </div>
+                </div> -->
+                <div class="header-left">
+                    <!-- <div class="input-group icons">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
+                        </div>
+                        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
+                        <div class="drop-down animated flipInX d-md-none">
+                            <form action="#">
+                                <input type="text" class="form-control" placeholder="Search">
+                            </form>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="header-right">
+                    <ul class="clearfix">
+                        
+                        <li class="icons dropdown">
+                            <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
+                                <span class="activity active"></span>
+                                <img src="images/user/1.png" height="40" width="40" alt="">
+                            </div>
+                            <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
+                                <div class="dropdown-content-body">
+                                    <ul>
+                                        <li>
+                                            <a href="patient-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
+                                        </li>
+
+                                        <li><a href="index.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Header end ti-comment-alt
+        ***********************************-->
+
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <div class="nk-sidebar">           
+            <div class="nk-nav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label">Patient Dashboard</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-grid menu-icon"></i><span class="nav-text">My Dashboard</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./patient-dashboard.html">Home</a></li>
+                            <!-- <li><a href="./index-2.html">Home 2</a></li> -->
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-user menu-icon"></i><span class="nav-text">Patient Profile</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./patient-profile.html">My Profile</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-note menu-icon"></i><span class="nav-text">Sleep Diary</span>
+                        </a>
+                        <ul aria-expanded="false" id="sleepLink">
+                            <li><a href="./sleep-diary.html" style="display: none;"></a></li>
+                            <li><a href="./sleep-diary.html" style="display: none;"></a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-speedometer menu-icon"></i><span class="nav-text">Sleep Clock</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./patient-sleep-clock.html">My Sleep Clock</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-graph menu-icon"></i><span class="nav-text">Sleep Report</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./patient-profile.html">My Sleep Report</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Sleep Medication</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./sleep-medication.html">My Sleep Medication</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-notebook menu-icon"></i><span class="nav-text">Task & Progress</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./task-list.html">My Task List</a></li>
+                            <li><a href="./program-content.html">My Progress</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-user menu-icon"></i><span class="nav-text">User Guide</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./patient-profile.html">My User Guide</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="mega-menu mega-menu-sm">
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon-envelope menu-icon"></i><span class="nav-text">Contact Us</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="./voluntary-withdrawal.html">Voluntory Withdrawal</a></li>
+                            <li><a href="./feedback.html">Feedback</a></li>
+                        </ul>
+                    </li>
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+
+            <div class="container-fluid mt-3">
+                <div class="row">
+
+                    
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Level 5: Changing Thoughts</h4>
+                                
+                                <div id="sect51">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12">
+                                            <div>
+                                                <p>So far we have focused on changing your behaviours and routines related to sleep. For some people it is also important to change the way they think about sleep. This section focuses on strategies for changing some commonly held misconceptions.</p>
+                                                <p>Unhelpful thoughts can happen automatically, outside of awareness. The first step to changing these thoughts is to begin to notice them when they happen. The next step is to try replacing unhelpful thoughts with more helpful alternatives.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-sm-6 col-md-4 col-xl-2">
+                                            <img src="images/big/thoughts-img.jpg" alt="" class="img-fluid thumbnail m-r-15">
+                                        </div>
+                                        <div class="col-sm-6 col-md-8 col-xl-10">
+                                            <p>Let’s consider Mary’s situation. She finds herself awake at 3:00a.m. She is worried about her ability to function tomorrow.</p>
+                                            <div class="thought-content">
+                                                “I need to find a way to fall asleep. I won’t be able to function tomorrow”.
+                                            </div>
+                                            <p>What are some more helpful ways of thinking about her situation?</p>                                    
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div>
+                                                <p>She thinks about the evidence that supports her beliefs. She remembers that she has been able to function after a poor night’s sleep in the past. This allows her to replace her unhelpful thoughts with more helpful ones:</p>
+                                                <div class="thought-content">
+                                                    “There is no point worrying about this now. Sometimes I can still function after a poor night’s sleep”.
+                                                </div>
+                                                <p>Let’s try challenging some other examples of thoughts people with insomnia commonly believe.</p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <input type='button' class='buttonPlainTxt'  onclick="hideDisplay('sect51', 'sect52');" value='Next'/>
+
+                                </div>
+
+                                <div class="hidden" id="sect52">
+                                    <h3 class="consentInfoHeadSmall">Keep your expectations realistic</h3>
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12">
+                                            <div id="inner521">
+                                                <div class="justifyDiv formatItalics">
+                                                    “It is necessary to get at least 8 hours of sleep each night.”
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label>A more realistic expectation might be:</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="realExpect1" placeholder="Enter a realistic expectation">
+                                                    </div>
+                                                </div>
+
+                                                <div class="justifyDiv">
+                                                    Some people feel refreshed after 7 or 8 hours, but others thrive with only 6.5 hours. The amount of sleep we need varies from person to person. Trying to achieve unrealistic goals generally just increases feelings of worry and anxiety. Your sleep reports can help determine what a realistic expectation is for you.
+                                                </div>
+                                                <input type='button' class='buttonPlainTxt' onclick="hideDisplay('sect52', 'sect51');" value='Back'/>
+                                                <input type='button' class='buttonPlainTxt' id="btnRealExpect1" onclick="hideDisplay('inner521', 'inner522');" value='Submit Expectation'/>
+                                            </div>
+
+                                            <div class="hidden" id="inner522">
+                                                <div class="justifyDiv formatItalics">
+                                                    “I should be able to wake up feeling refreshed and full of energy every day.”
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>A more realistic expectation might be:</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="realExpect2" placeholder="Enter a realistic expectation">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="justifyDiv">
+                                                    Energy levels vary from day to day. Even sound sleepers occasionally wake up without feeling completely rested. It is normal to have days when you don’t feel fully refreshed.
+                                                </div>
+                                                <input type='button' class='buttonPlainTxt' onclick="hideDisplay('inner522', 'inner521');" value='Back'/>
+                                                <input type='button' class='buttonPlainTxt' id="btnRealExpect2" onclick="hideDisplay('inner522', 'inner523');" value='Submit Expectation'/>
+                                            </div>
+
+                                            <div class="hidden" id="inner523">
+                                                <div class="justifyDiv formatItalics">
+                                                    “My partner falls asleep as soon as his or her head hits the pillow and stays asleep throughout the night. I should be able to do that too.”
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>A more realistic expectation might be:</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="realExpect3" placeholder="Enter a realistic expectation">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="justifyDiv">
+                                                    Everyone is different. Just because one person can fall asleep and stay asleep easily doesn’t mean it will be that way for everyone else. Instead of focusing on other people, try to remember the strategies that have helped you improve your sleep. 
+                                                </div>
+                                                <input type='button' class='buttonPlainTxt' onclick="hideDisplay('inner523', 'inner522');" value='Back'/>
+                                                <input type='button' class='buttonPlainTxt' id="btnRealExpect3" onclick="hideDisplay('inner523', 'inner524');" value='Submit Expectation'/>
+                                            </div>
+
+                                            <div class="hidden" id="inner524">
+                                                <h3 class="consentInfoHeadSmall">Sleep doesn’t have to limit your daytime activities.</h3>
+                                                <div class="justifyDiv formatItalics">
+                                                    “I feel irritable, depressed, or anxious during the day because I did not sleep well last night.”
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>Are there other reasons someone might feel irritable, depressed, or anxious? </label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="otherReason4" placeholder="Enter other reasons">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="justifyDiv">
+                                                    Sleep is one reason for being in a bad mood, but there are lots of other reasons too. Work, health, and relationships are other common sources of stress that affect how we feel throughout the day. Blaming sleeplessness for all difficulties in daytime functioning is not particularly helpful.
+                                                </div>
+                                                <input type='button' class='buttonPlainTxt' onclick="hideDisplay('inner524', 'inner523');" value='Back'/>
+                                                <input type='button' class='buttonPlainTxt' id="btnOtherReason4" onclick="hideDisplay('inner524', 'inner525');" value='Submit Reasons'/>
+                                            </div>
+
+                                            <div class="hidden" id="inner525">
+                                                <div class="justifyDiv formatItalics">
+                                                    “I need to avoid or cancel important social and family obligations after a poor night’s sleep. This is the only way I can manage the results of a poor night’s sleep.”
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label>What are some other ways of managing after a poor night’s sleep?</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="otherWays" placeholder="Enter other ways">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="justifyDiv">
+                                                    Changing your plans based on how well you slept can mean that you miss out on important parts of life. Someone who does this often may find that his or her entire life begins to be organized around sleep.
+                                                </div>
+                                                <div class="justifyDiv">
+                                                    Try not to place too much emphasis on sleep. Instead, focus on doing the things you enjoy even if your sleep wasn’t perfect the night before. 
+                                                </div>
+                                                <input type='button' class='buttonPlainTxt' onclick="hideDisplay('inner525', 'inner524');" value='Back'/>
+                                                <input type='button' class='buttonPlainTxt' id="otherreason4" onclick="hideDisplay('sect52', 'sect53');" value='Submit'/>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="hidden" id="sect53">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-12">
+                                            <div>
+                                                <h3 class="consentInfoHeadSmall">I’m trying but I can’t sleep!</h3>
+                                                <p>Have you ever felt this way? The problem here is that lying awake trying to sleep rarely makes it easier fall asleep. This way of thinking also tends to make people feel helpless. As if there is nothing they can do to improve their sleep. This is simply not true. The key is to try the right things. If you can’t fall asleep within 15 minutes, try getting out of bed to do something else. Continue practicing the techniques you have learned so far (sleep restriction, sleep hygiene, relaxation, etc.).</p>
+                                            </div>
+
+                                            <div>
+                                                <h3 class="consentInfoHeadSmall">Strategies to practice</h3>
+                                                <p>Did any of these examples seem especially true for you? Maybe these are thoughts you have had in the past. Maybe you have other negative thoughts you would like to change. Practice challenging the unhelpful thoughts you have in your everyday life.</p>
+                                                
+                                                <div>
+                                                    <h4 class="consentInfoHeadSmall">Ask yourself:</h4>
+                                                </div>
+                                                <div class="consentInfoBody">
+                                                    •	What is the evidence that supports this idea?
+                                                </div>
+                                                <div class="consentInfoBody">
+                                                    •	What is the evidence against this idea?
+                                                </div>
+                                                <div class="consentInfoBody">
+                                                    •	Is there another explanation?
+                                                </div>
+                                                <div class="consentInfoBody">
+                                                    •	What is the worst that could happen? Could I live with that?
+                                                </div>
+                                                <div class="consentInfoBody">
+                                                    •	What is the best that could happen?
+                                                </div>
+                                                <div class="consentInfoBody">
+                                                    •	What is the most realistic outcome?
+                                                </div>
+                                                <div class="consentInfoBody">
+                                                    •	What would I tell a friend if he or she was in the same situation?
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('sect53', 'sect52');" value='Back'/>
+
+                                    <div class="sleepDiv">
+                                        <a href="program-content.html" class="txt1">
+                                            <strong>Return to Dashboard</strong>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+               
+                    
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        
+        
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright &copy; Designed & Developed by <a href="https://themeforest.net/user/quixlab">Health enSuite Research Team</a> 2020</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
+
+
+    <script src="js/MoreFunction.js"></script>
+    <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>
+
+</body>
+
+</html>
