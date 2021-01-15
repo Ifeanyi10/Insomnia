@@ -35,7 +35,9 @@
                                     console.log(result);
                                     var arrayLength = 0;
                                     var currentDate = '';
+                                    var currentID = '';
                                     var prevDate = '';
+                                    var prevID = '';
                                     window.localStorage.setItem("patientsID", result.id);
                                     window.localStorage.setItem("patientLastName", result.lastName);
                                     window.localStorage.setItem("patientFirstName", result.firstName);
@@ -46,25 +48,53 @@
                                     $.each(result.sleepDiaries, function(i, def) {
                                         if(arrayLength == 0){
                                             currentDate = def.date_Created;
+                                            currentID = def.id;
                                         } else if(arrayLength == 1){
                                             prevDate = def.date_Created;
+                                            prevID = def.id;
                                         }
                                         arrayLength += 1;
                                     });
-                                    window.localStorage.setItem("currentDateUnformatted", currentDate);
-                                    currentDate = currentDate.split("T", 1)
-                                    window.localStorage.setItem("currentDate", currentDate);
-                                    
-                                    window.localStorage.setItem("prevDateUnformatted", prevDate);
-                                    prevDate = prevDate.split("T", 1)
-                                    window.localStorage.setItem("prevDate", prevDate);
+
+                                    var currentDate2 = currentDate.split("T", 1)
+
+                                    var prevDate2 = prevDate.split("T", 1)
+                                    //window.localStorage.setItem("prevDate", prevDate);
                                     window.localStorage.setItem("arrayLength", arrayLength);
+                                    if(arrayLength == 1){
+                                        window.localStorage.setItem("currentDate", currentDate2); 
+                                        window.localStorage.setItem("currentDateUnformatted", currentDate);
+                                        window.localStorage.setItem("currentID", currentID);
+
+                                    }else{
+                                        var dateOne = new Date(currentDate2); //Year, Month, Date    
+                                        var dateTwo = new Date(prevDate2); //Year, Month, Date 
+                                        if (dateOne > dateTwo) {    
+                                            window.localStorage.setItem("currentDate", currentDate2); 
+                                            window.localStorage.setItem("prevDate", prevDate2);  
+                                            window.localStorage.setItem("currentDateUnformatted", currentDate);
+                                            window.localStorage.setItem("currentID", currentID);
+                                            window.localStorage.setItem("prevID", prevID);
+                                            window.localStorage.setItem("prevDateUnformatted", prevDate);  
+                                        }else {    
+                                            window.localStorage.setItem("currentDate", prevDate2); 
+                                            window.localStorage.setItem("prevDate", currentDate2);  
+                                            window.localStorage.setItem("currentDateUnformatted", prevDate);
+                                            window.localStorage.setItem("currentID", prevID);
+                                            window.localStorage.setItem("prevID", currentID);
+                                            window.localStorage.setItem("prevDateUnformatted", currentDate); 
+                                        }  
+                                    }
+
+                                      
                                 }, 
                                 error: function(msg){
                                     console.log("Loading Patients details failed");
                                 }
                             });
                         }
+
+                        
     
           </script>
 
@@ -212,7 +242,7 @@
                             <i class="icon-graph menu-icon"></i><span class="nav-text">Sleep Report</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./patient-profile.html">My Sleep Report</a></li>
+                            <li><a href="./patient-sleep-report.html">My Sleep Report</a></li>
                         </ul>
                     </li>
 
@@ -235,14 +265,14 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <!-- <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-user menu-icon"></i><span class="nav-text">User Guide</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./patient-profile.html">My User Guide</a></li>
                         </ul>
-                    </li>
+                    </li> -->
 
                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -399,6 +429,7 @@
     <script src="./plugins/chartist-plugin-tooltips/js/chartist-plugin-tooltip.min.js"></script>
 
     <script src="js/MoreFunction.js"></script>
+    <script src="js/sleepDairyInit.js"></script>
     <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>
 
 </body>

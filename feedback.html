@@ -199,7 +199,7 @@
                             <i class="icon-graph menu-icon"></i><span class="nav-text">Sleep Report</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./patient-profile.html">My Sleep Report</a></li>
+                            <li><a href="./patient-sleep-report.html">My Sleep Report</a></li>
                         </ul>
                     </li>
 
@@ -222,14 +222,14 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <!-- <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-user menu-icon"></i><span class="nav-text">User Guide</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./patient-profile.html">My User Guide</a></li>
                         </ul>
-                    </li>
+                    </li> -->
 
                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -238,7 +238,6 @@
                         <ul aria-expanded="false">
                             <li><a href="./voluntary-withdrawal.html">Voluntory Withdrawal</a></li>
                             <li><a href="./feedback.html">Feedback</a></li>
-                            <li><a href="./patient-profile.html">Contact Us</a></li>
                         </ul>
                     </li>
                     
@@ -278,11 +277,11 @@
                                 <h4 class="card-title">My Feedback</h4>
                                 
                                 <div>
-                                    <input type='button' class='buttonPlainTxt' onclick="showNote('suggestMessage');" value='I want to give a suggestion'/>
+                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('reportMessage','suggestMessage');" value='I want to give a suggestion'/>
                                 </div>
 
                                 <div>
-                                    <input type='button' class='buttonPlainTxt' onclick="showNote('reportMessage');" value='I want to report a bug/need help'/>
+                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('suggestMessage','reportMessage');" value='I want to report a bug/need help'/>
                                 </div>
 
                                 
@@ -294,7 +293,7 @@
                                         <textarea rows="4" cols="85" name="comment" id="suggestNote" form="usrform" placeholder="Enter note here..."> </textarea>
                                     </div>
                                     <div class="sleepDiv">
-                                        <input type='button' class='buttonPlainTxt' value='Submit Suggestion'/>
+                                        <input type='button' class='buttonPlainTxt' onclick="submitFeedback(event, 'suggestNote');" id="btnSuggestSubmit" value='Submit Suggestion'/>
                                     </div>
                                 </div>
 
@@ -307,7 +306,7 @@
                                         <textarea rows="4" cols="85" name="comment" id="reportNote" form="usrform" placeholder="Enter note here..."> </textarea>
                                     </div>
                                     <div class="sleepDiv">
-                                        <input type='button' class='buttonPlainTxt' value='Submit Report'/>
+                                        <input type='button' class='buttonPlainTxt' onclick="submitFeedback(event, 'reportNote');" id="btnReportSubmit" value='Submit Report'/>
                                     </div>
                                 </div>
 
@@ -370,6 +369,8 @@
     <script src="./js/plugins-init/form-pickers-init.js"></script>
 
     <script src="js/MoreFunction.js"></script>
+    <script src="js/sleepDairyInit.js"></script>
+    <script src="js/contacUsAPI.js"></script>
     <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>
 
 </body>

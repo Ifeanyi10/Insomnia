@@ -1,36 +1,8 @@
 
-function getAllLinks(dayValue){
 
-    var dayNumber1 = 0; var dayNumber2 = 0; 
-    var galLinks = document.getElementById('sleepLink');
-    var anchors = galLinks.getElementsByTagName('a');
-    for (i = 0; i < anchors.length; i++) {  
-        var thisLink = anchors[i];
-        
-        if(dayValue == 1){
-            thisLink.style.display = 'block';
-            thisLink.innerHTML = window.localStorage.getItem("currentDate");
-            return;
-        }
-        
-        dayNumber1 += 1;
-        if(dayNumber1 == (dayValue - 1)){
-            thisLink.style.display = 'block';
-            thisLink.innerHTML = window.localStorage.getItem("currentDate");
-        }
-        
-        if(dayNumber1 == dayValue){
-            thisLink.style.display = 'block';
-            thisLink.innerHTML = window.localStorage.getItem("prevDate");
-            return;
-        }
-    }
-}
 
 $(document).ready(function () {
 
-    var theArrayLength = window.localStorage.getItem("arrayLength");
-    getAllLinks(theArrayLength);  
 
     $('#sleepLink a').click(function(e) {
         var submitDate = '';
@@ -42,9 +14,13 @@ $(document).ready(function () {
         if(txt == date1){
             submitDate = window.localStorage.getItem("currentDateUnformatted");
             window.localStorage.setItem("submitDate", submitDate);
+            var submitID = window.localStorage.getItem("currentID");
+            window.localStorage.setItem("submitID", submitID);
         }else{
             submitDate = window.localStorage.getItem("prevDateUnformatted");
             window.localStorage.setItem("submitDate", submitDate);
+            var submitID = window.localStorage.getItem("prevID");
+            window.localStorage.setItem("submitID", submitID);
         }
     });
 
@@ -53,6 +29,8 @@ $(document).ready(function () {
         window.localStorage.setItem("linkText", txt);
         var submitDate = window.localStorage.getItem("currentDateUnformatted");
         window.localStorage.setItem("submitDate", submitDate);
+        var submitID = window.localStorage.getItem("currentID");
+        window.localStorage.setItem("submitID", submitID);
     });
 
     $("#sympID").click(function() {  
@@ -72,7 +50,7 @@ function hideDisplay(firstDisplay, secondDisplay){
 
 
 function fillModalValue(){
-    let averageValue = 94;
+    let averageValue = parseInt(document.getElementById('avSleepEff').innerHTML);
     var modalTitle = document.getElementById('modalTitle');
     var modalBody = document.getElementById('modalBd');
     modalTitle.innerHTML = 'Sleep Efficiency Message';

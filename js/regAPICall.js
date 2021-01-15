@@ -72,6 +72,7 @@ $(document).ready(function () {
     document.getElementById("lastN").readOnly = true;
     document.getElementById("email").readOnly = true;
     document.getElementById("phone").readOnly = true;
+    document.getElementById("usName").readOnly = true;
 
     document.getElementById('firstN').value = window.localStorage.getItem("patientFirstName");
                                     
@@ -80,6 +81,7 @@ $(document).ready(function () {
     document.getElementById('email').value = window.localStorage.getItem("patientEmail");
     
     document.getElementById('phone').value = window.localStorage.getItem("patientPhone");
+    document.getElementById('usName').value = window.localStorage.getItem("patientEmail");
 
     $("#usName").keyup(validateUsername);
         //validate provider email
@@ -139,11 +141,12 @@ $(document).ready(function () {
         var password = document.getElementById("pass").value;
         var emailAccepted = getCommunicationMode(0);
         var smsAccepted = getCommunicationMode(1);
-        alert(smsAccepted);
+        //alert(smsAccepted);
         var inAppAccepted = getCommunicationMode(2);
         var noNotification = getCommunicationMode(3);
         var token =window.localStorage.getItem("regToken");
         let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/create-dailyNotification';
+    
         $.ajax({
             url: url,
             type: 'POST',

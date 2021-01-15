@@ -23,6 +23,62 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
 
+    <script language="javascript">
+
+        window.onload = function getPatientsPastSleepClock(){
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            var endDate = yyyy + '-' + mm + '-' + dd;
+            var days = 7; // Days you want to subtract
+            var last = new Date(today.getTime() - (days * 24 * 60 * 60 * 1000));
+            var day = String(last.getDate()).padStart(2, '0');
+            var month = String(last.getMonth() + 1).padStart(2, '0');
+            var year = last.getFullYear();
+            var startDate = year + '-' + month + '-' + day;
+
+                let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/intervention/getleveltwovariables';
+                let authToken = window.localStorage.getItem("patientToken");
+                
+                //alert(endDate);
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json', 
+                        'Accept': '*/*',
+                        'Authorization': 'Bearer '+ authToken
+                    },
+                    data: JSON.stringify({
+                        "startDate" : startDate,
+                        "endDate" : endDate
+                        }),
+                    success: function(result){
+                        console.log(result);
+                        
+                        // document.getElementById('yBedTime').innerHTML  = result.averagebedtiime;
+                        // document.getElementById('yRiseTime').innerHTML  = result.averagerisetime;
+                        // document.getElementById('avTimePerNight').innerHTML  = result.averagetimeinbed;
+                        // document.getElementById('avTotalTimePerNight').innerHTML  = result.averagetotalsleeptime;
+                        // document.getElementById('avSleepEff').innerHTML  = result.averagesleepefficiency;
+                        // document.getElementById('nextHour').innerHTML  = result.averagenumberofsleephours;
+                        // window.localStorage.setItem("yBedTime", result.averagebedtiime);
+                        // window.localStorage.setItem("yRiseTime", result.averagerisetime);
+                    }, 
+                    error: function(msg){
+                        console.log("Loading Patients Last Sleep Clock failed");
+                    }
+                });
+            }
+
+        window.onload =  function() {
+            $('#exampleModalLevel2').modal('show');
+        }
+    </script>
+
+</script>
+
 </head>
 
 <body>
@@ -167,7 +223,7 @@
                             <i class="icon-graph menu-icon"></i><span class="nav-text">Sleep Report</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./patient-profile.html">My Sleep Report</a></li>
+                            <li><a href="./patient-sleep-report.html">My Sleep Report</a></li>
                         </ul>
                     </li>
 
@@ -176,7 +232,7 @@
                             <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Sleep Medication</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./program-content.html">My Sleep Medication</a></li>
+                            <li><a href="./sleep-medication.html">My Sleep Medication</a></li>
                         </ul>
                     </li>
 
@@ -186,18 +242,18 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./task-list.html">My Task List</a></li>
-                            <li><a href="./patient-profile.html">My Progress</a></li>
+                            <li><a href="./program-content.html">My Progress</a></li>
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <!-- <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-user menu-icon"></i><span class="nav-text">User Guide</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./patient-profile.html">My User Guide</a></li>
                         </ul>
-                    </li>
+                    </li> -->
 
                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -238,6 +294,43 @@
                         </div>
 
                     </div> -->
+
+                    <div class="justifyDiv">
+                                    
+                        <div class="bootstrap-modal">
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalLevel2">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalTitle">Welcome to Level 2!</h5>
+                                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>In level 2 you will learn about a technique called sleep restriction.</p>
+                                            <div>
+                                                <h4 class="consentInfoHeadSmall">To advance to level 3 you will need to:</h4>
+                                            </div>
+                                            <div class="consentInfoBody">
+                                                •	Complete “Introduction to Sleep Restriction”. This includes setting up your sleep clock. 
+                                            </div>
+                                            <div class="consentInfoBody">
+                                                •	Complete at least 5 sleep diaries within a week.
+                                            </div>
+                                            <div class="consentInfoBody">
+                                                •	Complete the self-assessment of current insomnia symptoms.
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card" id="one">
@@ -314,12 +407,13 @@
                                         <div class="col-md-6">
                                             <label class="m-t-20 sleepMargin">Your Rise Time:</label>
                                             <div class="input-group clockpicker">
-                                                <input type="text" class="form-control" id="clockBedTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
+                                                <input type="text" class="form-control" id="clockRiseTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="justifyDiv">
-                                        <input type='button' class='buttonPlainTxt' id="btnContRiseTime" onclick="hideDisplay('two', 'three');" value='Submit Your Rise Time'/>
+                                        <input type='button' class='buttonPlainTxt' onclick="hideDisplay('two', 'one');" value='Back'/>
+                                        <input type='button' class='buttonPlainTxt' id="btnContRiseTime" onclick="calculateBedTime('two', 'three');" value='Submit Your Rise Time'/>
                                     </div>
 
                                 </div>
@@ -335,11 +429,11 @@
                                         Based on your last 7 sleep diaries, you slept an average of <strong id="contSleepWindowAv"></strong> hours per night. 
                                     </div>
 
-                                    <div class="justifyDiv hidden">
+                                    <div id="less5" class="justifyDiv hidden">
                                         For the next week, your target will be to get 5 hours of sleep per night.
                                     </div>
 
-                                    <div class="justifyDiv hidden">
+                                    <div id="more5" class="justifyDiv hidden">
                                         For the next week this will be the length of your sleep window.
                                     </div>
 
@@ -347,17 +441,17 @@
                                         Based on the rise time you selected, here is your new bed time and rise time for the next week. Please do your best to stick to this schedule. 
                                     </div>
                                     <div>
-                                        <label class="consentInfoBody">Your Bed Time:</label>
+                                        <label class="consentInfoBody">Your Bed Time (In 24 Hours):</label>
                                         <label class="consentInfoBody" id="contYBedTime"></label>
                                     </div>
                                     
                                     <div>
-                                        <label class="consentInfoBody">Your Rise Time:</label>
+                                        <label class="consentInfoBody">Your Rise Time (In 24 Hours):</label>
                                         <label class="consentInfoBody" id="contYRiseTime"></label>
                                     </div>
     
                                     <div class="justifyDiv">
-                                        <input type='button' class='buttonPlainTxt' id="btnContRiseTime" onclick="hideDisplay('three', 'two');" value='Go Back to Select Different Rise Time'/>
+                                        <input type='button' class='buttonPlainTxt' onclick="hideDisplay('three', 'two');" value='Go Back to Select Different Rise Time'/>
                                     </div>
 
                                     <div class="justifyDiv">
@@ -365,7 +459,7 @@
                                     </div>
 
                                     <div class="justifyDiv">
-                                        <input type='button' class='buttonPlainTxt' id="btnContRiseTime" onclick="hideDisplay('three', 'four');" value='Next'/>
+                                        <input type='button' class='buttonPlainTxt' onclick="hideDisplay('three', 'four');" value='Next'/>
                                     </div>
 
                                 </div>
@@ -431,6 +525,11 @@
                                     </div>
                                     <div class="consentInfoBody">
                                         •	Complete the self-assessment of your current insomnia symptoms. 
+                                    </div>
+
+                                    <div class="justifyDiv">
+                                        <input type='button' class='buttonPlainTxt'  onclick="hideDisplay('four', 'three');" value='Back'/>
+                                        <input type='button' class='buttonPlainTxt' id="btnSubmitLV2"  value='Click To Conclude Level 2'/>
                                     </div>
 
                                     <div class="sleepDiv">
@@ -501,7 +600,9 @@
     <script src="./js/plugins-init/form-pickers-init.js"></script>
     <script src="./js/plugins-init/form-pickers-init.js"></script>
 
+    <script src="js/levelsAPI.js"></script>
     <script src="js/MoreFunction.js"></script>
+    <script src="js/sleepDairyInit.js"></script>
     <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>
 
 </body>

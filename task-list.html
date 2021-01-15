@@ -22,12 +22,12 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
 
-    <!-- <script language="javascript">
+    <script language="javascript">
 
-                    window.onload = function getPatientsProfile(){
-                            let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/accessid';
+                    window.onload = function getPatientsTaskList(){
+                            let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/dashboard/mytasklist';
                             let authToken = window.localStorage.getItem("patientToken");
-                            alert(authToken);
+                            //alert(authToken);
                             $.ajax({
                                 url: url,
                                 type: 'GET',
@@ -38,22 +38,49 @@
                                 },
                                 success: function(result){
                                     console.log(result);
-                                    
-                                    window.localStorage.setItem("patientsID", result.id);
+                                    var arrayLength = 0;
+                                    var currentDate = '';
+                                    var prevDate = '';
 
-                                    window.localStorage.setItem("patientLastName", result.lastName);
-                                    window.localStorage.setItem("patientFirstName", result.firstName);
-                                    window.localStorage.setItem("patientPhone", result.phoneNumber);
-                                    window.localStorage.setItem("patientEmail", result.email);
-                                    console.log(window.localStorage.getItem("patientsID"));
+                                    $.each(result.sleepDiaries, function(i, def) {
+                                        if(arrayLength == 0){
+                                            currentDate = def.date_Created;
+                                            currentID = def.bedTime;
+                                        } else if(arrayLength == 1){
+                                            prevDate = def.date_Created;
+                                            prevID = def.bedTime;
+                                        }
+                                        arrayLength += 1;
+                                    });
+
+                                    var nexTask = result.nexTask;
+                                    var currentDate2 = currentDate.split("T", 1)
+                                    var prevDate2 = prevDate.split("T", 1)
+
+                                    if (arrayLength == 2){
+                                        document.getElementById('task1Val').innerHTML  = 'Sleep Diary For: ' + currentDate2;
+                                        document.getElementById('task2Val').innerHTML  = 'Sleep Diary For: ' + prevDate2;
+                                        document.getElementById('task3Val').innerHTML  = nexTask;
+                                        document.getElementById('task3').style.display = 'block';
+                                        if(currentID != null){document.getElementById('chTask1').checked = true;}
+                                        if(prevID != null){document.getElementById('chTask2').checked = true;}
+                                        
+                                    }else{
+                                        document.getElementById('task1Val').innerHTML  = 'Sleep Diary For: ' + currentDate2;
+                                        document.getElementById('task2Val').innerHTML  = nexTask;
+                                        if(currentID != null){document.getElementById('chTask1').checked = true;}
+                                    }
+                                    
+
+                                    // window.localStorage.setItem("patientEmail", result.email);
                                 }, 
                                 error: function(msg){
-                                    console.log("Loading Patients details failed");
+                                    console.log("Loading Patients Task List Failed");
                                 }
                             });
                         }
     
-          </script> -->
+          </script>
 
 </head>
 
@@ -199,7 +226,7 @@
                             <i class="icon-graph menu-icon"></i><span class="nav-text">Sleep Report</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./patient-profile.html">My Sleep Report</a></li>
+                            <li><a href="./patient-sleep-report.html">My Sleep Report</a></li>
                         </ul>
                     </li>
 
@@ -208,7 +235,7 @@
                             <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Sleep Medication</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./program-content.html">My Sleep Medication</a></li>
+                            <li><a href="./sleep-medication.html">My Sleep Medication</a></li>
                         </ul>
                     </li>
 
@@ -218,18 +245,18 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./task-list.html">My Task List</a></li>
-                            <li><a href="./patient-profile.html">My Progress</a></li>
+                            <li><a href="./program-content.html">My Progress</a></li>
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <!-- <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-user menu-icon"></i><span class="nav-text">User Guide</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./patient-profile.html">My User Guide</a></li>
                         </ul>
-                    </li>
+                    </li> -->
 
                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -238,7 +265,6 @@
                         <ul aria-expanded="false">
                             <li><a href="./voluntary-withdrawal.html">Voluntory Withdrawal</a></li>
                             <li><a href="./feedback.html">Feedback</a></li>
-                            <li><a href="./patient-profile.html">Contact Us</a></li>
                         </ul>
                     </li>
                     
@@ -279,8 +305,33 @@
                                 
                                <div id="pendTask">
 
-                                <h3 class="consentInfoHeadSmall">Your pending task include:</h3>
-
+                                    <h3 class="consentInfoHeadSmall">Your pending task include:</h3>
+                                    <div class="todo-list">
+                                        <div class="tdl-holder">
+                                            <div class="tdl-content2 tdl-content--no-label">
+                                                <ul id="myTodoList">
+                                                    <li id="task1">
+                                                        <label><input id="chTask1" type="checkbox" disabled><i></i><span id="task1Val"></span><a href='#' class="ti-close"></a>
+                                                        </label>
+                                                        
+                                                    
+                                                    </li>
+                                                    <li id="task2">
+                                                        <label><input id="chTask2" type="checkbox" disabled><i></i><span id="task2Val"></span><a href='#' class="ti-close"></a>
+                                                        </label>
+                                                        
+                                                    </li>
+                                                    <li class="hidden" id="task3">
+                                                        <label><input id="chTask3" type="checkbox" disabled><i></i><span id="task3Val"></span><a href='#' class="ti-close"></a>
+                                                        </label>
+                                                        
+                                                    </li>
+                                                    
+                                                </ul>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
                                </div>
 
                             </div>
@@ -342,6 +393,7 @@
     <script src="./js/plugins-init/form-pickers-init.js"></script>
 
     <script src="js/MoreFunction.js"></script>
+    <script src="js/sleepDairyInit.js"></script>
     <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>
 
 </body>

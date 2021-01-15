@@ -172,7 +172,8 @@ html {
 
   #divCheckPasswordMatch,
   #errorEmailContainer, #divResetPasswordMatch,
-  #divCheckUsernameMatch, #errorFinalContainer{
+  #divCheckUsernameMatch, #errorFinalContainer,
+  #divCheckUpdatePWordMatch{
     color: #8c0615;
     font-weight: bold;
     text-align: center;

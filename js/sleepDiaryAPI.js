@@ -31,8 +31,8 @@ function getQuality(){
 
 $(document).ready(function () {
 
-    var bt = document.getElementById('btnSubmitDairy');
-    bt.disabled = true;
+    // var bt = document.getElementById('btnSubmitDairy');
+    // bt.disabled = true;
 
     $('#bedTime, #trySleepTime, #sleepTime, #wakeUpCount, #finalAwakeTime, #outOfBedTime, #awakeLast').keyup(fillSleepDiaryFields);
 
@@ -50,33 +50,33 @@ $(document).ready(function () {
         event.preventDefault();
     
         var bedTime = document.getElementById("bedTime").value;
-        let bedTimeMins = parseInt(bedTime.split(":").pop());
-        let bedTimeHrs = parseInt(bedTime.split(":", 1));
+        // let bedTimeMins = parseInt(bedTime.split(":").pop());
+        // let bedTimeHrs = parseInt(bedTime.split(":", 1));
 
         var trySleepTime = document.getElementById("trySleepTime").value;
-        let trySleepTimeMins = parseInt(trySleepTime.split(":").pop());
-        let trySleepTimeHrs = parseInt(trySleepTime.split(":", 1));
+        // let trySleepTimeMins = parseInt(trySleepTime.split(":").pop());
+        // let trySleepTimeHrs = parseInt(trySleepTime.split(":", 1));
 
         var fallSleepTime = document.getElementById("sleepTime").value;
-        let fallSleepTimeMins = parseInt(fallSleepTime.split(":").pop());
-        let fallSleepTimeHrs = parseInt(fallSleepTime.split(":", 1));
+        // let fallSleepTimeMins = parseInt(fallSleepTime.split(":").pop());
+        // let fallSleepTimeHrs = parseInt(fallSleepTime.split(":", 1));
 
         var finalAwakeTime = document.getElementById("finalAwakeTime").value;
-        let finalAwakeTimeMins = parseInt(finalAwakeTime.split(":").pop());
-        let finalAwakeTimeHrs = parseInt(finalAwakeTime.split(":", 1));
+        // let finalAwakeTimeMins = parseInt(finalAwakeTime.split(":").pop());
+        // let finalAwakeTimeHrs = parseInt(finalAwakeTime.split(":", 1));
 
         var outOfBedTime = document.getElementById("outOfBedTime").value;
-        let outOfBedTimeMins = parseInt(outOfBedTime.split(":").pop());
-        let outOfBedTimeHrs = parseInt(outOfBedTime.split(":", 1));
+        // let outOfBedTimeMins = parseInt(outOfBedTime.split(":").pop());
+        // let outOfBedTimeHrs = parseInt(outOfBedTime.split(":", 1));
 
         var awakeLast = document.getElementById("awakeLast").value;
-        let awakeLastMins = parseInt(awakeLast.split(":").pop());
-        let awakeLastHrs = parseInt(awakeLast.split(":", 1));
+        // let awakeLastMins = parseInt(awakeLast.split(":").pop());
+        // let awakeLastHrs = parseInt(awakeLast.split(":", 1));
 
         var wakeUpCount = document.getElementById("wakeUpCount").value;
         let wakeUpCountInt = parseInt(wakeUpCount);
 
-        let pID = parseInt(window.localStorage.getItem("patientsID"));
+        let pID = window.localStorage.getItem("submitID");
         var otherNote = document.getElementById("otherNote").value;
         var sleepQty = getQuality();
         var sleepDate =  window.localStorage.getItem("submitDate");
@@ -93,49 +93,17 @@ $(document).ready(function () {
                 'Authorization': 'Bearer '+ authToken
             },
             data: JSON.stringify({
-                "bedTime": {
-                  "hour": bedTimeHrs,
-                  "minute": bedTimeMins,
-                  "nano": 0,
-                  "second": 0
-                },
+                "bedTime": bedTime,
                 "date_Created": sleepDate,
-                "finalWakeupTime": {
-                  "hour": finalAwakeTimeHrs,
-                  "minute": finalAwakeTimeMins,
-                  "nano": 0,
-                  "second": 0
-                },
-                "id": 0,
+                "finalWakeupTime": finalAwakeTime,
                 "otherThings": otherNote,
-                "patientID": pID,
                 "sleepQuality": sleepQty,
-                "timeLeftbed": {
-                  "hour": outOfBedTimeHrs,
-                  "minute": outOfBedTimeMins,
-                  "nano": 0,
-                  "second": 0
-                },
-                "timeSleptoff": {
-                  "hour": fallSleepTimeHrs,
-                  "minute": fallSleepTimeMins,
-                  "nano": 0,
-                  "second": 0
-                },
-                "totalWakeUpduration": {
-                  "hour": awakeLastHrs,
-                  "minute": awakeLastMins,
-                  "nano": 0,
-                  "second": 0
-                },
-                "tryTosleepTime": {
-                  "hour": trySleepTimeHrs,
-                  "minute": trySleepTimeMins,
-                  "nano": 0,
-                  "second": 0
-                },
-                "wakeUptimeCount": wakeUpCountInt
-                
+                "timeLeftbed": outOfBedTime,
+                "timeSleptoff": fallSleepTime,
+                "totalWakeUpduration": awakeLast,
+                "tryTosleepTime": trySleepTime,
+                "wakeUptimeCount": wakeUpCountInt,
+                "id": pID
               }),
             success: function(result){
                 console.log(result);

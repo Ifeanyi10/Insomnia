@@ -17,6 +17,13 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
 
+    <script type="text/javascript">
+        window.onload =  function() {
+            document.getElementById('patFName').innerHTML  = window.localStorage.getItem("patientFirstName");
+            $('#exampleModalLevel1').modal('show');
+        }
+    </script>
+
 </head>
 
 <body>
@@ -161,7 +168,7 @@
                             <i class="icon-graph menu-icon"></i><span class="nav-text">Sleep Report</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./patient-profile.html">My Sleep Report</a></li>
+                            <li><a href="./patient-sleep-report.html">My Sleep Report</a></li>
                         </ul>
                     </li>
 
@@ -184,14 +191,14 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <!-- <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-user menu-icon"></i><span class="nav-text">User Guide</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./patient-profile.html">My User Guide</a></li>
                         </ul>
-                    </li>
+                    </li> -->
 
                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -232,6 +239,33 @@
                         </div>
 
                     </div> -->
+
+                    <div class="justifyDiv">
+                                    
+                        <div class="bootstrap-modal">
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalLevel1">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalTitle">Welcome to Level 1!</h5>
+                                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <label>Hello <strong id="patFName"></strong>,</label>
+                                            <p>Welcome back! You will see that new information is available to you within the Health enSuite app.</p>
+                                            <p>Health enSuite: Insomnia consists of a series of levels or content chapters. Each level has tasks you will need to complete before you can advance to the next level. These tasks include reading about new strategies for improving your sleep, watching videos, answering questions, completing daily sleep diaries, and tracking your medications. Each level is designed to take about one week to complete so that by the end of 6 weeks you will have completed the entire program.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
@@ -308,26 +342,29 @@
                                                 <h3 class="consentInfoHeadSmall">What is insomnia?</h3>
                                                 <p>Insomnia is more than just getting a poor night’s sleep. Everyone can have difficulty sleeping from time to time. For people with insomnia, difficulty sleeping becomes a regular and persistent problem. This could involve difficulty falling asleep, difficulty staying asleep, or both. Some people with insomnia wake up frequently throughout the night and have trouble getting back to sleep. Others wake up too early in the morning.</p>
                                                 <p>Insomnia is not the result of a lack of opportunity to sleep. People with insomnia experience sleep disruptions even though they had a reasonable chance to sleep.</p>
-                                                <div class="form-group">
-                                                    <label class="lblQuestion">Which of the following best describes your situation (check all that apply):</label>
-            
-                                                    <div class="form-check mb-3">
-                                                        <label class="form-check-label">
-                                                            <input type="checkbox" class="form-check-input" name="sit" value="It often takes me more than 30 minutes to fall asleep.">It often takes me more than 30 minutes to fall asleep.</label>
+                                                
+                                                <form id="formSituation">
+                                                    <div class="form-group">
+                                                        <label class="lblQuestion">Which of the following best describes your situation (check all that apply):</label>
+                
+                                                        <div class="form-check mb-3">
+                                                            <label class="form-check-label">
+                                                                <input type="checkbox" class="form-check-input" name="sit" value="It often takes me more than 30 minutes to fall asleep.">It often takes me more than 30 minutes to fall asleep.</label>
+                                                        </div>
+                                                        <div class="form-check mb-3">
+                                                            <label class="form-check-label">
+                                                                <input type="checkbox" class="form-check-input" name="sit" value="I wake up frequently throughout the night and have trouble getting back to sleep.">I wake up frequently throughout the night and have trouble getting back to sleep.</label>   
+                                                        </div>
+                                                        <div class="form-check mb-3">
+                                                            <label class="form-check-label">
+                                                                <input type="checkbox" class="form-check-input" name="sit" value="I regularly wake up too early in the morning and cannot get back to sleep.">I regularly wake up too early in the morning and cannot get back to sleep.</label>
+                                                        </div>
+                                                        <div class="form-check mb-3">
+                                                            <label class="form-check-label">
+                                                                <input type="checkbox" class="form-check-input" name="sit" value="My sleep quality is poor. I would like to improve the quality of my sleep.">My sleep quality is poor. I would like to improve the quality of my sleep.</label>
+                                                        </div>
                                                     </div>
-                                                    <div class="form-check mb-3">
-                                                        <label class="form-check-label">
-                                                            <input type="checkbox" class="form-check-input" name="sit" value="I wake up frequently throughout the night and have trouble getting back to sleep.">I wake up frequently throughout the night and have trouble getting back to sleep.</label>   
-                                                    </div>
-                                                    <div class="form-check mb-3">
-                                                        <label class="form-check-label">
-                                                            <input type="checkbox" class="form-check-input" name="sit" value="I regularly wake up too early in the morning and cannot get back to sleep.">I regularly wake up too early in the morning and cannot get back to sleep.</label>
-                                                    </div>
-                                                    <div class="form-check mb-3">
-                                                        <label class="form-check-label">
-                                                            <input type="checkbox" class="form-check-input" name="sit" value="My sleep quality is poor. I would like to improve the quality of my sleep.">My sleep quality is poor. I would like to improve the quality of my sleep.</label>
-                                                    </div>
-                                                </div>
+                                                </form>
                                                 <p>Over the next few weeks you will learn strategies to help resolve this problem.</p>
                                             </div>
                                         </div>
@@ -387,38 +424,40 @@
                                                     <p>Sleeping pills may seem like an easy way to manage your sleep. Unfortunately sleeping pills only work as a short term remedy for sleep problems. After a few weeks, sleeping pills can become less effective in promoting good sleep. But many people continue using sleeping pills for weeks or even years. This can happen even when there are adverse side effects like daytime drowsiness and difficulty concentrating.</p>
                                                     <p>Your health care provider has recommended a plan that will gradually reduce the amount  of the sleeping pills you are taking. The goal is for you to eventually be able to stop taking sleeping pills and get a good night’s sleep.</p>
                                                     <p>How is it going so far?</p>
-                                                    <div class="form-group">
-                                                        <label class="lblQuestion">Which of the following best describes your feelings about this plan?</label>
-                
-                                                        <div class="form-check mb-3">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" data-toggle="modal" data-target="#exampleModalCenter" onclick="fillModalContentValue('confident');" name="abt" value="confident">I feel confident I will be able to stick to this plan. </label>
-                                                        </div>
-                                                        <div class="form-check mb-3">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" data-toggle="modal" data-target="#exampleModalCenter" onclick="fillModalContentValue('difficult');" name="abt" value="difficult">I think it will be very difficult for me to stick to this plan.</label>   
-                                                        </div>
-                                                        <div class="form-check mb-3">
-                                                            <label class="form-check-label">
-                                                                <input type="radio" class="form-check-input" data-toggle="modal" data-target="#exampleModalCenter" onclick="fillModalContentValue('unknown');" name="abt" value="unknown">I don’t know what the plan is. What can I do to find out?</label>
-                                                        </div>
+                                                    <form id="formFeeling">
+                                                        <div class="form-group">
+                                                            <label class="lblQuestion">Which of the following best describes your feelings about this plan?</label>
 
-                                                        <div class="modal fade" id="exampleModalCenter">
-                                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="modalContentTitle"></h5>
-                                                                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <p id="modalContentBd"></p>
+                                                            <div class="form-check mb-3">
+                                                                <label class="form-check-label">
+                                                                    <input type="radio" class="form-check-input" data-toggle="modal" data-target="#exampleModalCenter" onclick="fillModalContentValue('confident');" name="feel" value="I feel confident I will be able to stick to this plan">I feel confident I will be able to stick to this plan. </label>
+                                                            </div>
+                                                            <div class="form-check mb-3">
+                                                                <label class="form-check-label">
+                                                                    <input type="radio" class="form-check-input" data-toggle="modal" data-target="#exampleModalCenter" onclick="fillModalContentValue('difficult');" name="feel" value="I think it will be very difficult for me to stick to this plan">I think it will be very difficult for me to stick to this plan.</label>   
+                                                            </div>
+                                                            <div class="form-check mb-3">
+                                                                <label class="form-check-label">
+                                                                    <input type="radio" class="form-check-input" data-toggle="modal" data-target="#exampleModalCenter" onclick="fillModalContentValue('unknown');" name="feel" value="I don’t know what the plan is">I don’t know what the plan is. What can I do to find out?</label>
+                                                            </div>
+
+                                                            <div class="modal fade" id="exampleModalCenter">
+                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="modalContentTitle"></h5>
+                                                                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <p id="modalContentBd"></p>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            
                                                         </div>
-                                                        
-                                                    </div>
+                                                    </form>
 
                                                 </div>
                                             </div>
@@ -460,22 +499,24 @@
                                                 <h3 class="consentInfoHeadSmall">Getting support and involving your partner</h3>
                                                 <p>Having someone to support you can make changing your thoughts and behaviours easier. Is there someone who can support you? This could be a romantic partner, family member, friend or someone else you feel supports you. If you regularly share a bed with another person, it is good idea to involve this person. They can play an important role in helping you change your routines around sleep.</p>
                                                 
-                                                <div class="form-group">
-                                                    <label class="lblQuestion">Which of these best describes your situation? (Choose the option that describes your typical sleeping arrangement)</label>
-            
-                                                    <div class="form-check mb-3">
-                                                        <label class="form-check-label">
-                                                            <input type="radio" class="form-check-input" onclick="showQuestion('Q1','Q2','Q3','supportForm');" name="abt" value="alone">I sleep alone. </label>
+                                                <form id="fromDescribe">
+                                                    <div class="form-group">
+                                                        <label class="lblQuestion">Which of these best describes your situation? (Choose the option that describes your typical sleeping arrangement)</label>
+                
+                                                        <div class="form-check mb-3">
+                                                            <label class="form-check-label">
+                                                                <input type="radio" class="form-check-input" onclick="showQuestion('Q1','Q2','Q3','supportForm');" name="abt" value="I sleep alone">I sleep alone. </label>
+                                                        </div>
+                                                        <div class="form-check mb-3">
+                                                            <label class="form-check-label">
+                                                                <input type="radio" class="form-check-input" onclick="showQuestion('Q2','Q1','Q3','supportForm');" name="abt" value="I share my bedroom with another person, but I sleep in my own bed">I share my bedroom with another person, but I sleep in my own bed.</label>   
+                                                        </div>
+                                                        <div class="form-check mb-3">
+                                                            <label class="form-check-label">
+                                                                <input type="radio" class="form-check-input" onclick="showQuestion('Q3','Q1','Q2','supportForm');" name="abt" value="I share a bed with another person">I share a bed with another person.</label>
+                                                        </div>
                                                     </div>
-                                                    <div class="form-check mb-3">
-                                                        <label class="form-check-label">
-                                                            <input type="radio" class="form-check-input" onclick="showQuestion('Q2','Q1','Q3','supportForm');" name="abt" value="bedroom">I share my bedroom with another person, but I sleep in my own bed.</label>   
-                                                    </div>
-                                                    <div class="form-check mb-3">
-                                                        <label class="form-check-label">
-                                                            <input type="radio" class="form-check-input" onclick="showQuestion('Q3','Q1','Q2','supportForm');" name="abt" value="person">I share a bed with another person.</label>
-                                                    </div>
-                                                </div>
+                                                </form>
 
                                                 <div class="form-group hidden" id="Q1">
                                                     <label class="lblQuestion">Would you like to nominate a support person to help you throughout this program? This person will be sent tips and information related to the skills you are learning.</label><br/>
@@ -519,8 +560,22 @@
                                                             <div class="modal-body">
                                                                 <p>Having someone to support you can make changing your thoughts and behaviours easier.</p>
                                                             </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="button" id="btnSubmitLV1Anyway" class="btn btn-primary">Submit Anyway</button>
+                                                            </div>
                                                         </div>
                                                     </div>
+                                                </div>
+
+                                                <div>
+                                                    <label class="lblQuestion">Things to do this week:</label>
+                                                    <p>Use the sleep diary to track when you go to bed at night and when you get up in the morning. Record your sleep quality each day. Note the dose of any medications you are taking. To advance to the next level you will need to complete at least 5 of these entries.</p>
+                                                    <!-- <div class="sleepDiv" id="todayLink">
+                                                        <a href="sleep-diary.html" class="txt1">
+                                                            <strong>Complete today’s sleep diary</strong>
+                                                        </a>
+                                                    </div> -->
                                                 </div>
 
                                                 <div class="hidden" id="supportForm">
@@ -529,7 +584,7 @@
         
                                                     <label class="lblQuestion">Support Person</label>
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id="pat2FName" placeholder="Support Person Name" required>
+                                                        <input type="text" class="form-control" id="supName" placeholder="Support Person Name" required>
                                                     </div>
         
                                                     <!-- <div class="form-group">
@@ -543,28 +598,18 @@
                                                     </div> -->
         
                                                     <div class="form-group">
-                                                        <input type="email" class="form-control" id="pat2Email"  placeholder="Support Person Email" pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?" max="120" required>
+                                                        <input type="email" class="form-control" id="supEmail"  placeholder="Support Person Email" pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?" max="120" required>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id="pat2LName"  placeholder="My relationship to this person (spouse, relative, friend, etc.)" required>
+                                                        <input type="text" class="form-control" id="supRelation"  placeholder="My relationship to this person (spouse, relative, friend, etc.)" required>
                                                     </div>
         
                                                     <div class="general-button">
                                                         <!-- <button type="submit" id="btnBackTrial2" onclick="goBack('trial2Demo','fifthQ1');" class="btn btn-dark mb-2" style="margin-right: 30px;">Back</button> -->
-                                                        <button type="button" class="btn mb-1 btn-outline-light" id="btnTrial2">Submit</button>
+                                                        <button type="button"  id="btnSubmitLV1" class="btn mb-1 btn-outline-light">Submit</button>
                                                     </div>
         
-                                                </div>
-
-                                                <div>
-                                                    <label class="lblQuestion">Things to do this week:</label>
-                                                    <p>Use the sleep diary to track when you go to bed at night and when you get up in the morning. Record your sleep quality each day. Note the dose of any medications you are taking. To advance to the next level you will need to complete at least 5 of these entries.</p>
-                                                    <div class="sleepDiv" id="todayLink">
-                                                        <a href="sleep-diary.html" class="txt1">
-                                                            <strong>Complete today’s sleep diary</strong>
-                                                        </a>
-                                                    </div>
                                                 </div>
                                                 
                                                 <div class="sleepDiv">
@@ -618,7 +663,8 @@
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
 
-
+    <script src="js/levelsAPI.js"></script>
+    <script src="js/sleepDairyInit.js"></script>
     <script src="js/MoreFunction.js"></script>
     <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>
 

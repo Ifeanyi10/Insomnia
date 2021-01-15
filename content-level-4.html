@@ -17,6 +17,13 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
 
+    <script language="javascript">
+
+        window.onload =  function() {
+            $('#exampleModalLevel4').modal('show');
+        }
+    </script>
+
 </head>
 
 <body>
@@ -161,7 +168,7 @@
                             <i class="icon-graph menu-icon"></i><span class="nav-text">Sleep Report</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./patient-profile.html">My Sleep Report</a></li>
+                            <li><a href="./patient-sleep-report.html">My Sleep Report</a></li>
                         </ul>
                     </li>
 
@@ -184,14 +191,14 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <!-- <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-user menu-icon"></i><span class="nav-text">User Guide</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./patient-profile.html">My User Guide</a></li>
                         </ul>
-                    </li>
+                    </li> -->
 
                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -218,20 +225,46 @@
 
             <div class="container-fluid mt-3">
                 <div class="row">
-                    <!-- <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">SLEEP DIARY</h4>
-                                <h5 class="mt-3">Completed <span class="float-right">10%</span></h5>
-                                <div class="progress" style="height: 9px">
-                                    <div class="progress-bar bg-danger wow  progress-" style="width: 10%;" role="progressbar"><span class="sr-only">60% Complete</span>
+                    
+                    <div class="justifyDiv">
+                                    
+                        <div class="bootstrap-modal">
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalLevel4">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalTitle">Welcome to Level 4!</h5>
+                                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>In level 4 you will continue using the sleep clock to improve or maintain your sleep efficiency.  The new section this week focuses on relaxation techniques. Try adding one of these to your nightly routine.</p>
+                                            <div>
+                                                <h4 class="consentInfoHeadSmall">To advance to level 5 you will need to:</h4>
+                                            </div>
+                                            <div class="consentInfoBody">
+                                                •	Review your sleep clock settings. Make adjustments if needed.
+                                            </div>
+                                            <div class="consentInfoBody">
+                                                •	Read the Relaxation Techniques section. Try out at least one of the techniques.
+                                            </div>
+                                            <div class="consentInfoBody">
+                                                •	Complete at least 5 sleep diaries within a week.
+                                            </div>
+                                            <div class="consentInfoBody">
+                                                •	Complete the self-assessment of current insomnia symptoms.
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                                        </div>
                                     </div>
                                 </div>
-                                
                             </div>
                         </div>
-
-                    </div> -->
+                    </div>
                     
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
@@ -391,6 +424,10 @@
                                     </div>
                                     <input type='button' class='buttonPlainTxt' onclick="hideDisplay('sect4', 'sect3');" value='Back'/>
 
+                                    <div>
+                                        <input type='button' class='buttonPlainTxt' id="btnSubmitLV4" value='Click To Conclude Level 4'/>
+                                    </div>
+
                                     <div class="sleepDiv">
                                         <a href="program-content.html" class="txt1">
                                             <strong>Return to Dashboard</strong>
@@ -440,7 +477,8 @@
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
 
-
+    <script src="js/levelsAPI.js"></script>
+    <script src="js/sleepDairyInit.js"></script>
     <script src="js/MoreFunction.js"></script>
     <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>
 

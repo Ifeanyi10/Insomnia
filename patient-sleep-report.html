@@ -5,24 +5,55 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Health enSuite Patient Level 3 Program Content</title>
+    <title>Health enSuite Patient Sleep Report</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
     <!-- Pignose Calender -->
-    <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
-    <!-- Chartist -->
-    <link rel="stylesheet" href="./plugins/chartist/css/chartist.min.css">
-    <link rel="stylesheet" href="./plugins/chartist-plugin-tooltips/css/chartist-plugin-tooltip.css">
-    <!-- Custom Stylesheet -->
+    <link href="./plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
+    <!-- Page plugins css -->
+    <link href="./plugins/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet">
+    <!-- Color picker plugins css -->
+    <link href="./plugins/jquery-asColorPicker-master/css/asColorPicker.css" rel="stylesheet">
+    <!-- Date picker plugins css -->
+    <link href="./plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
+    <!-- Daterange picker plugins css -->
+    <link href="./plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
+    <link href="./plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
 
-    <script language="javascript">
+    <!-- <script language="javascript">
 
-        window.onload =  function() {
-            $('#exampleModalLevel3').modal('show');
-        }
-    </script>
+                    window.onload = function getPatientsProfile(){
+                            let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/accessid';
+                            let authToken = window.localStorage.getItem("patientToken");
+                            alert(authToken);
+                            $.ajax({
+                                url: url,
+                                type: 'GET',
+                                headers: {
+                                    'Content-Type': 'application/json', 
+                                    'Accept': '*/*',
+                                    'Authorization': 'Bearer '+ authToken
+                                },
+                                success: function(result){
+                                    console.log(result);
+                                    
+                                    window.localStorage.setItem("patientsID", result.id);
+
+                                    window.localStorage.setItem("patientLastName", result.lastName);
+                                    window.localStorage.setItem("patientFirstName", result.firstName);
+                                    window.localStorage.setItem("patientPhone", result.phoneNumber);
+                                    window.localStorage.setItem("patientEmail", result.email);
+                                    console.log(window.localStorage.getItem("patientsID"));
+                                }, 
+                                error: function(msg){
+                                    console.log("Loading Patients details failed");
+                                }
+                            });
+                        }
+    
+          </script> -->
 
 </head>
 
@@ -225,133 +256,101 @@
 
             <div class="container-fluid mt-3">
                 <div class="row">
-
-                    <div class="justifyDiv">
-                                    
-                        <div class="bootstrap-modal">
-                            
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModalLevel3">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="modalTitle">Welcome to Level 3!</h5>
-                                            <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>In level 3 you will continue using the sleep clock to improve your sleep efficiency.  The new readings and activities this week focus on sleep hygiene.</p>
-                                            <div>
-                                                <h4 class="consentInfoHeadSmall">To advance to level 4 you will need to:</h4>
-                                            </div>
-                                            <div class="consentInfoBody">
-                                                •	Review your sleep clock settings. Make adjustments if needed. 
-                                            </div>
-                                            <div class="consentInfoBody">
-                                                •	Complete “Sleep Hygiene Checklist” at least once. 
-                                            </div>
-                                            <div class="consentInfoBody">
-                                                •	Complete at least 5 sleep diaries within a week.
-                                            </div>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+                    <!-- <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Level 3: Sleep Hygiene</h4>
-                                <div class="justifyDiv">
-                                    Sleep hygiene rules are tips for maintaining good sleep health. You may have heard some of these tips before. Although sleep hygiene alone might not be enough to resolve chronic insomnia, it is important to address behaviours that are obviously interfering with good sleep. Improving sleep hygiene can be a key step on the way to a good night’s sleep.  
-                                </div>
-                                <div class="justifyDiv">
-                                    Use the Sleep Hygiene Checklist to keep track of the things you are doing during the day, before going to bed, and when you are in bed to help you sleep well. Some people find it helpful to set themselves reminders to remember to practice the things that are especially helpful for them.
-                                </div>
-                                <div class="justifyDiv">
-                                    Sleep hygiene checklist
-                                </div>
-
-                                <form id="formDoneToday">
-                                    <div class="form-group">
-                                        <label class="lblQuestion">Check off the things you have done today:</label>
-
-                                        <div class="form-check mb-3">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Bed for sleep only"><strong>Use your bed only for sleeping.</strong> Don’t use your bed as a place to watch TV, eat, read, work on your laptop, pay bills, etc.</label>
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Get up and fall asleep"><strong>Get up and try again if you don’t fall asleep within 15-20 minutes.</strong> Get up and do something calming or boring until you feel sleepy, then go back to bed and try again. Avoid turning on bright lights or doing anything that is too stimulating or interesting. This could wake you up even more.</label>   
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Don’t take naps"><strong>Don’t take naps.</strong> If you can’t make it through the day without a nap, keep it under 1 hour and before 3pm. </label>
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Exercise regularly"><strong>Exercise regularly, but not right before bed.</strong> Getting regular exercise that raises your heart rate and gets you to sweat a little can be a great way to improve your sleep. Exercising in the evening can make it more difficult to relax when it is time to go to sleep. Try exercising in the mornings instead.</label>
-                                        </div>
-
-                                        <div class="form-check mb-3">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Eat right"><strong>Eat right.</strong> Feeling hungry or too full can make it more difficult to fall asleep. Try to avoid having a heavy meal right before bed. If you feel hungry, try having a light snack.</label>
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Avoid stimulants"><strong>Avoid stimulants.</strong> It is not a good idea to have caffeine, nicotine, or other stimulants 4-6 hours before going to bed. If you drink coffee or tea try to keep it early in the day.</label>   
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Avoid alcohol"><strong>Avoid alcohol.</strong> Many people believe that alcohol helps them to relax and get to sleep more easily, but it actually leads to poorer quality sleep. It is best to avoid drinking alcohol 4-6 hours before bed.</label>
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Create a comfortable space"><strong>Create a comfortable space.</strong> Make sure your room is not too hot or too cold. Use earplugs to block out noise and an eye mask or curtains to block out the light.</label>
-                                        </div>
-
-                                        <div class="form-check mb-3">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Limit screen time before bed"><strong>Limit screen time before bed.</strong> Stop watching TV or working on your computer at least one hour before bed time.  Set your phone to night mode (do not disturb) and keep it away from your bed. This will decrease the temptation to use it while you are trying to sleep.</label>
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Create a routine"><strong>Create a routine to help you unwind.</strong> Many people find it helpful to do some stretching or deep breathing to help them relax before bed. This can also be a time to work through your thoughts and worries before bed. Try write them down so that you can deal with them in the morning.</label>
-                                        </div>
+                                <h4 class="card-title">SLEEP DIARY</h4>
+                                <h5 class="mt-3">Completed <span class="float-right">10%</span></h5>
+                                <div class="progress" style="height: 9px">
+                                    <div class="progress-bar bg-danger wow  progress-" style="width: 10%;" role="progressbar"><span class="sr-only">60% Complete</span>
                                     </div>
-                                </form>
-
-                                <div id="suggestMessage" style="margin-top: 10px;">
-                                    <div>
-                                        <h3 class="consentInfoHeadSmall justifyDiv">Additional Note About Today</h3>
-                                    </div>
-                                    <div class="input-group">
-                                        <textarea rows="4" cols="85" name="comment" id="contAddNote" form="usrform" placeholder="Enter note here..."> </textarea>
-                                    </div>
-                                    <div class="sleepDiv">
-                                        <input type='button' class='buttonPlainTxt' id="btnSubmitLV3" value='Click To Conclude Level 3'/>
-                                    </div>
-                                </div>
-
-                                <div class="sleepDiv">
-                                    <a href="program-content.html" class="txt1">
-                                        <strong>Return to Dashboard</strong>
-                                    </a>
                                 </div>
                                 
                             </div>
                         </div>
+
+                    </div> -->
+                    
+                    <div class="col-lg-12 col-md-12 col-sm-12" >
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">My Sleep Report</h4>
+                                
+                               <div id="spReport">
+
+                                <h3 class="consentInfoHeadSmall">Pick Date Range below to generate sleep report based on your Sleep Diaries</h3>
+
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="example">
+                                            <div class="input-daterange input-group" id="date-range">
+                                                <input type="text" class="form-control" id="dStart" name="start"> <span class="input-group-addon bg-info b-0 text-white">to</span>
+                                                <input type="text" class="form-control" id="dEnd" name="end">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="sleepDiv">
+                                    <input type='button' class='buttonPlainTxt' id="btnGenReport" value='Generate Report'/>
+                                </div>
+
+                               </div>
+                               
+                               <div class="hidden" id="reportDisplay">
+
+                                <div>
+                                    <h4 class="card-title sleepDiv">Sleep Report</h4>
+                                </div>
+
+                                <div>
+                                    <label class="consentInfoBody">Average Bed Time:</label>
+                                    <label class="consentInfoBody" id="repAvBedTime"></label>
+                                </div>
+                                
+                                <div>
+                                    <label class="consentInfoBody">Sleep Latency (SL):</label>
+                                    <label class="consentInfoBody" id="repAvSleepLat"></label>
+                                </div>
+                                
+                                <div>
+                                    <label class="consentInfoBody">Number of Awakenings:</label>
+                                    <label class="consentInfoBody" id="repAvAwakes"></label>
+                                </div>
+
+                                <div>
+                                    <label class="consentInfoBody">WASO (Average Duration of Awakenings):</label>
+                                    <label class="consentInfoBody" id="repAvDurationAwakes"></label>
+                                </div>
+                                
+                                <div>
+                                    <label class="consentInfoBody">Time In Bed (TIB):</label>
+                                    <label class="consentInfoBody" id="repAvTib"></label>
+                                </div>
+
+                                <div>
+                                    <label class="consentInfoBody">Total Sleep Time (TST):</label>
+                                    <label class="consentInfoBody" id="repTotSpTime"></label>
+                                </div>
+
+                                <div>
+                                    <label class="consentInfoBody">Sleep Efficiency (%):</label>
+                                    <label class="consentInfoBody" id="repSpEfficiency"></label>
+                                </div>
+
+                                <div class="sleepDiv">
+                                    <input type='button' class='buttonPlainTxt' id="btnExportReport" value='Export Report'/>
+                                </div>
+
+                               </div>
+
+                            </div>
+                        </div>
                     </div>
+
 
                 </div>
 
-               
                     
             </div>
             <!-- #/ container -->
@@ -386,9 +385,26 @@
     <script src="js/gleek.js"></script>
     <script src="js/styleSwitcher.js"></script>
 
-    <script src="js/levelsAPI.js"></script>
-    <script src="js/sleepDairyInit.js"></script>
+    <script src="./plugins/moment/moment.js"></script>
+    <script src="./plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <!-- Clock Plugin JavaScript -->
+    <script src="./plugins/clockpicker/dist/jquery-clockpicker.min.js"></script>
+    <!-- Color Picker Plugin JavaScript -->
+    <script src="./plugins/jquery-asColorPicker-master/libs/jquery-asColor.js"></script>
+    <script src="./plugins/jquery-asColorPicker-master/libs/jquery-asGradient.js"></script>
+    <script src="./plugins/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js"></script>
+    <!-- Date Picker Plugin JavaScript -->
+    <script src="./plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <!-- Date range Plugin JavaScript -->
+    <script src="./plugins/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="./plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <script src="./js/plugins-init/form-pickers-init.js"></script>
+    <script src="./js/plugins-init/form-pickers-init.js"></script>
+
     <script src="js/MoreFunction.js"></script>
+    <script src="js/sleepReportAPI.js"></script>
+    <script src="js/sleepDairyInit.js"></script>
     <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>
 
 </body>

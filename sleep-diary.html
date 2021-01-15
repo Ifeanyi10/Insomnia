@@ -148,7 +148,7 @@
                             <i class="icon-graph menu-icon"></i><span class="nav-text">Sleep Report</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./patient-profile.html">My Sleep Report</a></li>
+                            <li><a href="./patient-sleep-report.html">My Sleep Report</a></li>
                         </ul>
                     </li>
 
@@ -171,14 +171,14 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <!-- <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-user menu-icon"></i><span class="nav-text">User Guide</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./patient-profile.html">My User Guide</a></li>
                         </ul>
-                    </li>
+                    </li> -->
 
                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -232,17 +232,17 @@
                                     <div class="col-md-6">
                                         <label class="m-t-20">What time did you get into bed last? </label>
                                         <div class="input-group clockpicker">
-                                            <input type="text" class="form-control" id="bedTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
+                                            <input type="text" class="form-control" id="bedTime" value="21:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
                                         </div>
                                         <label class="m-t-40 sleepMargin">What time did you try to go to sleep?</label>
                                         <div class="input-group clockpicker">
-                                            <input type="text" class="form-control" id="trySleepTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
+                                            <input type="text" class="form-control" id="trySleepTime" value="21:35"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="m-t-20">What time did you fall asleep?</label>
                                         <div class="input-group clockpicker">
-                                            <input type="text" class="form-control" id="sleepTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
+                                            <input type="text" class="form-control" id="sleepTime" value="21:40"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
                                         </div>
                                         <label class="m-t-40 sleepMargin">How many times did you wake up, not counting your final awakening?</label>
                                         <div class="input-group">
@@ -253,21 +253,22 @@
                                     <div class="col-md-6">
                                         <label class="m-t-40 sleepMargin">What time was your final awakening?</label>
                                         <div class="input-group clockpicker">
-                                            <input type="text" class="form-control" id="finalAwakeTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
+                                            <input type="text" class="form-control" id="finalAwakeTime" value="05:00"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <label class="m-t-40 sleepMargin">What time did you get out of bed?</label>
                                         <div class="input-group clockpicker">
-                                            <input type="text" class="form-control" id="outOfBedTime" value="09:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
+                                            <input type="text" class="form-control" id="outOfBedTime" value="05:10"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label class="m-t-40 sleepMargin">In total, how long did these awakenings last? (Please fill this way <strong>5:30</strong>)</label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="awakeLast" placeholder="Example 5:30 (Where 5 is the hours and 30 is the minutes)">
+                                        <label class="m-t-40 sleepMargin">In total, how long did these awakenings last? (Please indicate this way (<strong>01:30</strong>)</label>
+                                        <div class="input-group clockpicker">
+                                            <!-- <input type="text" class="form-control" id="awakeLast" placeholder="Example 5:30 (Where 5 is the hours and 30 is the minutes)"> -->
+                                            <input type="text" class="form-control" id="awakeLast" value="01:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
                                         </div>
                                     </div>
 
@@ -311,7 +312,7 @@
                                 </div>
                                 <div class="general-button">
                                     <button type="submit" id="btnBackMain" class="btn btn-dark mb-2" style="margin-right: 30px;">Back</button>
-                                    <button type="button" id="btnSubmitDairy" class="btn mb-1 btn-outline-light" disabled>Next</button>
+                                    <button type="button" id="btnSubmitDairy" class="btn mb-1 btn-outline-light">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -370,6 +371,7 @@
     <script src="./js/plugins-init/form-pickers-init.js"></script>
     <script src="js/sleepDiaryAPI.js"></script>
     <script src="js/MoreFunction.js"></script>
+    <script src="js/sleepDairyInit.js"></script>
     <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>
 
 </body>
