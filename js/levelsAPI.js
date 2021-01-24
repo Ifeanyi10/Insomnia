@@ -145,10 +145,10 @@ $(document).ready(function () {
     $('#btnSubmitLV2').on('click', function(event){
         event.preventDefault();
     
-        var revisedbedtime = document.getElementById("clockBedTime").value;
-        var revisedrisetime = document.getElementById("clockRiseTime").value;
-        var clockBedTime =  window.localStorage.getItem("yBedTime");
-        var clockRiseTime = window.localStorage.getItem("yRiseTime");
+        var revisedbedtime = document.getElementById('contYBedTime').innerHTML;
+        var revisedrisetime = document.getElementById('contYRiseTime').innerHTML;
+        var clockBedTime =  window.localStorage.getItem("yAvBedTime");
+        var clockRiseTime = window.localStorage.getItem("yAvRiseTime");
 
         let authToken = window.localStorage.getItem("patientToken");
         let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/dashboard/saveleepwindow';

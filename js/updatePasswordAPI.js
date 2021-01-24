@@ -1,3 +1,21 @@
+function validateNewEmail(){
+    var bt = document.getElementById('btnChangeEmail');
+    var newE = $("#newEmail").val();
+    var confirmE = $("#confirmNewEmail").val();
+    // Validate email
+    if (!isEmail(newE)){
+        $("#divEmailErrorMsg").html("Invalid email address pattern");
+        return;
+    }
+    if(newE != confirmE) {
+        $("#divEmailErrorMsg").html("New Email Address does not match yet!");
+    } else {
+        $("#divEmailErrorMsg").html(" ");
+        bt.disabled = false;
+    }
+  }
+
+
 function validatePassword(){
     var bt = document.getElementById('btnChangePass');
     var password = $("#newPass").val();
@@ -10,11 +28,22 @@ function validatePassword(){
     }
   }
 
+  function isEmail(email) {
+    // eslint-disable-next-line no-useless-escape
+    return RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i).test(email);
+  };
+
+  function fillEditField(supplierId, receiverId){
+    var mytext = document.getElementById(supplierId).innerHTML;   
+    document.getElementById(receiverId).value = mytext;
+  }
+
 $(document).ready(function () {
 
     var bt = document.getElementById('btnChangePass');
     bt.disabled = true;
     $('#confirmNewPass').keyup(validatePassword);
+    $('#confirmNewEmail').keyup(validateNewEmail);
 
     //Patient Change of password within the app
     $('#btnChangePass').on('click', function(event){
@@ -50,6 +79,100 @@ $(document).ready(function () {
             error: function(msg){
                 $("#errorContainer").html("Unable to register");
                 sweetAlert("Oops...","Password change unseccessful! Please eensure you type your current password correctly","error");
+            }
+        });
+    });
+
+
+    //Check email validity
+    $('#newEmail').on('blur', function(e) {
+        var bt = document.getElementById('btnChangeEmail');
+        var confEmail = document.getElementById('confirmNewEmail');
+        confEmail.disabled = true;
+        // Current email input
+        var currentEmail = e.target.value,
+            $emailNode = $(this),
+            isValid = true;
+        //alert('Here')
+        // Validate email
+        if (!isEmail(currentEmail)){
+            $("#divEmailErrorMsg").html("Invalid email address pattern");
+            return;
+        }
+         
+        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/checkEmail';
+        $.ajax({
+            url: url,
+            type: 'POST',
+            headers: {
+                'Content-Type': 'application/json', 
+                'Accept': '*/*'
+            },
+            data: JSON.stringify({"code": currentEmail}),
+            success: function(result){
+                console.log(result);
+                // Finally update the state for the current field
+                if (!result) {
+                    $("#divEmailErrorMsg").html("");
+                    $emailNode.addClass('is-valid');
+                    confEmail.disabled = false;
+                } else{
+                    $("#divEmailErrorMsg").html("Email address already exist");
+                    sweetAlert("ALERT","Email address exist!","error");
+                    $emailNode.addClass('is-error');
+                    bt.disabled = true;
+                    confEmail.disabled = true;
+                } 
+                
+            }, 
+            error: function(msg){
+                $("#divEmailErrorMsg").html("Email address already exist");
+                //sweetAlert("ALERT","Email address exist!","error");
+                $emailNode.addClass('is-error');
+                bt.disabled = true;
+            }
+        });
+        
+    });
+
+
+    //Patient Change of Email within the app
+    $('#btnChangeEmail').on('click', function(event){
+        event.preventDefault();
+
+        // Current email input
+        var newEmail = document.getElementById("newEmail").value;
+        
+        // Validate email
+        if (!isEmail(newEmail)){
+            $("#divEmailErrorMsg").html("Invalid email address pattern");
+            return;
+        }
+
+        let authToken = window.localStorage.getItem("patientToken");
+        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/updateemail';
+        $.ajax({
+            url: url,
+            type: 'POST',
+            headers: {
+                'Content-Type': 'application/json', 
+                'Accept': '*/*',
+                'Authorization': 'Bearer '+ authToken
+            },
+            data: JSON.stringify({
+	            "code" : newEmail
+                }),
+            success: function(result){
+                console.log(result);
+                swal({title: "Done!", text: "Your Email Address has been updated!", type: "success"},
+                function(){ 
+                    window.location.href = "provider-dashboard.html";
+                }
+                );
+            }, 
+            error: function(msg){
+                $("#errorContainer").html("Unable to register");
+                sweetAlert("Oops...","Failed to update Email Address. Please try again shortly.","error");
             }
         });
     });

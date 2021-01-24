@@ -8,26 +8,17 @@
     <title>Health enSuite Patient Sleep Medication</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-    <!-- Pignose Calender -->
-    <link href="./plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
-    <!-- Page plugins css -->
-    <link href="./plugins/clockpicker/dist/jquery-clockpicker.min.css" rel="stylesheet">
-    <!-- Color picker plugins css -->
-    <link href="./plugins/jquery-asColorPicker-master/css/asColorPicker.css" rel="stylesheet">
-    <!-- Date picker plugins css -->
-    <link href="./plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet">
-    <!-- Daterange picker plugins css -->
-    <link href="./plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet">
-    <link href="./plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
     <link href="css/style.css" rel="stylesheet">
     <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
 
-    <!-- <script language="javascript">
+    <script language="javascript">
 
                     window.onload = function getPatientsProfile(){
-                            let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/accessid';
+                            let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/dashboard/medicationdetails';
                             let authToken = window.localStorage.getItem("patientToken");
-                            alert(authToken);
+                            let trialNo = 0;
+                            //alert(authToken);
                             $.ajax({
                                 url: url,
                                 type: 'GET',
@@ -38,14 +29,19 @@
                                 },
                                 success: function(result){
                                     console.log(result);
+                                    trialNo = result.trialType
+                                    if(trialNo == 1){
+                                        document.getElementById('trial1Med').style.display = 'block';
+                                    }else if(trialNo == 2){
+                                        document.getElementById('trial2Med').style.display = 'block';
+                                    }
+                                    // window.localStorage.setItem("patientsID", result.id);
 
-                                    window.localStorage.setItem("patientsID", result.id);
-
-                                    window.localStorage.setItem("patientLastName", result.lastName);
-                                    window.localStorage.setItem("patientFirstName", result.firstName);
-                                    window.localStorage.setItem("patientPhone", result.phoneNumber);
-                                    window.localStorage.setItem("patientEmail", result.email);
-                                    console.log(window.localStorage.getItem("patientsID"));
+                                    // window.localStorage.setItem("patientLastName", result.lastName);
+                                    // window.localStorage.setItem("patientFirstName", result.firstName);
+                                    // window.localStorage.setItem("patientPhone", result.phoneNumber);
+                                    // window.localStorage.setItem("patientEmail", result.email);
+                                    // console.log(window.localStorage.getItem("patientsID"));
                                 },
                                 error: function(msg){
                                     console.log("Loading Patients details failed");
@@ -53,7 +49,7 @@
                             });
                         }
 
-          </script> -->
+          </script>
 
 </head>
 
@@ -276,98 +272,103 @@
                             <div class="card-body">
                                 <h4 class="card-title">My Sleep Medication</h4>
 
-
-                                <div id="trial2Med" style="margin-top: 10px;">
-                                    <div class="col-md-6">
-                                        <label>How much <strong id="medName1"></strong> did you take today? </label>
-                                        <div class="input-group">
-                                            <!-- <select class="form-control" id="doseOpt" onchange="this.nextElementSibling.value=this.value">
-                                                <option value=""></option>
-                                            </select>
-                                            <input class="hidden" type="text" name="format" value=""/> -->
-                                            <input class="form-control" list="doseOpt" name="doseVal" id="doseVal">
-                                            <datalist id="doseOpt">
-                                                <!-- <option value="Internet Explorer">
-                                                <option value="Firefox">
-                                                <option value="Chrome">
-                                                <option value="Opera">
-                                                <option value="Safari"> -->
-                                            </datalist>
-                                        </div>
-
-                                        <div>
-                                            <label class="sleepMargin">How much <strong id="medName2"></strong> did you take today? </label>
+                                <div id="sleepM">
+                                    <div class="hidden" id="trial2Med" style="margin-top: 10px;">
+                                        <div class="col-md-6">
+                                            <label>How much <strong id="medName1"></strong> did you take today? </label>
                                             <div class="input-group">
-                                                <input class="form-control" list="doseOpt2" name="doseVal2" id="doseVal2">
-                                                <datalist id="doseOpt2"> </datalist>
+                                                <!-- <select class="form-control" id="doseOpt" onchange="this.nextElementSibling.value=this.value">
+                                                    <option value=""></option>
+                                                </select>
+                                                <input class="hidden" type="text" name="format" value=""/> -->
+                                                <input class="form-control" list="doseOpt" name="doseVal" id="doseVal">
+                                                <datalist id="doseOpt">
+                                                    <!-- <option value="Internet Explorer">
+                                                    <option value="Firefox">
+                                                    <option value="Chrome">
+                                                    <option value="Opera">
+                                                    <option value="Safari"> -->
+                                                </datalist>
                                             </div>
-                                        </div>
 
-                                        <div class="form-group" id="medQ2">
-                                            <label class="lblQuestion sleepMargin">Did you take any other medications before going to sleep?</label><br/>
-                                            <label class="radio-inline mr-3">
-                                                <input type="radio" onclick="removeSupport('otherMedInfo');" id="otherTakeNo" name="optradio1" value="No"> No</label>
-                                            <label class="radio-inline mr-3">
-                                                <input type="radio" onclick="showSupport('otherMedInfo');" id="otherTakeYes" name="optradio1"> Yes</label>
-                                        </div>
+                                            <div>
+                                                <label class="sleepMargin">How much <strong id="medName2"></strong> did you take today? </label>
+                                                <div class="input-group">
+                                                    <input class="form-control" list="doseOpt2" name="doseVal2" id="doseVal2">
+                                                    <datalist id="doseOpt2"> </datalist>
+                                                </div>
+                                            </div>
 
-                                        <div class="hidden" id="otherMedInfo">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label class="sleepMargin">Medication name:</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" id="otherMedName" placeholder="Enter medication name">
+                                            <div class="form-group" id="medQ2">
+                                                <label class="lblQuestion sleepMargin">Did you take any other medications before going to sleep?</label><br/>
+                                                <label class="radio-inline mr-3">
+                                                    <input type="radio" onclick="removeSupport('otherMedInfo');" id="otherTakeNo" name="optradio1" value="No"> No</label>
+                                                <label class="radio-inline mr-3">
+                                                    <input type="radio" onclick="showSupport('otherMedInfo');" id="otherTakeYes" name="optradio1"> Yes</label>
+                                            </div>
+
+                                            <div class="hidden" id="otherMedInfo">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label class="sleepMargin">Medication name:</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="otherMedName" placeholder="Enter medication name">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label class="sleepMargin">Amount taken:</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="otherAmTaken" placeholder="Enter amount taken">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label class="sleepMargin">Amount taken:</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" id="otherAmTaken" placeholder="Enter amount taken">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        </div>
+                                        <div class="general-button">
+                                            <button type="submit" onclick="hideDisplay('sleepM', 'sleepD');" class="btn btn-dark mb-2" style="margin-right: 30px;">Back</button>
+                                            <button type="button" class="btn mb-1 btn-outline-light">Submit</button>
+                                            <!-- <button type="button" id="btnSubmitDairy" class="btn mb-1 btn-outline-light">Submit</button> -->
                                         </div>
                                     </div>
-                                    <div class="sleepDiv">
-                                        <input type='button' class='buttonPlainTxt' id="btnMedSubmitTrial2" value='Submit Today Medication'/>
-                                    </div>
-                                </div>
 
 
-                                <div id="trial1Med" style="margin-top: 10px;">
-                                    <div class="col-md-6">
-                                        
-                                        <div class="form-group" id="medQ1">
-                                            <label class="lblQuestion sleepMargin">Did you take any medications before going to sleep?</label><br/>
-                                            <label class="radio-inline mr-3">
-                                                <input type="radio" onclick="removeSupport('anyMedInfo');" id="anyTakeNo" name="optradio2" value="No"> No</label>
-                                            <label class="radio-inline mr-3">
-                                                <input type="radio" onclick="showSupport('anyMedInfo');" id="anyTakeYes" name="optradio2"> Yes</label>
-                                        </div>
+                                    <div class="hidden" id="trial1Med" style="margin-top: 10px;">
+                                        <div class="col-md-6">
+                                            
+                                            <div class="form-group" id="medQ1">
+                                                <label class="lblQuestion sleepMargin">Did you take any medications before going to sleep?</label><br/>
+                                                <label class="radio-inline mr-3">
+                                                    <input type="radio" onclick="removeSupport('anyMedInfo');" id="anyTakeNo" name="optradio2" value="No"> No</label>
+                                                <label class="radio-inline mr-3">
+                                                    <input type="radio" onclick="showSupport('anyMedInfo');" id="anyTakeYes" name="optradio2"> Yes</label>
+                                            </div>
 
-                                        <div class="hidden" id="anyMedInfo">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label class="sleepMargin">Medication name:</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" id="anyMedName" placeholder="Enter medication name">
+                                            <div class="hidden" id="anyMedInfo">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label class="sleepMargin">Medication name:</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="anyMedName" placeholder="Enter medication name">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <label class="sleepMargin">Amount taken:</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" id="anyAmTaken" placeholder="Enter amount taken">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label class="sleepMargin">Amount taken:</label>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control" id="anyAmTaken" placeholder="Enter amount taken">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="sleepDiv">
-                                        <input type='button' class='buttonPlainTxt' id="btnMedSubmitTrial1" value='Submit Today Medication'/>
+                                        <div class="sleepDiv">
+                                            <button type="submit" onclick="hideDisplay('sleepM', 'sleepD');" class="btn btn-dark mb-2" style="margin-right: 30px;">Back</button>
+                                            <button type="button" class="btn mb-1 btn-outline-light">Submit</button>
+                                            <!-- <button type="button" id="btnSubmitDairy" class="btn mb-1 btn-outline-light">Submit</button> -->
+                                        </div>
                                     </div>
                                 </div>
 
@@ -413,21 +414,7 @@
     <script src="js/styleSwitcher.js"></script>
 
     <script src="./plugins/moment/moment.js"></script>
-    <script src="./plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-    <!-- Clock Plugin JavaScript -->
-    <script src="./plugins/clockpicker/dist/jquery-clockpicker.min.js"></script>
-    <!-- Color Picker Plugin JavaScript -->
-    <script src="./plugins/jquery-asColorPicker-master/libs/jquery-asColor.js"></script>
-    <script src="./plugins/jquery-asColorPicker-master/libs/jquery-asGradient.js"></script>
-    <script src="./plugins/jquery-asColorPicker-master/dist/jquery-asColorPicker.min.js"></script>
-    <!-- Date Picker Plugin JavaScript -->
-    <script src="./plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-    <!-- Date range Plugin JavaScript -->
-    <script src="./plugins/timepicker/bootstrap-timepicker.min.js"></script>
-    <script src="./plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-    <script src="./js/plugins-init/form-pickers-init.js"></script>
-    <script src="./js/plugins-init/form-pickers-init.js"></script>
 
     <script src="js/MoreFunction.js"></script>
     <script src="js/sleepDairyInit.js"></script>

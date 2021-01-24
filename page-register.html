@@ -12,6 +12,40 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script>
+        var myApp = angular.module("myapp", []);
+        myApp.controller("PasswordController", function($scope) {
+
+            var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+            var mediumRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
+
+            $scope.passwordStrength = {
+                "float": "left",
+                "width": "50%",
+                "height": "10px",
+                "margin-left": "5px"
+            };
+
+            $scope.analyze = function(value) {
+                if(strongRegex.test(value)) {
+                    $scope.passwordStrength["background-color"] = "green";
+                    document.getElementById('pStrength').innerHTML = "Strong";
+                    document.getElementById('pStrength').style.color = "green";
+                } else if(mediumRegex.test(value)) {
+                    $scope.passwordStrength["background-color"] = "orange";
+                    document.getElementById('pStrength').innerHTML = "Medium";
+                    document.getElementById('pStrength').style.color = "orange";
+                } else {
+                    $scope.passwordStrength["background-color"] = "red";
+                    document.getElementById('pStrength').innerHTML = "Weak";
+                    document.getElementById('pStrength').style.color = "red";
+                }
+            };
+
+        });
+    </script>
+
     <script language="javascript">
 
         window.onload = function getPatientsProfile(){
@@ -47,7 +81,7 @@
     
 </head>
 
-<body class="h-100">
+<body class="h-100" ng-app="myapp">
     
     <!--*******************
         Preloader start
@@ -72,7 +106,7 @@
             <div class="row justify-content-center h-100">
                 <div class="col-xl-6">
                     <div class="form-input-content">
-                        <div class="card login-form mb-0">
+                        <div class="card2 login-form mb-0">
                             <div class="card-body pt-5">
                                 
                                     <a class="text-center" href="page-login.html"> <h4>Health enSuite Patient User Registration</h4></a>
@@ -116,7 +150,7 @@
 
                                     <div class="form-group">
                                         <!-- <input type="password" class="form-control" id="pass" placeholder="Password" required> -->
-                                        <div id="passInstruction">A strong password contains at least 1 uppercase, 1 lowercase, 1 special character, and not less than 8 character long</div>
+                                        <!-- <div id="passInstruction">A strong password contains at least 1 uppercase, 1 lowercase, 1 special character, and not less than 8 character long</div> -->
                                         <div ng-controller="PasswordController">
                                             
                                                 <input type="password" ng-model="password" ng-change="analyze(password)" id="pass" placeholder="Password" class="form-control" required />
@@ -127,6 +161,7 @@
 
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <input type="password" class="form-control" id="confirmPass" placeholder="Re-Enter Password" required>
                                     </div>
@@ -184,6 +219,30 @@
     <script src="js/registerInit.js"></script>
     <script src="js/regAPICall.js"></script>
     <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>
+
+    <script src="js/jquery.backstretch.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        'use strict';
+
+        /* ========================== */
+        /* ::::::: Backstrech ::::::: */
+        /* ========================== */
+        // You may also attach Backstretch to a block-level element
+        $.backstretch(
+            [
+                "images/hosp1.png",
+                "images/hosp2.jpg",
+                "images/hosp3.jpg",
+                "images/hosp4.jpg"
+            ],
+
+            {
+                duration: 10000,
+                fade: 2000
+            }
+        );
+	</script>
+
 </body>
 </html>
 

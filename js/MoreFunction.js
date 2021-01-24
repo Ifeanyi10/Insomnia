@@ -16,6 +16,7 @@ $(document).ready(function () {
             window.localStorage.setItem("submitDate", submitDate);
             var submitID = window.localStorage.getItem("currentID");
             window.localStorage.setItem("submitID", submitID);
+            
         }else{
             submitDate = window.localStorage.getItem("prevDateUnformatted");
             window.localStorage.setItem("submitDate", submitDate);
@@ -30,6 +31,15 @@ $(document).ready(function () {
         var submitDate = window.localStorage.getItem("currentDateUnformatted");
         window.localStorage.setItem("submitDate", submitDate);
         var submitID = window.localStorage.getItem("currentID");
+        window.localStorage.setItem("submitID", submitID);
+    });
+
+    $('#prevLink a').click(function(e) {
+        var txt = window.localStorage.getItem("prevDate");
+        window.localStorage.setItem("linkText", txt);
+        var submitDate = window.localStorage.getItem("prevDateUnformatted");
+        window.localStorage.setItem("submitDate", submitDate);
+        var submitID = window.localStorage.getItem("prevID");
         window.localStorage.setItem("submitID", submitID);
     });
 
@@ -139,6 +149,13 @@ function showSupport(diSupport){
 function removeSupport(diSupport){
     var sp = document.getElementById(diSupport);
     sp.style.display = 'none';
+}
+
+function adjustTimeDisplay(elemID){
+    var elemVal = document.getElementById(elemID).value;
+    if(elemVal == '00:00'){
+        document.getElementById(elemID).value = '12:00';
+    }
 }
 
 

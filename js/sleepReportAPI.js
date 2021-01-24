@@ -32,6 +32,13 @@ $(document).ready(function () {
                 }),
             success: function(result){
                 console.log(result);
+                document.getElementById('repAvBedTime').innerHTML  = result.averageBedtime;
+                document.getElementById('repAvSleepLat').innerHTML  = result.sleeplatency;
+                document.getElementById('repAvAwakes').innerHTML  = result.averagenumberofawakenings;
+                document.getElementById('repAvDurationAwakes').innerHTML  = result.waso;
+                document.getElementById('repAvTib').innerHTML  = result.tib;
+                document.getElementById('repTotSpTime').innerHTML  = result.tst;
+                document.getElementById('repSpEfficiency').innerHTML  = result.se;
                 reportDisplay.style.display = 'block';
             }, 
             error: function(msg){

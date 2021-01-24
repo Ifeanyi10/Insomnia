@@ -33,7 +33,8 @@
                                 },
                                 success: function(result){
                                     console.log(result);
-                                    var arrayLength = 0;
+                                    var arrayLength = 0; var trialNo = result.trialType;
+                                    var medicationCurrentObj = ''; var medicationPreviousObj = '';
                                     var currentDate = '';
                                     var currentID = '';
                                     var prevDate = '';
@@ -43,15 +44,22 @@
                                     window.localStorage.setItem("patientFirstName", result.firstName);
                                     window.localStorage.setItem("patientPhone", result.phoneNumber);
                                     window.localStorage.setItem("patientEmail", result.email);
+                                    window.localStorage.setItem("trialNo", trialNo);
                                     console.log(window.localStorage.getItem("patientsID"));
 
                                     $.each(result.sleepDiaries, function(i, def) {
                                         if(arrayLength == 0){
                                             currentDate = def.date_Created;
                                             currentID = def.id;
+                                            if(trialNo == 2){
+                                                medicationCurrentObj = JSON.stringify(def.medications);
+                                            }
                                         } else if(arrayLength == 1){
                                             prevDate = def.date_Created;
                                             prevID = def.id;
+                                            if(trialNo == 2){
+                                                medicationPreviousObj = JSON.stringify(def.medications);
+                                            }
                                         }
                                         arrayLength += 1;
                                     });
@@ -65,7 +73,8 @@
                                         window.localStorage.setItem("currentDate", currentDate2); 
                                         window.localStorage.setItem("currentDateUnformatted", currentDate);
                                         window.localStorage.setItem("currentID", currentID);
-
+                                        window.localStorage.setItem("medicationCurrentObj", medicationCurrentObj);
+                                        document.getElementById('prevLink').style.display = 'none';
                                     }else{
                                         var dateOne = new Date(currentDate2); //Year, Month, Date    
                                         var dateTwo = new Date(prevDate2); //Year, Month, Date 
@@ -74,15 +83,19 @@
                                             window.localStorage.setItem("prevDate", prevDate2);  
                                             window.localStorage.setItem("currentDateUnformatted", currentDate);
                                             window.localStorage.setItem("currentID", currentID);
+                                            window.localStorage.setItem("medicationCurrentObj", medicationCurrentObj);
                                             window.localStorage.setItem("prevID", prevID);
                                             window.localStorage.setItem("prevDateUnformatted", prevDate);  
+                                            window.localStorage.setItem("medicationPreviousObj", medicationPreviousObj);
                                         }else {    
                                             window.localStorage.setItem("currentDate", prevDate2); 
                                             window.localStorage.setItem("prevDate", currentDate2);  
                                             window.localStorage.setItem("currentDateUnformatted", prevDate);
                                             window.localStorage.setItem("currentID", prevID);
+                                            window.localStorage.setItem("medicationCurrentObj", medicationPreviousObj);
                                             window.localStorage.setItem("prevID", currentID);
                                             window.localStorage.setItem("prevDateUnformatted", currentDate); 
+                                            window.localStorage.setItem("medicationPreviousObj", medicationCurrentObj);
                                         }  
                                     }
 
@@ -127,7 +140,7 @@
         ***********************************-->
         <div class="nav-header">
             <div class="brand-logo">
-                <a href="index.html">
+                <a href="patient-dashboard.html">
                     <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
                     <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
                     <span class="brand-title">
@@ -146,31 +159,19 @@
         <div class="header">    
             <div class="header-content clearfix">
                 
-                <!-- <div class="nav-control">
+                <div class="nav-control">
                     <div class="hamburger">
                         <span class="toggle-icon"><i class="icon-menu"></i></span>
                     </div>
-                </div> -->
-                <div class="header-left">
-                    <!-- <div class="input-group icons">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
-                        </div>
-                        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
-                        <div class="drop-down animated flipInX d-md-none">
-                            <form action="#">
-                                <input type="text" class="form-control" placeholder="Search">
-                            </form>
-                        </div>
-                    </div> -->
                 </div>
+
                 <div class="header-right">
                     <ul class="clearfix">
                         
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                 <span class="activity active"></span>
-                                <img src="images/user/1.png" height="40" width="40" alt="">
+                                <img src="images/user/form-user.png" height="40" width="40" alt="">
                             </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-body">
@@ -246,14 +247,14 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <!-- <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-screen-tablet menu-icon"></i><span class="nav-text">Sleep Medication</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./sleep-medication.html">My Sleep Medication</a></li>
                         </ul>
-                    </li>
+                    </li> -->
 
                     <li class="mega-menu mega-menu-sm">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
@@ -364,11 +365,19 @@
                                     Please fill out a sleep diary each day. It is best to do this as soon as you get out of bed so that you don’t forget. You can also use the Medication log at any time to record any medications you are taking.
                                 </div>
 
-                                <div class="sleepDiv" id="todayLink">
-                                    <a href="sleep-diary.html" class="txt1">
-                                        <strong>Complete today’s sleep diary</strong>
-                                    </a>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 sleepDiv" id="todayLink">
+                                        <a href="sleep-diary.html" class="txt1">
+                                            <strong>Complete today’s sleep diary</strong>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 sleepDiv" id="prevLink">
+                                        <a href="sleep-diary.html" class="txt1">
+                                            <strong>Complete yesterday’s sleep diary</strong>
+                                        </a>
+                                    </div>
                                 </div>
+                                
                             </div>
                         </div>
                     </div>

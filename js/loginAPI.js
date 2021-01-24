@@ -46,7 +46,7 @@ $(document).ready(function () {
             data: JSON.stringify({"code": username}),
             success: function(result){
                 console.log(result);
-                swal({title: "Username Confirmed!!", text: "A reset password link has been sent to your email address!!", type: "success"},
+                swal({title: "Email Address Received!!", text: "A reset password link will be sent to this email address if it has a valid account!!", type: "success"},
                 function(){ 
                     window.location.href = "index.html";
                 }
@@ -55,7 +55,7 @@ $(document).ready(function () {
             error: function(msg){
                 console.log(msg);
                 if(msg){
-                    swal({title: "Username Confirmed!!", text: "A reset password link has been sent to your email address!!", type: "success"},
+                    swal({title: "Email Address Received!!", text: "A reset password link will be sent to this email address if it has a valid account!!", type: "success"},
                         function(){ 
                             window.location.href = "index.html";
                         }
