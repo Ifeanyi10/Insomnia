@@ -54,10 +54,14 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="patient-dashboard.html">
-                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <b class="logo-abbr">
+                        <!-- <img src="images/logo.png" alt="">  -->
+                    </b>
+                    <span class="logo-compact">
+                        <!-- <img src="./images/logo-compact.png" alt=""> -->
+                    </span>
                     <span class="brand-title">
-                        <img src="images/logo-text.png" alt="">
+                        <!-- <img src="images/logo-text.png" alt=""> -->
                     </span>
                 </a>
             </div>
@@ -93,7 +97,7 @@
                                             <a href="patient-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
                                         </li>
 
-                                        <li><a href="index.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                        <li><a href="index.html" onclick="logout();"><i class="icon-key"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -142,7 +146,7 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <li class="mega-menu mega-menu-sm spClock" style="display: none;">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Sleep Clock</span>
                         </a>
@@ -247,7 +251,7 @@
                                             <p>Health enSuite: Insomnia consists of a series of levels or content chapters. Each level has tasks you will need to complete before you can advance to the next level. These tasks include reading about new strategies for improving your sleep, watching videos, answering questions, completing daily sleep diaries, and tracking your medications. Each level is designed to take about one week to complete so that by the end of 6 weeks you will have completed the entire program.</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
                                         </div>
                                     </div>
                                 </div>
@@ -258,7 +262,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Level 1 – Introduction to Health EnSuite Insomnia </h4>
+                                <h4 class="card-title colorPrimary">Level 1 – Introduction to Health EnSuite Insomnia </h4><hr>
                                 <div class="justifyDiv">
                                     Health enSuite Insomnia is designed to support you in changing your habits and improving your sleep. The advice it contains should complement, but does not replace, the services you receive from your health care provider. 
                                 </div>
@@ -271,9 +275,10 @@
 
 
                                 <div>
-                                    <h4 class="card-title sleepDiv">To advance to the next level you will need to:</h4>
+                                    <!-- <h4 class="card-title sleepDiv">To advance to the next level you will need to:</h4> -->
+                                    <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">To advance to the next level you will need to:</label>
                                 </div>
-                                <div class="consentInfoBody">
+                                <div class="consentInfoBody" style="margin-top: 0px;">
                                     - 	Complete at least 5 sleep diaries within a week
                                 </div>
                                 <div class="consentInfoBody">
@@ -307,7 +312,8 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Introduction to Health enSuite:</h4>
+                                <!-- <h4 class="card-title">Introduction to Health enSuite:</h4> -->
+                                <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px;">Introduction to Health enSuite:</label>
                                 <ul class="nav nav-pills mb-3">
                                     <li class="nav-item"><a href="#navpills-1" class="nav-link active" data-toggle="tab" aria-expanded="false">What is insomnia?</a>
                                     </li>
@@ -327,13 +333,14 @@
                                                 <img src="images/big/Insomnia-img.jpg" alt="" class="img-fluid thumbnail m-r-15">
                                             </div>
                                             <div class="col-sm-6 col-md-8 col-xl-10">
-                                                <h3 class="consentInfoHeadSmall">What is insomnia?</h3>
+                                                <!-- <h3 class="consentInfoHeadSmall">What is insomnia?</h3> -->
+                                                <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px;">What is insomnia?</label>
                                                 <p>Insomnia is more than just getting a poor night’s sleep. Everyone can have difficulty sleeping from time to time. For people with insomnia, difficulty sleeping becomes a regular and persistent problem. This could involve difficulty falling asleep, difficulty staying asleep, or both. Some people with insomnia wake up frequently throughout the night and have trouble getting back to sleep. Others wake up too early in the morning.</p>
                                                 <p>Insomnia is not the result of a lack of opportunity to sleep. People with insomnia experience sleep disruptions even though they had a reasonable chance to sleep.</p>
                                                 
                                                 <form id="formSituation">
                                                     <div class="form-group">
-                                                        <label class="lblQuestion">Which of the following best describes your situation (check all that apply):</label>
+                                                        <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px;">Which of the following best describes your situation (check all that apply):</label>
                 
                                                         <div class="form-check mb-3">
                                                             <label class="form-check-label">
@@ -356,6 +363,9 @@
                                                 <p>Over the next few weeks you will learn strategies to help resolve this problem.</p>
                                             </div>
                                         </div>
+                                        <div class="general-button">
+                                            <button type="button" onclick="displayNav('navpills-1', 'navpills-2');" class="btn-primary goRight">Next</button>
+                                        </div>
                                     </div>
 
                                     <div id="navpills-2" class="tab-pane">
@@ -365,17 +375,23 @@
                                                 <img src="images/big/causesInsomnia-img.jpg" alt="" class="img-fluid thumbnail m-r-15">
                                             </div>
                                             <div class="col-sm-6 col-md-8 col-xl-10">
-                                                <h3 class="consentInfoHeadSmall">What causes insomnia?</h3>
+                                                <!-- <h3 class="consentInfoHeadSmall">What causes insomnia?</h3> -->
+                                                <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px;">What causes insomnia?</label>
                                                 <p>Usually, insomnia is not caused by a chemical imbalance. Most of the time it is caused by habits, lifestyle, and problematic ways of thinking about sleep. Solutions that focus on these underlying causes of insomnia have the best chance of long-term success.</p>
                                                 <p>Sometimes medical conditions interfere with sleep.  If these are left untreated, changes to your sleep routine might not be enough. Talk with your health care provider about any medical conditions you may have that may be affecting your sleep.</p>
                                             </div>
+                                        </div>
+                                        <div class="general-button">
+                                            <button type="submit" onclick="displayNav('navpills-2', 'navpills-1');" class="btn-secondary" style="margin-right: 30px;">Back</button>
+                                            <button type="button" onclick="displayNav('navpills-2', 'navpills-3');" class="btn-primary goRight">Next</button>
                                         </div>
                                     </div>
 
                                     <div id="navpills-3" class="tab-pane">
                                         <div class="row align-items-center">
                                             <div class="col-md-12">
-                                                <h3 class="consentInfoHeadSmall">How does this program work?</h3>
+                                                <!-- <h3 class="consentInfoHeadSmall">How does this program work?</h3> -->
+                                                <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px;">How does this program work?</label>
                                                 <p>Health enSuite Insomnia is based on a cognitive behavioural approach to treating insomnia.  The goal is to change old ways of thinking and behaving and learn new, more effective ways of thinking and behaving. Every week, you will learn new skills to help you sleep better at night and feel better during the day. Here is an outline of what to expect in the weeks to come.</p>
                                                 <div class="consentInfoBody">
                                                     Week 1 (this week): Introduction to Health EnSuite: Insomnia
@@ -398,6 +414,10 @@
                                                 <p>It may take a few weeks before you start to notice a difference in your sleep quality. Don’t get discouraged. Changing habits can be difficult and take time. The key to success is to stick with the program and practice the skills you are learning every day.</p>
                                             </div>
                                         </div>
+                                        <div class="general-button">
+                                            <button type="submit" onclick="displayNav('navpills-3', 'navpills-2');" class="btn-secondary" style="margin-right: 30px;">Back</button>
+                                            <button type="button" onclick="displayNav('navpills-3', 'navpills-4');" class="btn-primary goRight">Next</button>
+                                        </div>
                                     </div>
 
                                     <div id="navpills-4" class="tab-pane">
@@ -408,7 +428,8 @@
                                                     <img src="images/big/sleepPills1-img.jpg" alt="" class="img-fluid thumbnail m-r-15">
                                                 </div>
                                                 <div class="col-sm-6 col-md-8 col-xl-10">
-                                                    <h3 class="consentInfoHeadSmall">Sleeping pills</h3>
+                                                    <!-- <h3 class="consentInfoHeadSmall">Sleeping pills</h3> -->
+                                                    <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px;">Sleeping pills</label>
                                                     <p>Sleeping pills may seem like an easy way to manage your sleep. Unfortunately sleeping pills only work as a short term remedy for sleep problems. After a few weeks, sleeping pills can become less effective in promoting good sleep. But many people continue using sleeping pills for weeks or even years. This can happen even when there are adverse side effects like daytime drowsiness and difficulty concentrating.</p>
                                                     <p>Your health care provider has recommended a plan that will gradually reduce the amount  of the sleeping pills you are taking. The goal is for you to eventually be able to stop taking sleeping pills and get a good night’s sleep.</p>
                                                     <p>How is it going so far?</p>
@@ -449,14 +470,15 @@
 
                                                 </div>
                                             </div>
-                                            <input type='button' class='buttonPlainTxt' id="btnContSleepPill" onclick="showNote('content4-2');" value='Continue...'/>
+                                            <input type='button' class='btn-colorSec' id="btnContSleepPill" onclick="showNote('content4-2');" value='Continue...'/>
                                         </div>
 
                                         <div class="hidden" id="content4-2">
 
                                             <div class="row align-items-center">
                                                 <div class="col-md-12">
-                                                    <h3 class="consentInfoHeadSmall">Why is it a good idea to reduce my medications gradually?</h3>
+                                                    <!-- <h3 class="consentInfoHeadSmall">Why is it a good idea to reduce my medications gradually?</h3> -->
+                                                    <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 20px;">Why is it a good idea to reduce my medications gradually?</label>
                                                     <p>Sudden changes in medications increase your risk of <a class='branchLink' id="sympID" href="#symps">withdrawal symptoms.</a></p>
                                                     <div class="linkDiv hidden" id="symps">Withdrawal symptoms might include: insomnia, anxiety, irritability, headaches, sweating, shaking or tremors, pounding heart, nausea, dizziness, unsteadiness, difficulty concentrating, sensitivity to noise and light, ringing in the ears, confusion/delirium, depression, seizures</div>
 
@@ -476,6 +498,10 @@
                                                     <p>Over the next few weeks you will learn strategies for managing your sleep that will make it possible for you stop taking sleeping pills and get a good night’s sleep.</p>
                                                 </div>
                                             </div>
+                                            <div class="general-button">
+                                                <button type="submit" onclick="displayNav('navpills-4', 'navpills-3');" class="btn-secondary" style="margin-right: 30px;">Back</button>
+                                                <button type="button" onclick="displayNav('navpills-4', 'navpills-5');" class="btn-primary goRight">Next</button>
+                                            </div>
                                         </div>
 
 
@@ -484,7 +510,8 @@
                                     <div id="navpills-5" class="tab-pane">
                                         <div class="row align-items-center">
                                             <div class="col-md-12">
-                                                <h3 class="consentInfoHeadSmall">Getting support and involving your partner</h3>
+                                                <!-- <h3 class="consentInfoHeadSmall">Getting support and involving your partner</h3> -->
+                                                <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px;">Getting support and involving your partner</label>
                                                 <p>Having someone to support you can make changing your thoughts and behaviours easier. Is there someone who can support you? This could be a romantic partner, family member, friend or someone else you feel supports you. If you regularly share a bed with another person, it is good idea to involve this person. They can play an important role in helping you change your routines around sleep.</p>
                                                 
                                                 <form id="fromDescribe">
@@ -595,17 +622,23 @@
         
                                                     <div class="general-button">
                                                         <!-- <button type="submit" id="btnBackTrial2" onclick="goBack('trial2Demo','fifthQ1');" class="btn btn-dark mb-2" style="margin-right: 30px;">Back</button> -->
-                                                        <button type="button"  id="btnSubmitLV1" class="btn mb-1 btn-outline-light">Submit</button>
+                                                        <button type="button"  id="btnSubmitLV1" class="btn mb-1 btn-info" style="width: 20%; margin-left: 40%; margin-right: 40%;">Submit</button>
                                                     </div>
         
                                                 </div>
                                                 
-                                                <div class="sleepDiv">
-                                                    <a href="program-content.html" class="txt1">
-                                                        <strong>Return to Dashboard</strong>
-                                                    </a>
-                                                </div>
+                                                
                                             </div>
+                                        </div>
+                                        <div class="general-button">
+                                            <button type="submit" onclick="displayNav('navpills-5', 'navpills-4');" class="btn-secondary" style="margin-right: 30px;">Back</button>
+                                            <!-- <button type="button" onclick="displayNav('navpills-4', 'navpills-5');" class="buttonPlainTxt btnColorPrimary goRight">Next</button> -->
+                                        </div>
+
+                                        <div class="sleepDiv">
+                                            <a href="program-content.html" class="txt1">
+                                                <strong>Return to Dashboard</strong>
+                                            </a>
                                         </div>
                                     </div>
 

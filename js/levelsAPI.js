@@ -90,7 +90,7 @@ $(document).ready(function () {
             }, 
             error: function(msg){
                 $("#errorContainer").html("Unable to register");
-                sweetAlert("Oops...","Unable to submit level 1 responses! Please try again shortly","error");
+                sweetAlert("Unable to submit level 1 responses!","Please try again shortly","error");
             }
         });
     });
@@ -135,7 +135,7 @@ $(document).ready(function () {
             }, 
             error: function(msg){
                 $("#errorContainer").html("Unable to register");
-                sweetAlert("Oops...","Unable to submit level 1 responses! Please try again shortly","error");
+                sweetAlert("Unable to submit level 1 responses!","Please try again shortly","error");
             }
         });
     });
@@ -176,7 +176,7 @@ $(document).ready(function () {
             }, 
             error: function(msg){
                 $("#errorContainer").html("Unable to register");
-                sweetAlert("Oops...","Unable to submit level 2 responses! Please try again shortly","error");
+                sweetAlert("Unable to submit level 2 responses!","Please try again shortly","error");
             }
         });
     });
@@ -231,7 +231,7 @@ $(document).ready(function () {
             }, 
             error: function(msg){
                 $("#errorContainer").html("Unable to register");
-                sweetAlert("Oops...","Unable to submit level 3 responses! Please try again shortly","error");
+                sweetAlert("Unable to submit level 3 responses!","Please try again shortly","error");
             }
         });
     });
@@ -264,7 +264,7 @@ $(document).ready(function () {
             }, 
             error: function(msg){
                 $("#errorContainer").html("Unable to register");
-                sweetAlert("Oops...","Unable to submit level 4 responses! Please try again shortly","error");
+                sweetAlert("Unable to submit level 4 responses!","Please try again shortly","error");
             }
         });
     });
@@ -306,7 +306,7 @@ $(document).ready(function () {
             }, 
             error: function(msg){
                 $("#errorContainer").html("Unable to register");
-                sweetAlert("Oops...","Unable to submit level 5 responses! Please try again shortly","error");
+                sweetAlert("Unable to submit level 5 responses!","Please try again shortly","error");
             }
         });
     });
@@ -341,7 +341,7 @@ $(document).ready(function () {
                 );
             }, 
             error: function(msg){
-                sweetAlert("Oops...","Unable to submit level 6 responses! Please try again shortly","error");
+                sweetAlert("Unable to submit level 6 responses!","Please try again shortly","error");
             }
         });
     });

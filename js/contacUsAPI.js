@@ -29,7 +29,7 @@ $(document).ready(function () {
             }, 
             error: function(msg){
                 $("#errorContainer").html("Unable to register");
-                sweetAlert("Oops...","Your withdrawal attempt failed! Please try again shortly","error");
+                sweetAlert("Your withdrawal attempt failed!","Please try again shortly","error");
             }
         });
     });
@@ -65,7 +65,7 @@ function submitFeedback(event, noteID){
         }, 
         error: function(msg){
             $("#errorContainer").html("Unable to register");
-            sweetAlert("Oops...","Feedback submission failed! Please try again shortly","error");
+            sweetAlert("Feedback submission failed!","Please try again shortly","error");
         }
     });
 };

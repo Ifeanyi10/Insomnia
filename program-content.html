@@ -20,30 +20,9 @@
     <script language="javascript">
 
         window.onload = function getPatientsTaskList(){
-                            let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/dashboard/mytasklist';
-                            let authToken = window.localStorage.getItem("patientToken");
-                            //alert(authToken);
-                            $.ajax({
-                                url: url,
-                                type: 'GET',
-                                headers: {
-                                    'Content-Type': 'application/json', 
-                                    'Accept': '*/*',
-                                    'Authorization': 'Bearer '+ authToken
-                                },
-                                success: function(result){
-                                    console.log(result);
-                                    var levelval = result.level;
-                                    initializeContent(6);
-                                }, 
-                                error: function(msg){
-                                    console.log("Loading Patients Task List Failed");
-                                }
-                            });
+                            let levelValue = window.localStorage.getItem("CBTLevel");
+                            initializeContent(levelValue)
                         }
-        
-        
-        
         
         
         function initializeContent(completed){
@@ -65,29 +44,21 @@
             }
 
             function initializeProgress(completed){
-                let comp = 0;
-                switch(completed){
-                    case 0:
-                        comp = 5;
-                        break;
-                    case 1:
-                        comp = 20;
-                        break;
-                    case 2:
-                        comp = 35;
-                        break;
-                    case 3:
-                        comp = 55;
-                        break;
-                    case 4:
-                        comp = 70;
-                        break;
-                    case 5:
-                        comp = 85;
-                        break;
-                    case 6:
-                        comp = 100;
-                        break;
+                var comp = 0;
+                if(completed == 0){
+                    comp = 5;
+                }else if(completed == 1){
+                    comp = 20;
+                }else if(completed == 2){
+                    comp = 35;
+                }else if(completed == 3){
+                    comp = 55;
+                }else if(completed == 4){
+                    comp = 70;
+                }else if(completed == 5){
+                    comp = 85;
+                }else if(completed == 6){
+                    comp = 100;
                 }
                 document.getElementById('compPercent').innerHTML  = comp + '%';
                 document.getElementById('compBar').style.width = comp + '%';
@@ -125,10 +96,14 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="patient-dashboard.html">
-                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <b class="logo-abbr">
+                        <!-- <img src="images/logo.png" alt="">  -->
+                    </b>
+                    <span class="logo-compact">
+                        <!-- <img src="./images/logo-compact.png" alt=""> -->
+                    </span>
                     <span class="brand-title">
-                        <img src="images/logo-text.png" alt="">
+                        <!-- <img src="images/logo-text.png" alt=""> -->
                     </span>
                 </a>
             </div>
@@ -164,7 +139,7 @@
                                             <a href="patient-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
                                         </li>
 
-                                        <li><a href="index.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                        <li><a href="index.html" onclick="logout();"><i class="icon-key"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -213,7 +188,7 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <li class="mega-menu mega-menu-sm spClock" style="display: none;">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Sleep Clock</span>
                         </a>
@@ -287,7 +262,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">My Progress</h4>
+                                <h4 class="card-title colorPrimary">My Progress</h4><hr>
                                 <h5 class="mt-3">Completed <span class="float-right" id="compPercent"></span></h5>
                                 <div class="progress" style="height: 12px">
                                     <!-- <div class="progress-bar bg-danger wow  progress-" style="width: 10%;" role="progressbar"><span class="sr-only">60% Complete</span></div> -->
@@ -302,13 +277,14 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Intervention Group Content</h4>
+                                <h4 class="card-title colorPrimary">Intervention Group Content</h4><hr>
                                 <div class="justifyDiv" style="font-style: italic;">
                                     Navigation. Only current or previous levels are available to access
-                                </div>
+                                </div><br>
 
                                 <div>
-                                    <h4 class="card-title sleepDiv">Table of Contents:</h4>
+                                    <!-- <h4 class="card-title sleepDiv">Table of Contents:</h4> -->
+                                    <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px;">Table of Contents:</label>
                                 </div>
                                 <!-- <div class="justifyDiv">
                                     The sleep diary is very brief. It should only take a few minutes to complete. 

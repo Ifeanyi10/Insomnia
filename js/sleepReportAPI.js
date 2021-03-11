@@ -1,4 +1,12 @@
 
+function formatTime(n) {
+    var num = n;
+    var hours = (num / 60);
+    var rhours = Math.floor(hours);
+    var minutes = (hours - rhours) * 60;
+    var rminutes = Math.round(minutes);
+    return  rhours + " hour(s) and " + rminutes + " minute(s).";
+}
 
 $(document).ready(function () {
 
@@ -11,6 +19,7 @@ $(document).ready(function () {
         var dEnd = document.getElementById("dEnd").value;
         var newDStart = moment(dStart, "MM/DD/YYYY").format("YYYY-MM-DD")
         var newDEnd = moment(dEnd, "MM/DD/YYYY").format("YYYY-MM-DD")
+        var tbID = document.getElementById("patReportTB");
 
         // alert(JSON.stringify({
         //     "startDate" : newDStart,
@@ -32,19 +41,27 @@ $(document).ready(function () {
                 }),
             success: function(result){
                 console.log(result);
-                document.getElementById('repAvBedTime').innerHTML  = result.averageBedtime;
-                document.getElementById('repAvSleepLat').innerHTML  = result.sleeplatency;
-                document.getElementById('repAvAwakes').innerHTML  = result.averagenumberofawakenings;
-                document.getElementById('repAvDurationAwakes').innerHTML  = result.waso;
-                document.getElementById('repAvTib').innerHTML  = result.tib;
-                document.getElementById('repTotSpTime').innerHTML  = result.tst;
-                document.getElementById('repSpEfficiency').innerHTML  = result.se;
+                // document.getElementById('repAvBedTime').innerHTML  = result.averageBedtime;
+                // document.getElementById('repAvSleepLat').innerHTML  = formatTime(result.sleeplatency);
+                // document.getElementById('repAvAwakes').innerHTML  = result.averagenumberofawakenings;
+                // document.getElementById('repAvDurationAwakes').innerHTML  = formatTime(result.waso);
+                // document.getElementById('repAvTib').innerHTML  = formatTime(result.tib);
+                // document.getElementById('repTotSpTime').innerHTML  = formatTime(result.tst);
+                // document.getElementById('repSpEfficiency').innerHTML  = result.se;
                 reportDisplay.style.display = 'block';
+                
+                tbID.rows[1].cells[1].innerHTML = result.averageBedtime;
+                tbID.rows[2].cells[1].innerHTML = formatTime(result.sleeplatency);
+                tbID.rows[3].cells[1].innerHTML = result.averagenumberofawakenings;
+                tbID.rows[4].cells[1].innerHTML = formatTime(result.waso);
+                tbID.rows[5].cells[1].innerHTML = formatTime(result.tib);
+                tbID.rows[6].cells[1].innerHTML = formatTime(result.tst);
+                tbID.rows[7].cells[1].innerHTML = result.se;
             }, 
             error: function(msg){
                 //alert(msg)
-                $("#errorContainer").html("Unable to register");
-                sweetAlert("Oops...","Sleep report generation failed! Please try again shortly","error");
+                $("#errorContainer").html("Unable to generate");
+                sweetAlert("Sleep report generation failed!","Please try again shortly","error");
             }
         });
     });
@@ -84,8 +101,8 @@ $(document).ready(function () {
                 );
             }, 
             error: function(msg){
-                $("#errorContainer").html("Unable to register");
-                sweetAlert("Oops...","Unable to set your sleep clock for next week! Please try again shortly","error");
+                $("#errorContainer").html("Unable to set sleep clock");
+                sweetAlert("Unable to set your sleep clock for next week!","Please try again shortly","error");
             }
         });
     });

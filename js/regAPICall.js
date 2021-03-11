@@ -74,14 +74,7 @@ $(document).ready(function () {
     document.getElementById("phone").readOnly = true;
     document.getElementById("usName").readOnly = true;
 
-    document.getElementById('firstN').value = window.localStorage.getItem("patientFirstName");
-                                    
-    document.getElementById('lastN').value = window.localStorage.getItem("patientLastName");
     
-    document.getElementById('email').value = window.localStorage.getItem("patientEmail");
-    
-    document.getElementById('phone').value = window.localStorage.getItem("patientPhone");
-    document.getElementById('usName').value = window.localStorage.getItem("patientEmail");
 
     $("#usName").keyup(validateUsername);
         //validate provider email
@@ -143,8 +136,8 @@ $(document).ready(function () {
         var smsAccepted = getCommunicationMode(1);
         //alert(smsAccepted);
         var inAppAccepted = getCommunicationMode(2);
-        var noNotification = getCommunicationMode(3);
-        var token =window.localStorage.getItem("regToken");
+        var noNotification = false;
+        var token =window.localStorage.getItem("patRegToken");
         let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/create-dailyNotification';
     
         $.ajax({
@@ -171,7 +164,7 @@ $(document).ready(function () {
             }, 
             error: function(msg){
                 $("#errorContainer").html("Unable to register");
-                sweetAlert("Oops...","Account creation failed!!","error");
+                sweetAlert("Account creation failed!","Please try again shortly,","error");
             }
         });
     });

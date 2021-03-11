@@ -35,10 +35,10 @@
                                     console.log(result);
                                     var arrayLength = 0; var trialNo = result.trialType;
                                     var medicationCurrentObj = ''; var medicationPreviousObj = '';
-                                    var currentDate = '';
-                                    var currentID = '';
-                                    var prevDate = '';
-                                    var prevID = '';
+                                    var currentDate = ''; var otherMedCurrentObj = '';
+                                    var currentID = ''; var otherMedPreviousObj = '';
+                                    var prevDate = ''; var sleepDariesCurrent = ''; 
+                                    var prevID = '';  var sleepDiaryPrevious = '';
                                     window.localStorage.setItem("patientsID", result.id);
                                     window.localStorage.setItem("patientLastName", result.lastName);
                                     window.localStorage.setItem("patientFirstName", result.firstName);
@@ -54,12 +54,16 @@
                                             if(trialNo == 2){
                                                 medicationCurrentObj = JSON.stringify(def.medications);
                                             }
+                                            sleepDariesCurrent = JSON.stringify(def);
+                                            otherMedCurrentObj = JSON.stringify(def.othermedications);
                                         } else if(arrayLength == 1){
                                             prevDate = def.date_Created;
                                             prevID = def.id;
                                             if(trialNo == 2){
                                                 medicationPreviousObj = JSON.stringify(def.medications);
                                             }
+                                            sleepDiaryPrevious = JSON.stringify(def);
+                                            otherMedPreviousObj = JSON.stringify(def.othermedications);
                                         }
                                         arrayLength += 1;
                                     });
@@ -74,6 +78,8 @@
                                         window.localStorage.setItem("currentDateUnformatted", currentDate);
                                         window.localStorage.setItem("currentID", currentID);
                                         window.localStorage.setItem("medicationCurrentObj", medicationCurrentObj);
+                                        window.localStorage.setItem("sleepDariesCurrent", sleepDariesCurrent);
+                                        window.localStorage.setItem("otherMedCurrentObj", otherMedCurrentObj);
                                         document.getElementById('prevLink').style.display = 'none';
                                     }else{
                                         var dateOne = new Date(currentDate2); //Year, Month, Date    
@@ -83,19 +89,27 @@
                                             window.localStorage.setItem("prevDate", prevDate2);  
                                             window.localStorage.setItem("currentDateUnformatted", currentDate);
                                             window.localStorage.setItem("currentID", currentID);
+                                            window.localStorage.setItem("sleepDariesCurrent", sleepDariesCurrent);
+                                            window.localStorage.setItem("sleepDiaryPrevious", sleepDiaryPrevious);
                                             window.localStorage.setItem("medicationCurrentObj", medicationCurrentObj);
+                                            window.localStorage.setItem("otherMedCurrentObj", otherMedCurrentObj);
                                             window.localStorage.setItem("prevID", prevID);
                                             window.localStorage.setItem("prevDateUnformatted", prevDate);  
                                             window.localStorage.setItem("medicationPreviousObj", medicationPreviousObj);
+                                            window.localStorage.setItem("otherMedPreviousObj", otherMedPreviousObj);
                                         }else {    
                                             window.localStorage.setItem("currentDate", prevDate2); 
                                             window.localStorage.setItem("prevDate", currentDate2);  
                                             window.localStorage.setItem("currentDateUnformatted", prevDate);
                                             window.localStorage.setItem("currentID", prevID);
+                                            window.localStorage.setItem("sleepDariesCurrent", sleepDiaryPrevious);
+                                            window.localStorage.setItem("sleepDiaryPrevious", sleepDariesCurrent);
                                             window.localStorage.setItem("medicationCurrentObj", medicationPreviousObj);
+                                            window.localStorage.setItem("otherMedCurrentObj", otherMedPreviousObj);
                                             window.localStorage.setItem("prevID", currentID);
                                             window.localStorage.setItem("prevDateUnformatted", currentDate); 
                                             window.localStorage.setItem("medicationPreviousObj", medicationCurrentObj);
+                                            window.localStorage.setItem("otherMedPreviousObj", otherMedCurrentObj);
                                         }  
                                     }
 
@@ -103,11 +117,11 @@
                                 }, 
                                 error: function(msg){
                                     console.log("Loading Patients details failed");
+                                    sweetAlert("Failed To Load Account Details!!","Your account details was not able to load. Please login again","error");
+                                    window.location.href = "index.html";
                                 }
                             });
                         }
-
-                        
     
           </script>
 
@@ -141,10 +155,14 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="patient-dashboard.html">
-                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <b class="logo-abbr">
+                        <!-- <img src="images/logo.png" alt="">  -->
+                    </b>
+                    <span class="logo-compact">
+                        <!-- <img src="./images/logo-compact.png" alt=""> -->
+                    </span>
                     <span class="brand-title">
-                        <img src="images/logo-text.png" alt="">
+                        <!-- <img src="images/logo-text.png" alt=""> -->
                     </span>
                 </a>
             </div>
@@ -180,7 +198,7 @@
                                             <a href="patient-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
                                         </li>
 
-                                        <li><a href="index.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                        <li><a href="index.html" onclick="logout();"><i class="icon-key"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -229,7 +247,7 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <li class="mega-menu mega-menu-sm spClock" style="display: none;">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Sleep Clock</span>
                         </a>
@@ -318,15 +336,15 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Baseline Sleep Diary</h4>
+                                <h4 class="card-title colorPrimary">Baseline Sleep Diary</h4><hr>
                                 <div class="justifyDiv">
                                     The next step is to begin tracking your sleep patterns. Please take a few minutes to fill out a sleep diary each morning for the next 2 weeks. This lets us know your starting point. If you forget to record your answers one morning, you can go back and fill them in up to a day later. 
-                                </div>
+                                </div><br>
 
                                 <div>
-                                    <h4 class="card-title sleepDiv">Sleep diary instructions:</h4>
+                                    <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px;">Sleep diary instructions:</label>
                                 </div>
-                                <div class="justifyDiv">
+                                <div>
                                     The sleep diary is very brief. It should only take a few minutes to complete. 
                                 </div>
                                 <div class="justifyDiv">
@@ -440,6 +458,40 @@
     <script src="js/MoreFunction.js"></script>
     <script src="js/sleepDairyInit.js"></script>
     <script src="./plugins/sweetalert/js/sweetalert.min.js"></script>
+
+    <script language = "javascript">
+        function getAllLinks(dayValue){
+                        var dayNumber1 = 0; var dayNumber2 = 0; 
+                        var galLinks = document.getElementById('sleepLink');
+                        var anchors = galLinks.getElementsByTagName('a');
+                        for (i = 0; i < anchors.length; i++) {  
+                            var thisLink = anchors[i];
+                            
+                            if(dayValue == 1){
+                                thisLink.style.display = 'block';
+                                thisLink.innerHTML = window.localStorage.getItem("currentDate");
+                                return;
+                            }
+                            
+                            dayNumber1 += 1;
+                            if(dayNumber1 == (dayValue - 1)){
+                                thisLink.style.display = 'block';
+                                thisLink.innerHTML = window.localStorage.getItem("currentDate");
+                            }
+                            
+                            if(dayNumber1 == dayValue){
+                                thisLink.style.display = 'block';
+                                thisLink.innerHTML = window.localStorage.getItem("prevDate");
+                                return;
+                            }
+                        }
+                    }
+
+                    $(document).ready(function () {
+                        var theArrayLength = window.localStorage.getItem("arrayLength");
+                        getAllLinks(theArrayLength); 
+                    });
+    </script>
 
 </body>
 

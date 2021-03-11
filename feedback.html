@@ -32,13 +32,13 @@
                                 url: url,
                                 type: 'GET',
                                 headers: {
-                                    'Content-Type': 'application/json', 
+                                    'Content-Type': 'application/json',
                                     'Accept': '*/*',
                                     'Authorization': 'Bearer '+ authToken
                                 },
                                 success: function(result){
                                     console.log(result);
-                                    
+
                                     window.localStorage.setItem("patientsID", result.id);
 
                                     window.localStorage.setItem("patientLastName", result.lastName);
@@ -46,13 +46,13 @@
                                     window.localStorage.setItem("patientPhone", result.phoneNumber);
                                     window.localStorage.setItem("patientEmail", result.email);
                                     console.log(window.localStorage.getItem("patientsID"));
-                                }, 
+                                },
                                 error: function(msg){
                                     console.log("Loading Patients details failed");
                                 }
                             });
                         }
-    
+
           </script> -->
 
 </head>
@@ -73,7 +73,7 @@
         Preloader end
     ********************-->
 
-    
+
     <!--**********************************
         Main wrapper start
     ***********************************-->
@@ -85,10 +85,14 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="patient-dashboard.html">
-                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <b class="logo-abbr">
+                        <!-- <img src="images/logo.png" alt="">  -->
+                    </b>
+                    <span class="logo-compact">
+                        <!-- <img src="./images/logo-compact.png" alt=""> -->
+                    </span>
                     <span class="brand-title">
-                        <img src="images/logo-text.png" alt="">
+                        <!-- <img src="images/logo-text.png" alt=""> -->
                     </span>
                 </a>
             </div>
@@ -100,18 +104,18 @@
         <!--**********************************
             Header start
         ***********************************-->
-        <div class="header">    
+        <div class="header">
             <div class="header-content clearfix">
-                
+
                 <div class="nav-control">
                     <div class="hamburger">
                         <span class="toggle-icon"><i class="icon-menu"></i></span>
                     </div>
                 </div>
-                
+
                 <div class="header-right">
                     <ul class="clearfix">
-                        
+
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                 <span class="activity active"></span>
@@ -140,7 +144,7 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-        <div class="nk-sidebar">           
+        <div class="nk-sidebar">
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label">Patient Dashboard</li>
@@ -173,7 +177,7 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <li class="mega-menu mega-menu-sm spClock" style="display: none;">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Sleep Clock</span>
                         </a>
@@ -205,8 +209,8 @@
                             <i class="icon-notebook menu-icon"></i><span class="nav-text">Task & Progress</span>
                         </a>
                         <ul aria-expanded="false">
-                            <li><a href="./patient-profile.html">My Task List</a></li>
-                            <li><a href="./patient-profile.html">My Progress</a></li>
+                            <li><a href="./task-list.html">My Task List</a></li>
+                            <li><a href="./program-content.html">My Progress</a></li>
                         </ul>
                     </li>
 
@@ -228,8 +232,8 @@
                             <li><a href="./feedback.html">Feedback</a></li>
                         </ul>
                     </li>
-                    
-                    
+
+
                 </ul>
             </div>
         </div>
@@ -253,49 +257,53 @@
                                     <div class="progress-bar bg-danger wow  progress-" style="width: 10%;" role="progressbar"><span class="sr-only">60% Complete</span>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
 
                     </div> -->
-                    
+
                     <div class="col-lg-12 col-md-12 col-sm-12" >
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">My Feedback</h4>
-                                
+                                <h4 class="card-title colorPrimary">My Feedback</h4><hr>
+
                                 <div>
-                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('reportMessage','suggestMessage');" value='I want to give a suggestion'/>
+                                    <input type='button' class='btn-primary' onclick="hideDisplay('reportMessage','suggestMessage');" value='I want to give a suggestion'/>
                                 </div>
 
                                 <div>
-                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('suggestMessage','reportMessage');" value='I want to report a bug/need help'/>
+                                    <input type='button' class='btn-primary' onclick="hideDisplay('suggestMessage','reportMessage');" value='I want to report a bug/need help'/>
                                 </div>
 
-                                
-                                <div class="hidden" id="suggestMessage" style="margin-top: 10px;">
+
+                                <div class="sleepDiv hidden" id="suggestMessage">
                                     <div>
-                                        <h3 class="consentInfoHeadSmall justifyDiv">Suggestion Note</h3>
+                                        <!-- <h3 class="consentInfoHeadSmall justifyDiv">Suggestion Note</h3> -->
+                                        <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px;">Suggestion Note</label>
                                     </div>
                                     <div class="input-group">
                                         <textarea rows="4" cols="85" name="comment" id="suggestNote" form="usrform" placeholder="Enter note here..."> </textarea>
                                     </div>
-                                    <div class="sleepDiv">
-                                        <input type='button' class='buttonPlainTxt' onclick="submitFeedback(event, 'suggestNote');" id="btnSuggestSubmit" value='Submit Suggestion'/>
-                                    </div>
+                                    <input type='button' class='btn-primary' onclick="submitFeedback(event, 'suggestNote');" id="btnSuggestSubmit" value='Submit Suggestion'/>
+                                    <!-- <div class="sleepDiv">
+                                        
+                                    </div> -->
                                 </div>
 
 
-                                <div class="hidden" id="reportMessage" style="margin-top: 10px;">
+                                <div class="sleepDiv hidden" id="reportMessage">
                                     <div>
-                                        <h3 class="consentInfoHeadSmall justifyDiv">Report Note</h3>
+                                        <!-- <h3 class="consentInfoHeadSmall justifyDiv">Report Note</h3> -->
+                                        <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px;">Report Note</label>
                                     </div>
                                     <div class="input-group">
                                         <textarea rows="4" cols="85" name="comment" id="reportNote" form="usrform" placeholder="Enter note here..."> </textarea>
                                     </div>
-                                    <div class="sleepDiv">
-                                        <input type='button' class='buttonPlainTxt' onclick="submitFeedback(event, 'reportNote');" id="btnReportSubmit" value='Submit Report'/>
-                                    </div>
+                                    <input type='button' class='btn-primary' onclick="submitFeedback(event, 'reportNote');" id="btnReportSubmit" value='Submit Report'/>
+                                    <!-- <div class="sleepDiv">
+                                        
+                                    </div> -->
                                 </div>
 
                             </div>
@@ -305,15 +313,15 @@
 
                 </div>
 
-                    
+
             </div>
             <!-- #/ container -->
         </div>
         <!--**********************************
             Content body end
         ***********************************-->
-        
-        
+
+
         <!--**********************************
             Footer start
         ***********************************-->

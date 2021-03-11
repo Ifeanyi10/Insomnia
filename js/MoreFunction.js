@@ -1,8 +1,18 @@
 
+function logout(){
+    window.localStorage.clear();
+    //sessionStorage.clear();
+}
 
 
 $(document).ready(function () {
 
+    var enableSpClock = window.localStorage.getItem("enableSpClock");
+    console.log('Sleep Clock is: '+ enableSpClock)
+    if(enableSpClock == true){
+        $(".spClock").css('display', 'block'); 
+        console.log('Sleep Clock Enabled')
+    }
 
     $('#sleepLink a').click(function(e) {
         var submitDate = '';
@@ -156,6 +166,14 @@ function adjustTimeDisplay(elemID){
     if(elemVal == '00:00'){
         document.getElementById(elemID).value = '12:00';
     }
+}
+
+function displayNav(firstnave, secondNav){
+    var f = document.getElementById(firstnave);
+    var s = document.getElementById(secondNav);
+    f.classList.remove('active');
+    s.classList.add('active');
+    s.classList.add('show');
 }
 
 

@@ -54,10 +54,14 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="patient-dashboard.html">
-                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <b class="logo-abbr">
+                        <!-- <img src="images/logo.png" alt="">  -->
+                    </b>
+                    <span class="logo-compact">
+                        <!-- <img src="./images/logo-compact.png" alt=""> -->
+                    </span>
                     <span class="brand-title">
-                        <img src="images/logo-text.png" alt="">
+                        <!-- <img src="images/logo-text.png" alt=""> -->
                     </span>
                 </a>
             </div>
@@ -93,7 +97,7 @@
                                             <a href="patient-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
                                         </li>
 
-                                        <li><a href="index.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                        <li><a href="index.html" onclick="logout();"><i class="icon-key"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -142,7 +146,7 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <li class="mega-menu mega-menu-sm spClock" style="display: none;">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Sleep Clock</span>
                         </a>
@@ -230,7 +234,8 @@
                                         <div class="modal-body">
                                             <p>In level 4 you will continue using the sleep clock to improve or maintain your sleep efficiency.  The new section this week focuses on relaxation techniques. Try adding one of these to your nightly routine.</p>
                                             <div>
-                                                <h4 class="consentInfoHeadSmall">To advance to level 5 you will need to:</h4>
+                                                <!-- <h4 class="consentInfoHeadSmall">To advance to level 5 you will need to:</h4> -->
+                                                <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">To advance to level 5 you will need to:</label>
                                             </div>
                                             <div class="consentInfoBody">
                                                 •	Review your sleep clock settings. Make adjustments if needed.
@@ -246,7 +251,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
                                         </div>
                                     </div>
                                 </div>
@@ -257,7 +262,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Level 4: Relaxation Techniques </h4>
+                                <h4 class="card-title colorPrimary">Level 4: Relaxation Techniques </h4><hr>
                                 <div id="sect1">
                                     <div class="row align-items-center">                                           
                                         <div class="col-sm-6 col-md-4 col-xl-2">
@@ -268,7 +273,8 @@
                                             <p>Relaxation of one the core components of cognitive behavioral therapy for insomnia. Relaxation techniques include things you can do to reduce tension and stress as a way to promote better sleep. If you are not already doing so, we encourage you to try adding relaxation techniques to your nightly routine.</p>
                                             
                                             <div>
-                                                <h4 class="consentInfoHeadSmall">You can choose from a variety of techniques:</h4>
+                                                <!-- <h4 class="consentInfoHeadSmall">You can choose from a variety of techniques:</h4> -->
+                                                <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">You can choose from a variety of techniques:</label>
                                             </div>
                                             <div class="consentInfoBody">
                                                 •	progressive muscle relaxation 
@@ -297,18 +303,20 @@
                                     
                                     <div class="row align-items-center">
                                         <div class="col-md-12">
-                                            <h3 class="consentInfoHeadSmall">Stress and insomnia</h3>
+                                            <!-- <h3 class="consentInfoHeadSmall">Stress and insomnia</h3> -->
+                                            <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">Stress and insomnia</label>
                                             <p>Stress is one of the most common triggers for insomnia. Relaxation helps decrease the physical signs of stress such as increased heart rate, blood pressure, breathing rate, and muscle tension. It also increases positive feelings of calmness and peacefulness.</p>
                                             <p>Do you notice a relationship between how stressed you are feeling and your ability to get a good night’s sleep? Your sleep diary can be a useful tool for helping you notice these kinds of patterns. Even if stress is not a major trigger for your insomnia, relaxation can still be useful in helping you unwind.</p>
                                             <p>This app contains some information and videos to introduce you to some common relaxation techniques. Your aim should be to adopt one or more of these relaxation strategies and make them a part of your daily nighttime routine.</p>
     
                                             <div>
-                                                <h3 class="consentInfoHeadSmall">Progressive Muscle Relaxation</h3>
+                                                <!-- <h3 class="consentInfoHeadSmall">Progressive Muscle Relaxation</h3> -->
+                                                <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">Progressive Muscle Relaxation</label>
                                                 <p>Progressive muscle relaxation involves systematically contracting specific muscle groups for a few seconds and then releasing them. Starting with your toes and feet, you can move through all the major muscle groups in your body, tensing and relaxing as you go. Pay attention to how your muscles feel as you release and relax them. With practice, you will learn to notice the difference between tensed and relaxed muscles.</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('sect1', 'sect2');" value='Next'/>
+                                    <input type='button' class='btn-primary goRight' onclick="hideDisplay('sect1', 'sect2');" value='Next'/>
                                 </div>
                                 
 
@@ -316,7 +324,8 @@
                                     <div class="row align-items-center">
                                         <div class="col-md-12">
                                             <div>
-                                                <h3 class="consentInfoHeadSmall formatItalics">Give it a try!</h3>
+                                                <!-- <h3 class="consentInfoHeadSmall formatItalics">Give it a try!</h3> -->
+                                                <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">Give it a try!</label>
                                                 <p>Choose a quiet place where you can sit comfortably or lie down. It is a good idea to set aside about 15 minutes for the entire exercise.</p>
                                                 <p>Start at your feet and slowly move up to your head. Tense and relax each muscle group for 3 to 6 seconds each. Move from the feet and toes, to the knees, thighs, glutes, abdomen, chest, hands, arm, shoulders, neck, jaw, muscles around the eyes, and forehead. Be careful not tense your toes and feet too vigorously. This can sometimes cause painful muscle cramps.</p>
                                                 <p>Maintain calm, slow breathing throughout the exercise. As you tense you muscles, breathe in through your nose. As you release your muscles, breathe out through your mouth.</p>
@@ -343,22 +352,24 @@
                                             </div>
 
                                             <div>
-                                                <h3 class="consentInfoHeadSmall">Passive muscle relaxation</h3>
+                                                <!-- <h3 class="consentInfoHeadSmall">Passive muscle relaxation</h3> -->
+                                                <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">Passive muscle relaxation</label>
                                                 <p>When you are able to notice the difference between tensed and relaxed muscles you can use this strategy. It is similar to the progressive muscle relaxation strategy, except that you do not have to tense your muscles first. Instead, you notice when your muscles are tense and focus on releasing the tension.</p>
                                                 <p>It is a quick and easy way to relax any time or place.</p> 
                                             </div>
 
                                         </div>
                                     </div>
-                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('sect2', 'sect1');" value='Back'/>
-                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('sect2', 'sect3');" value='Next'/>
+                                    <input type='button' class='btn-secondary' onclick="hideDisplay('sect2', 'sect1');" value='Back'/>
+                                    <input type='button' class='btn-primary goRight' onclick="hideDisplay('sect2', 'sect3');" value='Next'/>
                                 </div>
 
                                 <div class="hidden" id="sect3">
                                     <div class="row align-items-center">
                                         <div class="col-md-12">
                                             <div>
-                                                <h3 class="consentInfoHeadSmall">Belly Breathing</h3>
+                                                <!-- <h3 class="consentInfoHeadSmall">Belly Breathing</h3> -->
+                                                <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">Belly Breathing</label>
                                                 <p>Breathing usually occurs naturally without much thought. A number of relaxation techniques involve taking a moment to focus on your breath. One strategy is to breathe from your belly rather than your chest. When you breathe in your chest, only a part of your lungs are filled. Your breath is shallower and your heart rate is faster. In contrast, belly breathe makes it easier to take slow deep breaths.</p>
 
                                                 <div class="sleepDiv">
@@ -371,7 +382,8 @@
                                             </div>
 
                                             <div>
-                                                <h3 class="consentInfoHeadSmall formatItalics">Give it a try!</h3>
+                                                <!-- <h3 class="consentInfoHeadSmall formatItalics">Give it a try!</h3> -->
+                                                <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">Give it a try!</label>
                                                 <p>Lie down or sit comfortably.</p>
                                                 <p>Place one hand on your chest and the other hand on your belly.</p> 
                                                 <p>Take a slow, deep breath in through your nose. Feel your stomach push against your hand as air fills the deepest part of your lungs. Your chest should remain as still as possible.</p>
@@ -383,8 +395,8 @@
 
                                         </div>
                                     </div>
-                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('sect3', 'sect2');" value='Back'/>
-                                    <input type='button' class='buttonPlainTxt'  onclick="hideDisplay('sect3', 'sect4');" value='Next'/>
+                                    <input type='button' class='btn-secondary' onclick="hideDisplay('sect3', 'sect2');" value='Back'/>
+                                    <input type='button' class='btn-primary goRight'  onclick="hideDisplay('sect3', 'sect4');" value='Next'/>
                                 </div>
 
 
@@ -392,7 +404,8 @@
                                     <div class="row align-items-center">
                                         <div class="col-md-12">
                                             <div>
-                                                <h3 class="consentInfoHeadSmall">Relaxation using suggestions</h3>
+                                                <!-- <h3 class="consentInfoHeadSmall">Relaxation using suggestions</h3> -->
+                                                <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">Relaxation using suggestions</label>
                                                 <p>This strategy relies on your ability to focus and imagine that you are getting relaxed. You will experience relaxing sensations by repeating suggestions to yourself, such as “my arm is heavy,” “my breathing is calm”.</p>
                                                 <p class="formatItalics">This audio recording is a guided relaxation exercise that uses this strategy.</p>
 
@@ -404,16 +417,18 @@
                                             </div>
 
                                             <div>
-                                                <h3 class="consentInfoHeadSmall">How do I add relaxation strategies to my life?</h3>
+                                                <!-- <h3 class="consentInfoHeadSmall">How do I add relaxation strategies to my life?</h3> -->
+                                                <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">How do I add relaxation strategies to my life?</label>
                                                 <p>Relaxation strategies can be used before bed to help you unwind, or throughout the day to help you manage stressful events. Setting aside 15 to 20 minutes shortly before your bedtime is a great way to add these techniques into your sleep routine.</p>
                                                 <p>You may even try yoga or meditation to relax and reduce your stress. You may find you like one strategy more than others. The key is to choose something that works for you.</p>
                                             </div>
                                         </div>
                                     </div>
-                                    <input type='button' class='buttonPlainTxt' onclick="hideDisplay('sect4', 'sect3');" value='Back'/>
+                                    
 
                                     <div>
-                                        <input type='button' class='buttonPlainTxt' id="btnSubmitLV4" value='Click To Conclude Level 4'/>
+                                        <input type='button' class='btn-secondary' onclick="hideDisplay('sect4', 'sect3');" value='Back'/>
+                                        <input type='button' class='btn-primary goRight' id="btnSubmitLV4" value='Click To Conclude Level 4'/>
                                     </div>
 
                                     <div class="sleepDiv">

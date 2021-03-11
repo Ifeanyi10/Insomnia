@@ -40,13 +40,13 @@
 
                 let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/intervention/getleveltwovariables';
                 let authToken = window.localStorage.getItem("patientToken");
-                
+
                 //alert(endDate);
                 $.ajax({
                     url: url,
                     type: 'POST',
                     headers: {
-                        'Content-Type': 'application/json', 
+                        'Content-Type': 'application/json',
                         'Accept': '*/*',
                         'Authorization': 'Bearer '+ authToken
                     },
@@ -57,19 +57,36 @@
                     success: function(result){
                         console.log(result);
                         initMoadal();
-                        document.getElementById('contAvInBed').innerHTML  = result.averagenumberofbedhours;
-                        document.getElementById('contAvAsleep').innerHTML  = result.averagenumberofsleephours;
+                        document.getElementById('contAvInBed').innerHTML  = formatTime(rearrangeTime(result.averagenumberofbedhours));
+                        document.getElementById('contAvAsleep').innerHTML  = formatTime(rearrangeTime(result.averagenumberofsleephours));
                         document.getElementById('contAvAsleepEff').innerHTML  = result.averagesleepefficiency;
-                        document.getElementById('contSleepWindowAv').innerHTML  = result.averagenumberofsleephours;
+                        document.getElementById('contSleepWindowAv').innerHTML  = formatTime(rearrangeTime(result.averagenumberofsleephours));
                         document.getElementById('contSpEff').innerHTML  = result.averagesleepefficiency;
                         // document.getElementById('nextHour').innerHTML  = result.averagenumberofsleephours;
                         window.localStorage.setItem("yAvBedTime", result.averagebedtiime);
                         window.localStorage.setItem("yAvRiseTime", result.averagerisetime);
-                    }, 
+                    },
                     error: function(msg){
                         console.log("Loading Patients Last Sleep Clock failed");
                     }
                 });
+            }
+
+            function rearrangeTime(n){
+                var numb = n.toString();
+                let mins = parseInt(numb.split(".").pop());
+                console.log(mins)
+                let hrs = 60 * parseInt(numb.split(".", 1));
+                return hrs + mins;
+            }
+
+            function formatTime(n) {
+                var num = n;
+                var hours = (num / 60);
+                var rhours = Math.floor(hours);
+                var minutes = (hours - rhours) * 60;
+                var rminutes = Math.round(minutes);
+                return  rhours + " hour(s) and " + rminutes + " minute(s)";
             }
 
         function initMoadal() {
@@ -97,7 +114,7 @@
         Preloader end
     ********************-->
 
-    
+
     <!--**********************************
         Main wrapper start
     ***********************************-->
@@ -109,10 +126,14 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="patient-dashboard.html">
-                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <b class="logo-abbr">
+                        <!-- <img src="images/logo.png" alt="">  -->
+                    </b>
+                    <span class="logo-compact">
+                        <!-- <img src="./images/logo-compact.png" alt=""> -->
+                    </span>
                     <span class="brand-title">
-                        <img src="images/logo-text.png" alt="">
+                        <!-- <img src="images/logo-text.png" alt=""> -->
                     </span>
                 </a>
             </div>
@@ -124,18 +145,18 @@
         <!--**********************************
             Header start
         ***********************************-->
-        <div class="header">    
+        <div class="header">
             <div class="header-content clearfix">
-                
+
                 <div class="nav-control">
                     <div class="hamburger">
                         <span class="toggle-icon"><i class="icon-menu"></i></span>
                     </div>
                 </div>
-                
+
                 <div class="header-right">
                     <ul class="clearfix">
-                        
+
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                 <span class="activity active"></span>
@@ -148,7 +169,7 @@
                                             <a href="patient-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
                                         </li>
 
-                                        <li><a href="index.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                        <li><a href="index.html" onclick="logout();"><i class="icon-key"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -164,7 +185,7 @@
         <!--**********************************
             Sidebar start
         ***********************************-->
-        <div class="nk-sidebar">           
+        <div class="nk-sidebar">
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
                     <li class="nav-label">Patient Dashboard</li>
@@ -197,7 +218,7 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <li class="mega-menu mega-menu-sm spClock" style="display: none;">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Sleep Clock</span>
                         </a>
@@ -252,8 +273,8 @@
                             <li><a href="./feedback.html">Feedback</a></li>
                         </ul>
                     </li>
-                    
-                    
+
+
                 </ul>
             </div>
         </div>
@@ -277,16 +298,16 @@
                                     <div class="progress-bar bg-danger wow  progress-" style="width: 10%;" role="progressbar"><span class="sr-only">60% Complete</span>
                                     </div>
                                 </div>
-                                
+
                             </div>
                         </div>
 
                     </div> -->
 
                     <div class="justifyDiv">
-                                    
+
                         <div class="bootstrap-modal">
-                            
+
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalLevel2">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -299,10 +320,11 @@
                                         <div class="modal-body">
                                             <p>In level 2 you will learn about a technique called sleep restriction.</p>
                                             <div>
-                                                <h4 class="consentInfoHeadSmall">To advance to level 3 you will need to:</h4>
+                                                <!-- <h4 class="consentInfoHeadSmall">To advance to level 3 you will need to:</h4> -->
+                                                <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">To advance to level 3 you will need to:</label>
                                             </div>
                                             <div class="consentInfoBody">
-                                                •	Complete “Introduction to Sleep Restriction”. This includes setting up your sleep clock. 
+                                                •	Complete “Introduction to Sleep Restriction”. This includes setting up your sleep clock.
                                             </div>
                                             <div class="consentInfoBody">
                                                 •	Complete at least 5 sleep diaries within a week.
@@ -312,51 +334,53 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card" id="one">
                             <div class="card-body">
-                                <h4 class="card-title">Level 2 – Introduction to Sleep Restriction</h4>
+                                <h4 class="card-title colorPrimary">Level 2 – Introduction to Sleep Restriction</h4><hr>
                                 <div class="justifyDiv">
-                                    The main goal this week is to start using a strategy called <strong class="formatItalics">sleep restriction.</strong>  
+                                    The main goal this week is to start using a strategy called <strong class="formatItalics">sleep restriction.</strong>
                                 </div>
                                 <div class="justifyDiv">
                                     Sleep restriction involves changing the times you get into bed at night and get out of bed in the morning to make your sleep more efficient. The aim is to restrict the amount of time you spend lying in bed awake, not sleeping.
                                 </div>
                                 <div class="justifyDiv">
-                                    You might think that the more time you spend in bed, the more likely you will be to get a good night’s sleep. This is not the case. If you spend a lot of time lying awake at night you will begin to associate the bed with being awake. Your bed should be a place for sleep. 
+                                    You might think that the more time you spend in bed, the more likely you will be to get a good night’s sleep. This is not the case. If you spend a lot of time lying awake at night you will begin to associate the bed with being awake. Your bed should be a place for sleep.
                                 </div>
 
 
                                 <div>
-                                    <h4 class="consentInfoHeadSmall">Some things you can do to associate your bed with sleep:</h4>
+                                    <!-- <h4 class="consentInfoHeadSmall">Some things you can do to associate your bed with sleep:</h4> -->
+                                    <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">Some things you can do to associate your bed with sleep:</label>
                                 </div>
                                 <div class="consentInfoBody">
                                     •	Try using your bed only for sleeping (and sex). Get into bed only when you feel sleepy.
                                 </div>
                                 <div class="consentInfoBody">
-                                    •	Avoid reading, watching TV, or using screens (phone, computer, etc.) while in bed. 
+                                    •	Avoid reading, watching TV, or using screens (phone, computer, etc.) while in bed.
                                 </div>
                                 <div class="consentInfoBody">
-                                    •	If you don’t fall asleep within 20 minutes, get out of bed and do something else. Go back to bed only when you feel tired. 
+                                    •	If you don’t fall asleep within 20 minutes, get out of bed and do something else. Go back to bed only when you feel tired.
                                 </div>
 
 
                                 <div>
-                                    <h4 class="consentInfoHeadSmall">The first step is to look at your current sleep patterns. Based on your last 7 sleep diaries:</h4>
+                                    <!-- <h4 class="consentInfoHeadSmall">The first step is to look at your current sleep patterns. Based on your last 7 sleep diaries:</h4> -->
+                                    <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">The first step is to look at your current sleep patterns. Based on your last 7 sleep diaries:</label>
                                 </div>
                                 <div class="consentInfoBody">
-                                    •	You spent an average of <strong id="contAvInBed"></strong> hours in bed per night. 
+                                    •	You spent an average of <strong id="contAvInBed"></strong> in bed per night.
                                 </div>
                                 <div class="consentInfoBody">
-                                    •	You were asleep for an average of <strong id="contAvAsleep"></strong> hours per night.
+                                    •	You were asleep for an average of <strong id="contAvAsleep"></strong> per night.
                                 </div>
 
                                 <div class="justifyDiv">
@@ -366,31 +390,33 @@
                                    <strong>Sleep efficiency</strong> is the ratio of time in bed that is spent asleep.
                                 </div>
                                 <div class="justifyDiv">
-                                    The goal this week is to use the information from your sleep diaries to build a plan that will improve your sleep efficiency. 
+                                    The goal this week is to use the information from your sleep diaries to build a plan that will improve your sleep efficiency.
                                 </div>
                                 <div class="justifyDiv">
-                                    The next step is to choose a sleep window for the next week.  
+                                    The next step is to choose a sleep window for the next week.
                                 </div>
 
-                                <input type='button' class='buttonPlainTxt' id="btnContNextStep" onclick="hideDisplay('one', 'two');" value='Next Step'/>
-                                
+                                <input type='button' class='btn-primary' id="btnContNextStep" onclick="hideDisplay('one', 'two');" value='Next Step'/>
+
                             </div>
                         </div>
 
                         <div class="hidden" id="two">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Your Next Step</h4>
+                                    <!-- <h4 class="card-title">Your Next Step</h4> -->
+                                    <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">Your Next Step</label>
                                     <div class="justifyDiv">
-                                        Starting this week, use the sleep clock to establish a consistent bed time and rise time for yourself. This means going to bed and getting out of bed at the same time every day – including weekends. It might be tempting to change your sleep patterns on the weekend, but this habit may be making your sleep problems worse. Going to bed and getting up at the same time everyday helps make it easier to feel sleepy when it is time to sleep. 
+                                        Starting this week, use the sleep clock to establish a consistent bed time and rise time for yourself. This means going to bed and getting out of bed at the same time every day – including weekends. It might be tempting to change your sleep patterns on the weekend, but this habit may be making your sleep problems worse. Going to bed and getting up at the same time everyday helps make it easier to feel sleepy when it is time to sleep.
                                     </div>
                                     <div>
-                                        <h4 class="consentInfoHeadSmall">Select your rise time:</h4>
+                                        <!-- <h4 class="consentInfoHeadSmall">Select your rise time:</h4> -->
+                                        <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">Select your rise time:</label>
                                     </div>
                                     <div class="justifyDiv">
                                         Pick a rise time you can maintain for the next 7 days. It needs to be a time that will work for you and allow you to start your daily activities on time.
                                     </div>
-    
+
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label class="m-t-20 sleepMargin">Your Rise Time:</label>
@@ -400,8 +426,8 @@
                                         </div>
                                     </div>
                                     <div class="justifyDiv">
-                                        <input type='button' class='buttonPlainTxt' onclick="hideDisplay('two', 'one');" value='Back'/>
-                                        <input type='button' class='buttonPlainTxt' id="btnContRiseTime" onclick="calculateBedTime('two', 'three');" value='Submit Your Rise Time'/>
+                                        <input type='button' class='btn-secondary' onclick="hideDisplay('two', 'one');" value='Back' style="margin-right: 30px;"/>
+                                        <input type='button' class='btn-primary' id="btnContRiseTime" onclick="calculateBedTime('two', 'three');" value='Submit Your Rise Time'/>
                                     </div>
 
                                 </div>
@@ -412,9 +438,10 @@
                         <div class="hidden" id="three">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Set Your Sleep Window</h4>
+                                    <!-- <h4 class="card-title">Set Your Sleep Window</h4> -->
+                                    <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">Set Your Sleep Window</label>
                                     <div class="justifyDiv">
-                                        Based on your last 7 sleep diaries, you slept an average of <strong id="contSleepWindowAv"></strong> hours per night. 
+                                        Based on your last 7 sleep diaries, you slept an average of <strong id="contSleepWindowAv"></strong> per night.
                                     </div>
 
                                     <div id="less5" class="justifyDiv hidden">
@@ -426,28 +453,32 @@
                                     </div>
 
                                     <div class="justifyDiv">
-                                        Based on the rise time you selected, here is your new bed time and rise time for the next week. Please do your best to stick to this schedule. 
+                                        Based on the rise time you selected, here is your new bed time and rise time for the next week. Please do your best to stick to this schedule.
                                     </div>
                                     <div>
                                         <label class="consentInfoBody">Your Bed Time (In 24 Hours):</label>
                                         <label class="consentInfoBody" id="contYBedTime"></label>
                                     </div>
-                                    
+
                                     <div>
                                         <label class="consentInfoBody">Your Rise Time (In 24 Hours):</label>
                                         <label class="consentInfoBody" id="contYRiseTime"></label>
                                     </div>
-    
-                                    <div class="justifyDiv">
-                                        <input type='button' class='buttonPlainTxt' onclick="hideDisplay('three', 'two');" value='Go Back to Select Different Rise Time'/>
-                                    </div>
 
-                                    <div class="justifyDiv">
+                                    <!-- <div class="justifyDiv">
+                                        <input type='button' class='buttonPlainTxt' onclick="hideDisplay('three', 'two');" value='Go Back to Select Different Rise Time'/>
+                                    </div> -->
+
+                                    <div class="justifyDiv textDeco">
                                         This app can be used to set alarms on your phone to remind you when it is time to get ready for bed and get up in the morning.
                                     </div>
 
-                                    <div class="justifyDiv">
+                                    <!-- <div class="justifyDiv">
                                         <input type='button' class='buttonPlainTxt' onclick="hideDisplay('three', 'four');" value='Next'/>
+                                    </div> -->
+                                    <div class="justifyDiv">
+                                        <input type='button' class='btn-secondary' onclick="hideDisplay('three', 'two');" value='Back' style="margin-right: 30px;"/>
+                                        <input type='button' class='btn-primary goRight' onclick="hideDisplay('three', 'four');" value='Next'/>
                                     </div>
 
                                 </div>
@@ -458,10 +489,11 @@
                         <div class="hidden" id="four">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Improving Sleep Efficiency</h4>
+                                    <!-- <h4 class="card-title">Improving Sleep Efficiency</h4> -->
+                                    <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">Improving Sleep Efficiency</label>
 
                                     <div class="justifyDiv">
-                                        An important part of this therapy involves maintaining consistent bed times and rise times. Please do your best to maintain this for the next week. Your sleep window will be adjusted as you progress through the program and as your sleep efficiency increases. 
+                                        An important part of this therapy involves maintaining consistent bed times and rise times. Please do your best to maintain this for the next week. Your sleep window will be adjusted as you progress through the program and as your sleep efficiency increases.
                                     </div>
 
                                     <div class="justifyDiv">
@@ -469,7 +501,7 @@
                                     </div>
 
                                     <div class="justifyDiv">
-                                        Sleep restriction can be difficult at first. You may have a few nights with only a few hours of sleep. When this happens many people try to compensate by sleeping in later or taking a nap during the day. <strong>Don’t do this</strong> – stick to the schedule! The restricted sleep schedule is designed to increase your <strong>sleep drive</strong>. This means that it will be easier to fall asleep as you train your body to expect sleep at the same time every day. 
+                                        Sleep restriction can be difficult at first. You may have a few nights with only a few hours of sleep. When this happens many people try to compensate by sleeping in later or taking a nap during the day. <strong>Don’t do this</strong> – stick to the schedule! The restricted sleep schedule is designed to increase your <strong>sleep drive</strong>. This means that it will be easier to fall asleep as you train your body to expect sleep at the same time every day.
                                     </div>
 
                                     <div class="justifyDiv">
@@ -477,7 +509,7 @@
                                     </div>
 
                                     <div class="justifyDiv">
-                                        Based on the sleep diaries you completed over the past week, your average sleep efficiency is <strong id="contSpEff"></strong>. Ideally, sleep efficiency should be around 85-90%. 
+                                        Based on the sleep diaries you completed over the past week, your average sleep efficiency is <strong id="contSpEff"></strong>. Ideally, sleep efficiency should be around 85-90%.
                                     </div>
 
                                     <div class="sleepDiv" id="spEffReport">
@@ -490,34 +522,35 @@
                                         Each week your sleep window will be adjusted based on how efficient your sleep was over the past week.
                                     </div>
                                     <div class="justifyDiv">
-                                        Sleep efficiency less than 85% means there is room for improvement. To increase sleep efficiency, your sleep window will be reduced by moving your bed time 15 minutes later. 
+                                        Sleep efficiency less than 85% means there is room for improvement. To increase sleep efficiency, your sleep window will be reduced by moving your bed time 15 minutes later.
                                     </div>
                                     <div class="justifyDiv">
-                                        Sleep efficiency between 85%-89% means you are right on track. With scores like this your sleep window should stay the same. 
+                                        Sleep efficiency between 85%-89% means you are right on track. With scores like this your sleep window should stay the same.
                                     </div>
                                     <div class="justifyDiv">
-                                        Sleep efficiency between 90%-94% is a great result. At this point, you can extend your sleep window by moving your bed time 15 minutes earlier. 
+                                        Sleep efficiency between 90%-94% is a great result. At this point, you can extend your sleep window by moving your bed time 15 minutes earlier.
                                     </div>
                                     <div class="justifyDiv">
                                         If your sleep efficiency is consistently over 95%, it might be too high. This can sometimes mean that you are not getting enough sleep. With a result like this, your sleep window will be increased by 30 minutes.
                                     </div>
 
                                     <div>
-                                        <h4 class="consentInfoHeadSmall">Things to do this week:</h4>
+                                        <!-- <h4 class="consentInfoHeadSmall">Things to do this week:</h4> -->
+                                        <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">Things to do this week:</label>
                                     </div>
                                     <div class="consentInfoBody">
-                                        •	Track your sleep and medication use each day. 
+                                        •	Track your sleep and medication use each day.
                                     </div>
                                     <div class="consentInfoBody">
-                                        •	Follow your sleep clock. Set alarms to remind you when it is time to get ready for bed and get up each morning. 
+                                        •	Follow your sleep clock. Set alarms to remind you when it is time to get ready for bed and get up each morning.
                                     </div>
                                     <div class="consentInfoBody">
-                                        •	Complete the self-assessment of your current insomnia symptoms. 
+                                        •	Complete the self-assessment of your current insomnia symptoms.
                                     </div>
 
                                     <div class="justifyDiv">
-                                        <input type='button' class='buttonPlainTxt'  onclick="hideDisplay('four', 'three');" value='Back'/>
-                                        <input type='button' class='buttonPlainTxt' id="btnSubmitLV2"  value='Click To Conclude Level 2'/>
+                                        <input type='button' class='btn-secondary'  onclick="hideDisplay('four', 'three');" value='Back'/>
+                                        <input type='button' class='btn-primary goRight' id="btnSubmitLV2"  value='Click To Conclude Level 2'/>
                                     </div>
 
                                     <div class="sleepDiv">
@@ -529,23 +562,23 @@
                                 </div>
                             </div>
                         </div>
-                        
+
 
                     </div>
 
 
                 </div>
 
-               
-                    
+
+
             </div>
             <!-- #/ container -->
         </div>
         <!--**********************************
             Content body end
         ***********************************-->
-        
-        
+
+
         <!--**********************************
             Footer start
         ***********************************-->

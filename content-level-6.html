@@ -54,10 +54,14 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="patient-dashboard.html">
-                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <b class="logo-abbr">
+                        <!-- <img src="images/logo.png" alt="">  -->
+                    </b>
+                    <span class="logo-compact">
+                        <!-- <img src="./images/logo-compact.png" alt=""> -->
+                    </span>
                     <span class="brand-title">
-                        <img src="images/logo-text.png" alt="">
+                        <!-- <img src="images/logo-text.png" alt=""> -->
                     </span>
                 </a>
             </div>
@@ -93,7 +97,7 @@
                                             <a href="patient-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
                                         </li>
 
-                                        <li><a href="index.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                        <li><a href="index.html" onclick="logout();"><i class="icon-key"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -142,7 +146,7 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <li class="mega-menu mega-menu-sm spClock" style="display: none;">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Sleep Clock</span>
                         </a>
@@ -231,7 +235,7 @@
                                             <p>In the final part of Health enSuite Insomnia, we will focus on what you have learned so far and how to maintain your progress in the future.</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
                                         </div>
                                     </div>
                                 </div>
@@ -242,7 +246,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Level 6: Maintaining Your Progress</h4>
+                                <h4 class="card-title colorPrimary">Level 6: Maintaining Your Progress</h4><hr>
                                 <div class="justifyDiv">
                                     People sometimes worry that improvements in their sleep will not last. This can be especially true for someone who has struggled with insomnia for many years. Don’t let this fear derail your progress.
                                 </div>
@@ -274,7 +278,8 @@
                                 </div>
                                
                                 <div>
-                                    <h3 class="consentInfoHeadSmall">These strategies might include:</h3>
+                                    <!-- <h3 class="consentInfoHeadSmall">These strategies might include:</h3> -->
+                                    <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">These strategies might include:</label>
                                     <div class="consentInfoBody">
                                         •	Staying up past your normal bed time to increase sleep drive. 
                                     </div>
@@ -319,7 +324,7 @@
                                 </div>
 
                                 <div class="sleepDiv">
-                                    <input type='button' class='buttonPlainTxt' id="btnSubmitLV6" value='Click To Conclude Level 6'/>
+                                    <input type='button' class='btn-primary' id="btnSubmitLV6" value='Click To Conclude Level 6'/>
                                 </div>
 
                                 <div class="sleepDiv">

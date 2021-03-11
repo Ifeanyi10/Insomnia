@@ -54,10 +54,14 @@
         <div class="nav-header">
             <div class="brand-logo">
                 <a href="patient-dashboard.html">
-                    <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
-                    <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+                    <b class="logo-abbr">
+                        <!-- <img src="images/logo.png" alt="">  -->
+                    </b>
+                    <span class="logo-compact">
+                        <!-- <img src="./images/logo-compact.png" alt=""> -->
+                    </span>
                     <span class="brand-title">
-                        <img src="images/logo-text.png" alt="">
+                        <!-- <img src="images/logo-text.png" alt=""> -->
                     </span>
                 </a>
             </div>
@@ -93,7 +97,7 @@
                                             <a href="patient-profile.html"><i class="icon-user"></i> <span>Profile</span></a>
                                         </li>
 
-                                        <li><a href="index.html"><i class="icon-key"></i> <span>Logout</span></a></li>
+                                        <li><a href="index.html" onclick="logout();"><i class="icon-key"></i> <span>Logout</span></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -142,7 +146,7 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <li class="mega-menu mega-menu-sm spClock" style="display: none;">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-speedometer menu-icon"></i><span class="nav-text">Sleep Clock</span>
                         </a>
@@ -230,7 +234,8 @@
                                         <div class="modal-body">
                                             <p>In level 3 you will continue using the sleep clock to improve your sleep efficiency.  The new readings and activities this week focus on sleep hygiene.</p>
                                             <div>
-                                                <h4 class="consentInfoHeadSmall">To advance to level 4 you will need to:</h4>
+                                                <!-- <h4 class="consentInfoHeadSmall">To advance to level 4 you will need to:</h4> -->
+                                                <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">To advance to level 4 you will need to:</label>
                                             </div>
                                             <div class="consentInfoBody">
                                                 •	Review your sleep clock settings. Make adjustments if needed. 
@@ -243,7 +248,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
                                         </div>
                                     </div>
                                 </div>
@@ -255,14 +260,14 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Level 3: Sleep Hygiene</h4>
+                                <h4 class="card-title colorPrimary">Level 3: Sleep Hygiene</h4><hr>
                                 <div class="justifyDiv">
                                     Sleep hygiene rules are tips for maintaining good sleep health. You may have heard some of these tips before. Although sleep hygiene alone might not be enough to resolve chronic insomnia, it is important to address behaviours that are obviously interfering with good sleep. Improving sleep hygiene can be a key step on the way to a good night’s sleep.  
                                 </div>
                                 <div class="justifyDiv">
                                     Use the Sleep Hygiene Checklist to keep track of the things you are doing during the day, before going to bed, and when you are in bed to help you sleep well. Some people find it helpful to set themselves reminders to remember to practice the things that are especially helpful for them.
                                 </div>
-                                <div class="justifyDiv">
+                                <div class="justifyDiv textDeco">
                                     Sleep hygiene checklist
                                 </div>
 
@@ -317,13 +322,14 @@
 
                                 <div id="suggestMessage" style="margin-top: 10px;">
                                     <div>
-                                        <h3 class="consentInfoHeadSmall justifyDiv">Additional Note About Today</h3>
+                                        <!-- <h3 class="consentInfoHeadSmall justifyDiv">Additional Note About Today</h3> -->
+                                        <label class="lblQuestion colorSubHeader" style="margin-bottom: 0px; margin-top: 10px;">Additional Note About Today</label>
                                     </div>
                                     <div class="input-group">
                                         <textarea rows="4" cols="85" name="comment" id="contAddNote" form="usrform" placeholder="Enter note here..."> </textarea>
                                     </div>
                                     <div class="sleepDiv">
-                                        <input type='button' class='buttonPlainTxt' id="btnSubmitLV3" value='Click To Conclude Level 3'/>
+                                        <input type='button' class='btn-primary' id="btnSubmitLV3" value='Click To Conclude Level 3'/>
                                     </div>
                                 </div>
 
