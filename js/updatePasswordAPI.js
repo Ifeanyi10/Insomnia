@@ -44,6 +44,7 @@ $(document).ready(function () {
     bt.disabled = true;
     $('#confirmNewPass').keyup(validatePassword);
     $('#confirmNewEmail').keyup(validateNewEmail);
+    emailIsElligible = false;
 
     //Patient Change of password within the app
     $('#btnChangePass').on('click', function(event){
@@ -113,10 +114,12 @@ $(document).ready(function () {
                 console.log(result);
                 // Finally update the state for the current field
                 if (!result) {
+                    emailIsElligible = true;
                     $("#divEmailErrorMsg").html("");
                     $emailNode.addClass('is-valid');
                     confEmail.disabled = false;
                 } else{
+                    emailIsElligible = false;
                     $("#divEmailErrorMsg").html("Email address already exist");
                     sweetAlert("Email address exist!","","error");
                     $emailNode.addClass('is-error');
@@ -126,6 +129,7 @@ $(document).ready(function () {
                 
             }, 
             error: function(msg){
+                emailIsElligible = false;
                 $("#divEmailErrorMsg").html("Email address already exist");
                 sweetAlert("Email address exist!","","error");
                 $emailNode.addClass('is-error');
@@ -151,31 +155,37 @@ $(document).ready(function () {
 
         let authToken = window.localStorage.getItem("patientToken");
         let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/updateemail';
-        $.ajax({
-            url: url,
-            type: 'POST',
-            headers: {
-                'Content-Type': 'application/json', 
-                'Accept': '*/*',
-                'Authorization': 'Bearer '+ authToken
-            },
-            data: JSON.stringify({
-	            "code" : newEmail
-                }),
-            success: function(result){
-                console.log(result);
-                swal({title: "Done!", text: "Your Email Address has been updated!", type: "success"},
-                function(){ 
-                    window.location.href = "provider-dashboard.html";
+
+        if(emailIsElligible == true){
+            $.ajax({
+                url: url,
+                type: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', 
+                    'Accept': '*/*',
+                    'Authorization': 'Bearer '+ authToken
+                },
+                data: JSON.stringify({
+                    "code" : newEmail
+                    }),
+                success: function(result){
+                    console.log(result);
+                    swal({title: "Done!", text: "Your Email Address has been updated!", type: "success"},
+                    function(){ 
+                        window.location.href = "provider-dashboard.html";
+                    }
+                    );
+                }, 
+                error: function(msg){
+                    $("#errorContainer").html("Unable to register");
+                    sweetAlert("Failed to update Email Address!","Please try again shortly.","error");
                 }
-                );
-            }, 
-            error: function(msg){
-                $("#errorContainer").html("Unable to register");
-                sweetAlert("Failed to update Email Address!","Please try again shortly.","error");
-            }
-        });
+            });
+        }else{
+            sweetAlert("Email address exist!","Please use another email address","error");
+        }
     });
+    
 
 
 });

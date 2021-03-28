@@ -337,7 +337,7 @@ $(document).ready(function () {
                       }),
                     success: function(result){
                         console.log(result);
-                        swal({title: "Bravo!!", text: "Your day sleep diary has been submitted!!", type: "success"},
+                        swal({title: "Bravo!", text: "Your sleep diary has been submitted!", type: "success"},
                         function(){ 
                             window.location.href = "patient-dashboard.html";
                         }
@@ -345,7 +345,7 @@ $(document).ready(function () {
                     }, 
                     error: function(msg){
                         $("#errorContainer").html("Unable to submit");
-                        sweetAlert("Sleep diary submission failed!","Please try again shortly","error");
+                        sweetAlert("Sleep diary submission failed!","Please try again shortly.","error");
                     }
                 });//For patients in Trial 1
             }else{
@@ -388,7 +388,7 @@ $(document).ready(function () {
                           }),
                         success: function(result){
                             console.log(result);
-                            swal({title: "Bravo!!", text: "Your day sleep diary has been submitted!!", type: "success"},
+                            swal({title: "Bravo!", text: "Your sleep diary has been submitted!", type: "success"},
                             function(){ 
                                 window.location.href = "patient-dashboard.html";
                             }
@@ -396,7 +396,7 @@ $(document).ready(function () {
                         }, 
                         error: function(msg){
                             $("#errorContainer").html("Unable to submit");
-                            sweetAlert("Sleep diary submission failed!","Please try again shortly","error");
+                            sweetAlert("Sleep diary submission failed!","Please try again shortly.","error");
                         }
                     }); //For patients in Trial 2 tapering 2 drugs
                 }else{
@@ -432,7 +432,7 @@ $(document).ready(function () {
                           }),
                         success: function(result){
                             console.log(result);
-                            swal({title: "Bravo!!", text: "Your day sleep diary has been submitted!!", type: "success"},
+                            swal({title: "Bravo!", text: "Your sleep diary has been submitted!", type: "success"},
                             function(){ 
                                 window.location.href = "patient-dashboard.html";
                             }
@@ -440,14 +440,14 @@ $(document).ready(function () {
                         }, 
                         error: function(msg){
                             $("#errorContainer").html("Unable to submit");
-                            sweetAlert("Sleep diary submission failed!","Please try again shortly","error");
+                            sweetAlert("Sleep diary submission failed!","Please try again shortly.","error");
                         }
                     });//For patients in Trial 2 tapering 1 drug
                 }
             }//end of diary taper submission
             
         }else{
-            sweetAlert("Unable to submit!","Please ensure you entered only numbers where necessary","error");
+            sweetAlert("Unable to submit!","Please ensure you entered only numbers where necessary.","error");
         }
         
 

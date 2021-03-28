@@ -16,10 +16,19 @@
 
         window.onload = function getPatientProfile(){
 
-                                    document.getElementById('patProfName').innerHTML =  window.localStorage.getItem("patientFirstName") + " " + window.localStorage.getItem("patientLastName");
-                                    document.getElementById('patProfEmail').innerHTML =  window.localStorage.getItem("patientEmail");
-                                    document.getElementById('patProfPh').innerHTML =  window.localStorage.getItem("patientPhone");
-                                    //document.getElementById('patProfProvice').innerHTML =  window.localStorage.getItem("providerProvince");
+                                    window.localStorage.setItem("loginError", false);
+                                    let paName = window.localStorage.getItem("patientFirstName");
+                                    if(paName == " "){
+                                        window.localStorage.setItem("loginError", true);
+                                        window.location.href = "index.html";
+                                    }else{
+                                        document.getElementById('patProfName').innerHTML =  window.localStorage.getItem("patientFirstName") + " " + window.localStorage.getItem("patientLastName");
+                                        document.getElementById('patProfEmail').innerHTML =  window.localStorage.getItem("patientEmail");
+                                        document.getElementById('patProfPh').innerHTML =  window.localStorage.getItem("patientPhone");
+                                        //document.getElementById('patProfProvice').innerHTML =  window.localStorage.getItem("providerProvince");
+                                    }
+
+                                    
        
                         }
     
@@ -218,7 +227,7 @@
 
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-4 col-xl-6">
+                    <div class="col-lg-6 col-xl-6">
                         <div class="card">
                             <div class="card-body">
                                 <div class="media align-items-center mb-4">

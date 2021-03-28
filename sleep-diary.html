@@ -78,6 +78,11 @@
             }
 
             let trialNo = window.localStorage.getItem("trialNo");
+            window.localStorage.setItem("loginError", false);
+            if(trialNo == " "){
+                window.localStorage.setItem("loginError", true);
+                window.location.href = "index.html";
+            }else{
                 if(trialNo == 2){
                     
                     if(submitD == currentD){
@@ -133,6 +138,7 @@
                     });
                     }                    
                 }
+            }
                 
 
             }

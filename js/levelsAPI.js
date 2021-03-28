@@ -82,7 +82,7 @@ $(document).ready(function () {
                 }),
             success: function(result){
                 console.log(result);
-                swal({title: "Congratulations!", text: "You have finished level 1!!!", type: "success"},
+                swal({title: "Congratulations!", text: "You have finished level 1!", type: "success"},
                 function(){ 
                     window.location.href = "program-content.html";
                 }
@@ -127,7 +127,7 @@ $(document).ready(function () {
                 }),
             success: function(result){
                 console.log(result);
-                swal({title: "Congratulations!", text: "You have finished level 1!!!", type: "success"},
+                swal({title: "Congratulations!", text: "You have finished level 1!", type: "success"},
                 function(){ 
                     window.location.href = "program-content.html";
                 }
@@ -168,7 +168,7 @@ $(document).ready(function () {
                 }),
             success: function(result){
                 console.log(result);
-                swal({title: "Congratulations!", text: "You have finished level 2!!!", type: "success"},
+                swal({title: "Congratulations!", text: "You have finished level 2!", type: "success"},
                 function(){ 
                     window.location.href = "program-content.html";
                 }

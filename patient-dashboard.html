@@ -22,6 +22,7 @@
                     window.onload = function getPatientsProfile(){
                             let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/accessid';
                             let authToken = window.localStorage.getItem("patientToken");
+                            window.localStorage.setItem("loginError", false);
                             //alert(authToken);
                             $.ajax({
                                 url: url,
@@ -117,7 +118,7 @@
                                 }, 
                                 error: function(msg){
                                     console.log("Loading Patients details failed");
-                                    sweetAlert("Failed To Load Account Details!!","Your account details was not able to load. Please login again","error");
+                                    window.localStorage.setItem("loginError", true);
                                     window.location.href = "index.html";
                                 }
                             });

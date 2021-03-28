@@ -42,9 +42,15 @@ function isEmail(email) {
 
 $(document).ready(function () {
 
+    var errorNote = window.localStorage.getItem("loginError");
+    if(errorNote == "true"){
+        sweetAlert("Failed To Load Account Details!!","Please check your network and login again","error");
+    }
+
     //Login Patient
     $('#btnSignin').on('click', function(event){
         event.preventDefault();
+        window.localStorage.clear();
         var username = document.getElementById('username').value;
         var password = document.getElementById('pass').value;
         //let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/login';
