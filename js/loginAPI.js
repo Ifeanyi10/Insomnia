@@ -1,3 +1,6 @@
+var urlDomain = 'http://health001-env.eba-v5mudubf.us-east-2.elasticbeanstalk.com/';
+//var urlDomain = 'http://192.168.6.15:8083/';
+
 function isEmail(email) {
     // eslint-disable-next-line no-useless-escape
     return RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i).test(email);
@@ -5,7 +8,7 @@ function isEmail(email) {
 
   function receiveEmail(username){
     console.log('here2');
-    let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/authentication/confirmusername';
+    let url = urlDomain + 'insomnia/v1/authentication/confirmusername';
 
     $.ajax({
         url: url,
@@ -54,33 +57,40 @@ $(document).ready(function () {
         var username = document.getElementById('username').value;
         var password = document.getElementById('pass').value;
         //let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/login';
-        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/authentication/login';
+        let url = urlDomain + 'insomnia/v1/authentication/login';
 
-        $.ajax({
-            url: url,
-            type: 'POST',
-            headers: {
-                'Content-Type': 'application/json', 
-                'Accept': '*/*'            
-              },
-            data: JSON.stringify({"password": password, "username": username}),
-            success: function(result){
-                //alert(result);
-                console.log(result);
-                //set timeer (30 minutes) to disable the token 
-                window.localStorage.setItem("patientToken", result.token);
-                console.log(result.token);
-                window.localStorage.setItem("enableSpClock", result.status.enableSleepClockbutton);
-                window.localStorage.setItem("CBTLevel", result.status.interventionLevel);
-                console.log(window.localStorage.getItem("enableSpClock"))
-                console.log(window.localStorage.getItem("CBTLevel"))
-                window.location.href = "patient-dashboard.html";
-            }, 
-            error: function(msg){
-                //$("#errorContainer").html("Incorrect Username or Password");
-                sweetAlert("Incorrect username or password!!","Please confirm your login credentials and try again","error");
-            }
-        });
+        if(username != '' && password != ''){
+            $.ajax({
+                url: url,
+                type: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', 
+                    'Accept': '*/*'            
+                  },
+                data: JSON.stringify({"password": password, "username": username}),
+                success: function(result){
+                    //alert(result);
+                    console.log(result);
+                    //set timeer (30 minutes) to disable the token 
+                    window.localStorage.setItem("patientToken", result.token);
+                    console.log(result.token);
+                    //window.localStorage.setItem("enableSpClock", result.status.enableSleepClockbutton);
+                    //window.localStorage.setItem("CBTLevel", result.status.interventionLevel);
+                    //console.log(window.localStorage.getItem("enableSpClock"))
+                    //console.log(window.localStorage.getItem("CBTLevel"))
+                    window.localStorage.setItem("urlDomain", urlDomain);
+                    window.localStorage.setItem("isNewLogin", true);
+                    window.location.href = "patient-dashboard.html";
+                }, 
+                error: function(msg){
+                    //$("#errorContainer").html("Incorrect Username or Password");
+                    sweetAlert("Incorrect username or password!!","Please confirm your login credentials and try again","error");
+                }
+            });
+        }else{
+            sweetAlert("Attention!","Please fill the fields properly and login","info");
+        }
+        
     });
 
     //Confirm Patient Email
@@ -94,7 +104,7 @@ $(document).ready(function () {
             return;
         }
          
-        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/checkEmail';
+        let url = urlDomain + 'insomnia/v1/patient/checkEmail';
         $.ajax({
             url: url,
             type: 'POST',

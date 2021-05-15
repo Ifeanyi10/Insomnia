@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Health enSuite Patient Level 4 Program Content</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
     <!-- Pignose Calender -->
     <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <!-- Chartist -->
@@ -61,7 +61,7 @@
                         <!-- <img src="./images/logo-compact.png" alt=""> -->
                     </span>
                     <span class="brand-title">
-                        <!-- <img src="images/logo-text.png" alt=""> -->
+                        <img src="images/logo-text.png" alt="" width="174" height="40" style="border-radius: 15px;">
                     </span>
                 </a>
             </div>
@@ -443,6 +443,39 @@
                         </div>
                     </div>
 
+                </div>
+
+                <div class="bootstrap-modal">
+                    <!-- Modal Change Email-->
+                    <div class="modal fade" id="loginModal">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalTitle">Patient Quick Login</h5>
+                                    <!-- <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                    </button> -->
+                                </div>
+                                <div class="modal-body">
+                                    <div class="lookup">
+                                        You have been away! Please sign in again. This is to ensure that your account is not access by someone else.
+                                    </div>
+                                    <form class="mt-5 mb-5 login-input">
+
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="quickUsername" placeholder="Username">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="quickPass" placeholder="Password">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="btnQuickLogin" class="btn btn-primary">Sign In</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                

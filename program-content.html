@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Health enSuite Patient Program Content</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
     <!-- Pignose Calender -->
     <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <!-- Chartist -->
@@ -21,7 +21,15 @@
 
         window.onload = function getPatientsTaskList(){
                             let levelValue = window.localStorage.getItem("CBTLevel");
+                            //let levelValue = 5;
                             initializeContent(levelValue)
+                            console.log("Level: "+levelValue)
+                            if(levelValue >= 6){
+                                document.getElementById('lvNum').innerHTML = 6;
+                            }else{
+                                document.getElementById('lvNum').innerHTML = parseInt(levelValue) + 1;
+                            }
+                            
                         }
         
         
@@ -30,14 +38,23 @@
                 var myCount = 0; 
                 var galLinks = document.getElementById('levelList');
                 var anchors = galLinks.getElementsByTagName('a');
-                for (i = 0; i < anchors.length; i++) {  
-                    var thisLink = anchors[i];
-                    thisLink.style.display = 'block';
-                    ++myCount;
+                var displayLevelOne = window.localStorage.getItem("displayLevelOne");
+                for (i = 0; i < anchors.length; i++) { 
 
-                    if(myCount > completed){
-                        return;
+                    if(displayLevelOne = "true"){
+
+                        var thisLink = anchors[i];
+                        thisLink.style.display = 'block';
+                        ++myCount;
+
+                        if(myCount > completed){
+                            return;
+                        }
+
+                    }else{
+                        sweetAlert("Attention!","You must fill at least 5 sleep diaries in 7 days to access this content","info");
                     }
+                    
                     
                 }
                 
@@ -103,7 +120,7 @@
                         <!-- <img src="./images/logo-compact.png" alt=""> -->
                     </span>
                     <span class="brand-title">
-                        <!-- <img src="images/logo-text.png" alt=""> -->
+                        <img src="images/logo-text.png" alt="" width="174" height="40" style="border-radius: 15px;">
                     </span>
                 </a>
             </div>
@@ -221,7 +238,7 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./task-list.html">My Task List</a></li>
-                            <li><a href="./program-content.html">My Progress</a></li>
+                            <li><a href="./program-content.html" class="progs">My Progress</a></li>
                         </ul>
                     </li>
 
@@ -268,7 +285,7 @@
                                     <!-- <div class="progress-bar bg-danger wow  progress-" style="width: 10%;" role="progressbar"><span class="sr-only">60% Complete</span></div> -->
                                     <div class="progress-bar bg-success active progress-bar-striped" id="compBar"  role="progressbar"><span class="sr-only">60% Complete</span></div>
                                 </div>
-                                
+                                <label style="font-weight: bolder; margin-top: 10px;">Status: Level <span id="lvNum"></span> of 6</label>
                             </div>
                         </div>
 
@@ -279,7 +296,7 @@
                             <div class="card-body">
                                 <h4 class="card-title colorPrimary">Intervention Group Content</h4><hr>
                                 <div class="justifyDiv" style="font-style: italic;">
-                                    Navigation. Only current or previous levels are available to access
+                                    Only current or previous levels are available to access
                                 </div><br>
 
                                 <div>
@@ -331,6 +348,39 @@
                         </div>
                     </div>
 
+                </div>
+
+                <div class="bootstrap-modal">
+                    <!-- Modal Change Email-->
+                    <div class="modal fade" id="loginModal">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalTitle">Patient Quick Login</h5>
+                                    <!-- <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                    </button> -->
+                                </div>
+                                <div class="modal-body">
+                                    <div class="lookup">
+                                        You have been away! Please sign in again. This is to ensure that your account is not access by someone else.
+                                    </div>
+                                    <form class="mt-5 mb-5 login-input">
+
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="quickUsername" placeholder="Username">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="quickPass" placeholder="Password">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="btnQuickLogin" class="btn btn-primary">Sign In</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                

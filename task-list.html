@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Health enSuite Patient Task List</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
     <!-- Pignose Calender -->
     <link href="./plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
     <!-- Page plugins css -->
@@ -25,8 +25,10 @@
     <script language="javascript">
 
                     window.onload = function getPatientsTaskList(){
-                            let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/dashboard/mytasklist';
+                            var urlDomain = window.localStorage.getItem("urlDomain");
+                            let url = urlDomain + 'insomnia/v1/dashboard/mytasklist';
                             let authToken = window.localStorage.getItem("patientToken");
+                            var currentID = null;
                             //alert(authToken);
                             $.ajax({
                                 url: url,
@@ -53,21 +55,47 @@
                                         arrayLength += 1;
                                     });
 
-                                    var nexTask = result.nexTask;
+                                    var randomGroupID = window.localStorage.getItem("randomGroupID");
+                                    if(parseInt(randomGroupID) == 0){
+                                        var nexTask = result.nexTask;
+                                    }else if(parseInt(randomGroupID) == 1){
+                                        var nexTask = 'Insomnia Psychoeducation';
+                                    }
+
                                     var currentDate2 = currentDate.split("T", 1)
                                     var prevDate2 = prevDate.split("T", 1)
+                                    var enableProgress = window.localStorage.getItem("enableProgress");
+                                    let levelValue = window.localStorage.getItem("CBTLevel");
 
                                     if (arrayLength == 2){
                                         document.getElementById('task1Val').innerHTML  = 'Sleep Diary For: ' + currentDate2;
                                         document.getElementById('task2Val').innerHTML  = 'Sleep Diary For: ' + prevDate2;
-                                        document.getElementById('task3Val').innerHTML  = nexTask;
-                                        document.getElementById('task3').style.display = 'block';
+
+                                        if(enableProgress == "true"){
+                                            document.getElementById('task3Val').innerHTML  = nexTask;
+                                            document.getElementById('task3').style.display = 'block';
+                                            if(parseInt(levelValue) == 6){document.getElementById('chTask3').checked = true;}
+                                        }
+                                        
                                         if(currentID != null){document.getElementById('chTask1').checked = true;}
                                         if(prevID != null){document.getElementById('chTask2').checked = true;}
                                         
-                                    }else{
+                                    }else if (arrayLength == 1){
                                         document.getElementById('task1Val').innerHTML  = 'Sleep Diary For: ' + currentDate2;
-                                        document.getElementById('task2Val').innerHTML  = nexTask;
+                                        if(enableProgress == "true"){
+                                            document.getElementById('task2Val').innerHTML  = nexTask;
+                                            document.getElementById('task3').style.display = 'block';
+                                            if(parseInt(levelValue) == 6){document.getElementById('chTask3').checked = true;}
+                                        } 
+                                        if(currentID != null){document.getElementById('chTask1').checked = true;}
+                                    }else{
+                                        document.getElementById('task1').style.display = 'none';
+                                        document.getElementById('task2').style.display = 'none';
+                                        if(enableProgress == "true"){
+                                            document.getElementById('task3Val').innerHTML  = nexTask;
+                                            document.getElementById('task3').style.display = 'block';
+                                            if(parseInt(levelValue) == 6){document.getElementById('chTask3').checked = true;}
+                                        } 
                                         if(currentID != null){document.getElementById('chTask1').checked = true;}
                                     }
                                     
@@ -119,7 +147,7 @@
                         <!-- <img src="./images/logo-compact.png" alt=""> -->
                     </span>
                     <span class="brand-title">
-                        <!-- <img src="images/logo-text.png" alt=""> -->
+                        <img src="images/logo-text.png" alt="" width="174" height="40" style="border-radius: 15px;">
                     </span>
                 </a>
             </div>
@@ -194,7 +222,7 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <li class="mega-menu mega-menu-sm spDiary">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-note menu-icon"></i><span class="nav-text">Sleep Diary</span>
                         </a>
@@ -213,7 +241,7 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <li class="mega-menu mega-menu-sm spRep">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-graph menu-icon"></i><span class="nav-text">Sleep Report</span>
                         </a>
@@ -237,7 +265,8 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./task-list.html">My Task List</a></li>
-                            <li><a href="./program-content.html">My Progress</a></li>
+                            <li><a href="./program-content.html" class="progs">My Progress</a></li>
+                            <li><a href="./psycho-education.html" class="psyc">Psychoeducation</a></li>
                         </ul>
                     </li>
 
@@ -332,6 +361,39 @@
                     </div>
 
 
+                </div>
+
+                <div class="bootstrap-modal">
+                    <!-- Modal Change Email-->
+                    <div class="modal fade" id="loginModal">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalTitle">Patient Quick Login</h5>
+                                    <!-- <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                    </button> -->
+                                </div>
+                                <div class="modal-body">
+                                    <div class="lookup">
+                                        You have been away! Please sign in again. This is to ensure that your account is not access by someone else.
+                                    </div>
+                                    <form class="mt-5 mb-5 login-input">
+
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="quickUsername" placeholder="Username">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="quickPass" placeholder="Password">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="btnQuickLogin" class="btn btn-primary">Sign In</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                     

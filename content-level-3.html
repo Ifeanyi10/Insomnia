@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Health enSuite Patient Level 3 Program Content</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
     <!-- Pignose Calender -->
     <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <!-- Chartist -->
@@ -61,7 +61,7 @@
                         <!-- <img src="./images/logo-compact.png" alt=""> -->
                     </span>
                     <span class="brand-title">
-                        <!-- <img src="images/logo-text.png" alt=""> -->
+                        <img src="images/logo-text.png" alt="" width="174" height="40" style="border-radius: 15px;">
                     </span>
                 </a>
             </div>
@@ -277,45 +277,45 @@
 
                                         <div class="form-check mb-3">
                                             <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Bed for sleep only"><strong>Use your bed only for sleeping.</strong> Don’t use your bed as a place to watch TV, eat, read, work on your laptop, pay bills, etc.</label>
+                                                <input type="checkbox" class="form-check-input" name="done" onchange="validateCheckoffs('btnSubmitLV3', 'formDoneToday', 'done')" value="Bed for sleep only"><strong>Use your bed only for sleeping:</strong> Don’t use your bed as a place to watch TV, eat, read, work on your laptop, pay bills, etc.</label>
                                         </div>
                                         <div class="form-check mb-3">
                                             <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Get up and fall asleep"><strong>Get up and try again if you don’t fall asleep within 15-20 minutes.</strong> Get up and do something calming or boring until you feel sleepy, then go back to bed and try again. Avoid turning on bright lights or doing anything that is too stimulating or interesting. This could wake you up even more.</label>   
+                                                <input type="checkbox" class="form-check-input" name="done" onchange="validateCheckoffs('btnSubmitLV3', 'formDoneToday', 'done')" value="Get up and fall asleep"><strong>Get up and try again if you don’t fall asleep within 15-20 minutes:</strong> Get up and do something calming or boring until you feel sleepy, then go back to bed and try again. Avoid turning on bright lights or doing anything that is too stimulating or interesting. This could wake you up even more.</label>   
                                         </div>
                                         <div class="form-check mb-3">
                                             <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Don’t take naps"><strong>Don’t take naps.</strong> If you can’t make it through the day without a nap, keep it under 1 hour and before 3pm. </label>
+                                                <input type="checkbox" class="form-check-input" name="done" onchange="validateCheckoffs('btnSubmitLV3', 'formDoneToday', 'done')" value="Don’t take naps"><strong>Don’t take naps:</strong> If you can’t make it through the day without a nap, keep it under 1 hour and before 3pm. </label>
                                         </div>
                                         <div class="form-check mb-3">
                                             <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Exercise regularly"><strong>Exercise regularly, but not right before bed.</strong> Getting regular exercise that raises your heart rate and gets you to sweat a little can be a great way to improve your sleep. Exercising in the evening can make it more difficult to relax when it is time to go to sleep. Try exercising in the mornings instead.</label>
-                                        </div>
-
-                                        <div class="form-check mb-3">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Eat right"><strong>Eat right.</strong> Feeling hungry or too full can make it more difficult to fall asleep. Try to avoid having a heavy meal right before bed. If you feel hungry, try having a light snack.</label>
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Avoid stimulants"><strong>Avoid stimulants.</strong> It is not a good idea to have caffeine, nicotine, or other stimulants 4-6 hours before going to bed. If you drink coffee or tea try to keep it early in the day.</label>   
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Avoid alcohol"><strong>Avoid alcohol.</strong> Many people believe that alcohol helps them to relax and get to sleep more easily, but it actually leads to poorer quality sleep. It is best to avoid drinking alcohol 4-6 hours before bed.</label>
-                                        </div>
-                                        <div class="form-check mb-3">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Create a comfortable space"><strong>Create a comfortable space.</strong> Make sure your room is not too hot or too cold. Use earplugs to block out noise and an eye mask or curtains to block out the light.</label>
+                                                <input type="checkbox" class="form-check-input" name="done" onchange="validateCheckoffs('btnSubmitLV3', 'formDoneToday', 'done')" value="Exercise regularly"><strong>Exercise regularly, but not right before bed:</strong> Getting regular exercise that raises your heart rate and gets you to sweat a little can be a great way to improve your sleep. Exercising in the evening can make it more difficult to relax when it is time to go to sleep. Try exercising in the mornings instead.</label>
                                         </div>
 
                                         <div class="form-check mb-3">
                                             <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Limit screen time before bed"><strong>Limit screen time before bed.</strong> Stop watching TV or working on your computer at least one hour before bed time.  Set your phone to night mode (do not disturb) and keep it away from your bed. This will decrease the temptation to use it while you are trying to sleep.</label>
+                                                <input type="checkbox" class="form-check-input" name="done" onchange="validateCheckoffs('btnSubmitLV3', 'formDoneToday', 'done')" value="Eat right"><strong>Eat right:</strong> Feeling hungry or too full can make it more difficult to fall asleep. Try to avoid having a heavy meal right before bed. If you feel hungry, try having a light snack.</label>
                                         </div>
                                         <div class="form-check mb-3">
                                             <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" name="done" value="Create a routine"><strong>Create a routine to help you unwind.</strong> Many people find it helpful to do some stretching or deep breathing to help them relax before bed. This can also be a time to work through your thoughts and worries before bed. Try write them down so that you can deal with them in the morning.</label>
+                                                <input type="checkbox" class="form-check-input" name="done" onchange="validateCheckoffs('btnSubmitLV3', 'formDoneToday', 'done')" value="Avoid stimulants"><strong>Avoid stimulants:</strong> It is not a good idea to have caffeine, nicotine, or other stimulants 4-6 hours before going to bed. If you drink coffee or tea try to keep it early in the day.</label>   
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input" name="done" onchange="validateCheckoffs('btnSubmitLV3', 'formDoneToday', 'done')" value="Avoid alcohol"><strong>Avoid alcohol:</strong> Many people believe that alcohol helps them to relax and get to sleep more easily, but it actually leads to poorer quality sleep. It is best to avoid drinking alcohol 4-6 hours before bed.</label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input" name="done" onchange="validateCheckoffs('btnSubmitLV3', 'formDoneToday', 'done')" value="Create a comfortable space"><strong>Create a comfortable space:</strong> Make sure your room is not too hot or too cold. Use earplugs to block out noise and an eye mask or curtains to block out the light.</label>
+                                        </div>
+
+                                        <div class="form-check mb-3">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input" name="done" onchange="validateCheckoffs('btnSubmitLV3', 'formDoneToday', 'done')" value="Limit screen time before bed"><strong>Limit screen time before bed:</strong> Stop watching TV or working on your computer at least one hour before bed time.  Set your phone to night mode (do not disturb) and keep it away from your bed. This will decrease the temptation to use it while you are trying to sleep.</label>
+                                        </div>
+                                        <div class="form-check mb-3">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input" name="done" onchange="validateCheckoffs('btnSubmitLV3', 'formDoneToday', 'done')" value="Create a routine"><strong>Create a routine to help you unwind:</strong> Many people find it helpful to do some stretching or deep breathing to help them relax before bed. This can also be a time to work through your thoughts and worries before bed. Try write them down so that you can deal with them in the morning.</label>
                                         </div>
                                     </div>
                                 </form>
@@ -329,7 +329,7 @@
                                         <textarea rows="4" cols="85" name="comment" id="contAddNote" form="usrform" placeholder="Enter note here..."> </textarea>
                                     </div>
                                     <div class="sleepDiv">
-                                        <input type='button' class='btn-primary' id="btnSubmitLV3" value='Click To Conclude Level 3'/>
+                                        <input type='button' class='btn-primary' id="btnSubmitLV3" value='Click To Conclude Level 3' disabled/>
                                     </div>
                                 </div>
 
@@ -343,6 +343,40 @@
                         </div>
                     </div>
 
+                </div>
+
+
+                <div class="bootstrap-modal">
+                    <!-- Modal Change Email-->
+                    <div class="modal fade" id="loginModal">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalTitle">Patient Quick Login</h5>
+                                    <!-- <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                    </button> -->
+                                </div>
+                                <div class="modal-body">
+                                    <div class="lookup">
+                                        You have been away! Please sign in again. This is to ensure that your account is not access by someone else.
+                                    </div>
+                                    <form class="mt-5 mb-5 login-input">
+
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" id="quickUsername" placeholder="Username">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="password" class="form-control" id="quickPass" placeholder="Password">
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" id="btnQuickLogin" class="btn btn-primary">Sign In</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                

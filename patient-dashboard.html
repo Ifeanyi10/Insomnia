@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Health enSuite Patient Dashboard</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
     <!-- Pignose Calender -->
     <link href="./plugins/pg-calendar/css/pignose.calendar.min.css" rel="stylesheet">
     <!-- Chartist -->
@@ -20,8 +20,12 @@
     <script language="javascript">
 
                     window.onload = function getPatientsProfile(){
-                            let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/accessid';
+                            var urlDomain = window.localStorage.getItem("urlDomain"); 
+                            let url = urlDomain + 'insomnia/v1/patient/accessid';
                             let authToken = window.localStorage.getItem("patientToken");
+                            var isNewLogin = window.localStorage.getItem("isNewLogin");
+                            if(isNewLogin == 'true'){$('#exampleModalDisclaimer').modal('show');}
+                            
                             window.localStorage.setItem("loginError", false);
                             //alert(authToken);
                             $.ajax({
@@ -46,9 +50,24 @@
                                     window.localStorage.setItem("patientPhone", result.phoneNumber);
                                     window.localStorage.setItem("patientEmail", result.email);
                                     window.localStorage.setItem("trialNo", trialNo);
+                                    window.localStorage.setItem("CBTLevel", result.statusEntity.interventionLevel);
+                                    console.log('Level:'+window.localStorage.getItem("CBTLevel"));
+                                    window.localStorage.setItem("randomGroupID", result.groupID);
+                                    window.localStorage.setItem("enableSpClock", result.statusEntity.enableSleepClockbutton);
+                                    window.localStorage.setItem("displayLevelOne", result.statusEntity.levelonesubmiteligible);
+                                    //console.log('Enable Sleep Clock:'+window.localStorage.getItem("enableSpClock"));
+                                    window.localStorage.setItem("enableProgress", result.statusEntity.baselineAssessmenPassed);
+                                    //console.log('Enable Content Program:'+window.localStorage.getItem("enableProgress"));
                                     console.log(window.localStorage.getItem("patientsID"));
 
-                                    $.each(result.sleepDiaries, function(i, def) {
+                                    var dateCreated = result.date_Created;
+                                    var patDateCreated = dateCreated.split("T", 1);
+                                    document.getElementById("dashHeader").innerHTML = decideDashboardHeaderText(patDateCreated);
+
+                                    if(result.sleepDiaries != null){
+                                        window.localStorage.setItem("notallowed", false);
+                                        initializeDisplay();
+                                        $.each(result.sleepDiaries, function(i, def) {
                                         if(arrayLength == 0){
                                             currentDate = def.date_Created;
                                             currentID = def.id;
@@ -67,53 +86,60 @@
                                             otherMedPreviousObj = JSON.stringify(def.othermedications);
                                         }
                                         arrayLength += 1;
-                                    });
+                                        });
 
-                                    var currentDate2 = currentDate.split("T", 1)
+                                        var currentDate2 = currentDate.split("T", 1);
 
-                                    var prevDate2 = prevDate.split("T", 1)
-                                    //window.localStorage.setItem("prevDate", prevDate);
-                                    window.localStorage.setItem("arrayLength", arrayLength);
-                                    if(arrayLength == 1){
-                                        window.localStorage.setItem("currentDate", currentDate2); 
-                                        window.localStorage.setItem("currentDateUnformatted", currentDate);
-                                        window.localStorage.setItem("currentID", currentID);
-                                        window.localStorage.setItem("medicationCurrentObj", medicationCurrentObj);
-                                        window.localStorage.setItem("sleepDariesCurrent", sleepDariesCurrent);
-                                        window.localStorage.setItem("otherMedCurrentObj", otherMedCurrentObj);
-                                        document.getElementById('prevLink').style.display = 'none';
-                                    }else{
-                                        var dateOne = new Date(currentDate2); //Year, Month, Date    
-                                        var dateTwo = new Date(prevDate2); //Year, Month, Date 
-                                        if (dateOne > dateTwo) {    
+                                        var prevDate2 = prevDate.split("T", 1)
+                                        //window.localStorage.setItem("prevDate", prevDate);
+                                        window.localStorage.setItem("arrayLength", arrayLength);
+                                        if(arrayLength == 1){
                                             window.localStorage.setItem("currentDate", currentDate2); 
-                                            window.localStorage.setItem("prevDate", prevDate2);  
                                             window.localStorage.setItem("currentDateUnformatted", currentDate);
                                             window.localStorage.setItem("currentID", currentID);
-                                            window.localStorage.setItem("sleepDariesCurrent", sleepDariesCurrent);
-                                            window.localStorage.setItem("sleepDiaryPrevious", sleepDiaryPrevious);
                                             window.localStorage.setItem("medicationCurrentObj", medicationCurrentObj);
+                                            window.localStorage.setItem("sleepDariesCurrent", sleepDariesCurrent);
                                             window.localStorage.setItem("otherMedCurrentObj", otherMedCurrentObj);
-                                            window.localStorage.setItem("prevID", prevID);
-                                            window.localStorage.setItem("prevDateUnformatted", prevDate);  
-                                            window.localStorage.setItem("medicationPreviousObj", medicationPreviousObj);
-                                            window.localStorage.setItem("otherMedPreviousObj", otherMedPreviousObj);
-                                        }else {    
-                                            window.localStorage.setItem("currentDate", prevDate2); 
-                                            window.localStorage.setItem("prevDate", currentDate2);  
-                                            window.localStorage.setItem("currentDateUnformatted", prevDate);
-                                            window.localStorage.setItem("currentID", prevID);
-                                            window.localStorage.setItem("sleepDariesCurrent", sleepDiaryPrevious);
-                                            window.localStorage.setItem("sleepDiaryPrevious", sleepDariesCurrent);
-                                            window.localStorage.setItem("medicationCurrentObj", medicationPreviousObj);
-                                            window.localStorage.setItem("otherMedCurrentObj", otherMedPreviousObj);
-                                            window.localStorage.setItem("prevID", currentID);
-                                            window.localStorage.setItem("prevDateUnformatted", currentDate); 
-                                            window.localStorage.setItem("medicationPreviousObj", medicationCurrentObj);
-                                            window.localStorage.setItem("otherMedPreviousObj", otherMedCurrentObj);
-                                        }  
-                                    }
+                                            document.getElementById('todayLink').style.display = 'none';
+                                        }else{
+                                            var dateOne = new Date(currentDate2); //Year, Month, Date    
+                                            var dateTwo = new Date(prevDate2); //Year, Month, Date 
+                                            if (dateOne > dateTwo) {    
+                                                window.localStorage.setItem("currentDate", currentDate2); 
+                                                window.localStorage.setItem("prevDate", prevDate2);  
+                                                window.localStorage.setItem("currentDateUnformatted", currentDate);
+                                                window.localStorage.setItem("currentID", currentID);
+                                                window.localStorage.setItem("sleepDariesCurrent", sleepDariesCurrent);
+                                                window.localStorage.setItem("sleepDiaryPrevious", sleepDiaryPrevious);
+                                                window.localStorage.setItem("medicationCurrentObj", medicationCurrentObj);
+                                                window.localStorage.setItem("otherMedCurrentObj", otherMedCurrentObj);
+                                                window.localStorage.setItem("prevID", prevID);
+                                                window.localStorage.setItem("prevDateUnformatted", prevDate);  
+                                                window.localStorage.setItem("medicationPreviousObj", medicationPreviousObj);
+                                                window.localStorage.setItem("otherMedPreviousObj", otherMedPreviousObj);
+                                            }else {    
+                                                window.localStorage.setItem("currentDate", prevDate2); 
+                                                window.localStorage.setItem("prevDate", currentDate2);  
+                                                window.localStorage.setItem("currentDateUnformatted", prevDate);
+                                                window.localStorage.setItem("currentID", prevID);
+                                                window.localStorage.setItem("sleepDariesCurrent", sleepDiaryPrevious);
+                                                window.localStorage.setItem("sleepDiaryPrevious", sleepDariesCurrent);
+                                                window.localStorage.setItem("medicationCurrentObj", medicationPreviousObj);
+                                                window.localStorage.setItem("otherMedCurrentObj", otherMedPreviousObj);
+                                                window.localStorage.setItem("prevID", currentID);
+                                                window.localStorage.setItem("prevDateUnformatted", currentDate); 
+                                                window.localStorage.setItem("medicationPreviousObj", medicationCurrentObj);
+                                                window.localStorage.setItem("otherMedPreviousObj", otherMedCurrentObj);
+                                            }  
+                                        }
 
+                                    }else{
+                                        document.getElementById('todayLink').style.display = 'none';
+                                        document.getElementById('prevLink').style.display = 'none'; 
+                                        $(".spRep").css('display', 'none'); 
+                                        $(".spDiary").css('display', 'none'); 
+                                        window.localStorage.setItem("notallowed", true);
+                                    }//end success operations
                                       
                                 }, 
                                 error: function(msg){
@@ -122,6 +148,82 @@
                                     window.location.href = "index.html";
                                 }
                             });
+                        }
+
+                        function decideDashboardHeaderText(stDate){
+                            var headText = "Baseline Sleep Diary";
+
+                            if(stDate != '') {
+                                var today = new Date();
+                                var dd = String(today.getDate()).padStart(2, '0');
+                                var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                                var yyyy = today.getFullYear();
+                                today = yyyy + '-' + mm + '-' + dd;
+
+                                var date1 = new Date(today);
+                                var date2 = new Date(stDate); 
+
+                                // To calculate the time difference of two dates 
+                                var Difference_In_Time =  date1.getTime() - date2.getTime(); 
+
+                                // To calculate the no. of days between two dates 
+                                var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24); 
+                                console.log('Days: ' + Difference_In_Days);
+                                if(Difference_In_Days <= 14){
+                                    return headText;
+                                }else{
+                                    headText = "Sleep Diary";
+                                    return headText;
+                                }
+                                
+                            } else {
+                               return headText;
+                            }
+                        }
+
+                        function initializeDisplay(){
+                            var enableSpClock = window.localStorage.getItem("enableSpClock");
+                            
+                            window.localStorage.setItem("isNewLogin", false);
+                            console.log('Changed to false')
+
+                            console.log('Sleep Clock is: '+ enableSpClock)
+                            if(enableSpClock == "true"){
+                                $(".spClock").css('display', 'block'); 
+                                console.log('Sleep Clock Enabled')
+                            }else{
+                                $(".spClock").css('display', 'none'); 
+                                console.log('Sleep Clock disabled')
+                            }
+
+                            var enableProgress = window.localStorage.getItem("enableProgress");
+                            console.log('Progress is: '+ enableProgress)
+                            if(enableProgress == "true"){
+                                var randomGroupID = window.localStorage.getItem("randomGroupID");
+                                if(parseInt(randomGroupID) == 0){
+                                    $(".progs").css('display', 'block'); 
+                                    $(".psyc").css('display', 'none');
+                                    console.log('Progress Enabled')
+                                }else if(parseInt(randomGroupID) == 1){
+                                    $(".psyc").css('display', 'block'); 
+                                    $(".progs").css('display', 'none');
+                                    console.log('Psychoeducation Enabled')
+                                }
+                                
+                            }else{
+                                $(".progs").css('display', 'none'); 
+                                $(".psyc").css('display', 'none');
+                                console.log('No content yet')
+                            }
+
+                            var notallowed = window.localStorage.getItem("notallowed");
+                            if(notallowed == "false"){
+                                $(".spRep").css('display', 'block'); 
+                                $(".spDiary").css('display', 'block'); 
+                            }else{
+                                $(".spRep").css('display', 'none'); 
+                                $(".spDiary").css('display', 'none'); 
+                            }
                         }
     
           </script>
@@ -163,7 +265,7 @@
                         <!-- <img src="./images/logo-compact.png" alt=""> -->
                     </span>
                     <span class="brand-title">
-                        <!-- <img src="images/logo-text.png" alt=""> -->
+                        <img src="images/logo-text.png" alt="" width="174" height="40" style="border-radius: 15px;">
                     </span>
                 </a>
             </div>
@@ -238,7 +340,7 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <li class="mega-menu mega-menu-sm spDiary">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-note menu-icon"></i><span class="nav-text">Sleep Diary</span>
                         </a>
@@ -257,7 +359,7 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <li class="mega-menu mega-menu-sm spRep">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-graph menu-icon"></i><span class="nav-text">Sleep Report</span>
                         </a>
@@ -281,7 +383,8 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./task-list.html">My Task List</a></li>
-                            <li><a href="./program-content.html">My Progress</a></li>
+                            <li><a href="./program-content.html" class="progs">My Progress</a></li>
+                            <li><a href="./psycho-education.html" class="psyc">Psychoeducation</a></li>
                         </ul>
                     </li>
 
@@ -319,25 +422,26 @@
 
             <div class="container-fluid mt-3">
                 <div class="row">
-                    <!-- <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">SLEEP DIARY</h4>
-                                <h5 class="mt-3">Completed <span class="float-right">10%</span></h5>
-                                <div class="progress" style="height: 9px">
-                                    <div class="progress-bar bg-danger wow  progress-" style="width: 10%;" role="progressbar"><span class="sr-only">60% Complete</span>
-                                    </div>
+
+                    <div class="modal fade" id="exampleModalDisclaimer">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Disclaimmer!!!</h5>
+                                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                    </button>
                                 </div>
-                                
+                                <div class="modal-body">
+                                    <p>This device in no way replaces decisions made by or the treatment plan given to you by your primary healthcare provider. The Health enSuite Insomnia App will only be used to assist your healthcare provider support a deprescribing decision or refer you to cognitive behavioural therapy.</p>
+                                </div>
                             </div>
                         </div>
-
-                    </div> -->
+                    </div>
                     
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title colorPrimary">Baseline Sleep Diary</h4><hr>
+                                <h4 class="card-title colorPrimary" id="dashHeader"></h4><hr>
                                 <div class="justifyDiv">
                                     The next step is to begin tracking your sleep patterns. Please take a few minutes to fill out a sleep diary each morning for the next 2 weeks. This lets us know your starting point. If you forget to record your answers one morning, you can go back and fill them in up to a day later. 
                                 </div><br>
@@ -385,18 +489,52 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6 col-sm-12 sleepDiv" id="todayLink">
-                                        <a href="sleep-diary.html" class="txt1">
-                                            <strong>Complete today’s sleep diary</strong>
-                                        </a>
-                                    </div>
                                     <div class="col-md-6 col-sm-12 sleepDiv" id="prevLink">
                                         <a href="sleep-diary.html" class="txt1">
                                             <strong>Complete yesterday’s sleep diary</strong>
                                         </a>
                                     </div>
+                                    <div class="col-md-6 col-sm-12 sleepDiv" id="todayLink">
+                                        <a href="sleep-diary.html" class="txt1">
+                                            <strong>Complete today’s sleep diary</strong>
+                                        </a>
+                                    </div>
+                                    
                                 </div>
                                 
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bootstrap-modal">
+                        <!-- Modal Change Email-->
+                        <div class="modal fade" id="loginModal">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalTitle">Patient Quick Login</h5>
+                                        <!-- <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                        </button> -->
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="lookup">
+                                            You have been away! Please sign in again. This is to ensure that your account is not access by someone else.
+                                        </div>
+                                        <form class="mt-5 mb-5 login-input">
+    
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" id="quickUsername" placeholder="Username">
+                                            </div>
+    
+                                            <div class="form-group">
+                                                <input type="password" class="form-control" id="quickPass" placeholder="Password">
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" id="btnQuickLogin" class="btn btn-primary">Sign In</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

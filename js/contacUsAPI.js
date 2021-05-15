@@ -1,3 +1,4 @@
+var urlDomain = window.localStorage.getItem("urlDomain");
 
 $(document).ready(function () {
 
@@ -7,7 +8,7 @@ $(document).ready(function () {
     
         var withNote = document.getElementById("withdrawNote").value;
         let authToken = window.localStorage.getItem("patientToken");
-        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/dashboard/withdraw';
+        let url = urlDomain + 'insomnia/v1/dashboard/withdraw';
         $.ajax({
             url: url,
             type: 'POST',
@@ -43,7 +44,7 @@ function submitFeedback(event, noteID){
 
     var theNote = document.getElementById(noteID).value;
     let authToken = window.localStorage.getItem("patientToken");
-    let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/dashboard/feedback';
+    let url = urlDomain + 'insomnia/v1/dashboard/feedback';
     $.ajax({
         url: url,
         type: 'POST',

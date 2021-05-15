@@ -8,10 +8,43 @@ function logout(){
 $(document).ready(function () {
 
     var enableSpClock = window.localStorage.getItem("enableSpClock");
+
     console.log('Sleep Clock is: '+ enableSpClock)
-    if(enableSpClock == true){
+    if(enableSpClock == "true"){
         $(".spClock").css('display', 'block'); 
         console.log('Sleep Clock Enabled')
+    }else{
+        $(".spClock").css('display', 'none'); 
+        console.log('Sleep Clock disabled')
+    }
+
+    var enableProgress = window.localStorage.getItem("enableProgress");
+    console.log('Progress is: '+ enableProgress)
+    if(enableProgress == "true"){
+        var randomGroupID = window.localStorage.getItem("randomGroupID");
+        if(parseInt(randomGroupID) == 0){
+            $(".progs").css('display', 'block'); 
+            $(".psyc").css('display', 'none');
+            console.log('Progress Enabled')
+        }else if(parseInt(randomGroupID) == 1){
+            $(".psyc").css('display', 'block'); 
+            $(".progs").css('display', 'none');
+            console.log('Psychoeducation Enabled')
+        }
+        
+    }else{
+        $(".progs").css('display', 'none'); 
+        $(".psyc").css('display', 'none');
+        console.log('No content yet')
+    }
+
+    var notallowed = window.localStorage.getItem("notallowed");
+    if(notallowed == "false"){
+        $(".spRep").css('display', 'block'); 
+        $(".spDiary").css('display', 'block'); 
+    }else{
+        $(".spRep").css('display', 'none'); 
+        $(".spDiary").css('display', 'none'); 
     }
 
     $('#sleepLink a').click(function(e) {
@@ -45,12 +78,24 @@ $(document).ready(function () {
     });
 
     $('#prevLink a').click(function(e) {
-        var txt = window.localStorage.getItem("prevDate");
-        window.localStorage.setItem("linkText", txt);
-        var submitDate = window.localStorage.getItem("prevDateUnformatted");
-        window.localStorage.setItem("submitDate", submitDate);
-        var submitID = window.localStorage.getItem("prevID");
-        window.localStorage.setItem("submitID", submitID);
+        var arrayL =  window.localStorage.getItem("arrayLength");
+        if(parseInt(arrayL) != 1){
+            var txt = window.localStorage.getItem("prevDate");
+            window.localStorage.setItem("linkText", txt);
+            var submitDate = window.localStorage.getItem("prevDateUnformatted");
+            window.localStorage.setItem("submitDate", submitDate);
+            var submitID = window.localStorage.getItem("prevID");
+            window.localStorage.setItem("submitID", submitID);
+        }else{
+            var txt = window.localStorage.getItem("currentDate");
+            window.localStorage.setItem("linkText", txt);
+            var submitDate = window.localStorage.getItem("currentDateUnformatted");
+            window.localStorage.setItem("submitDate", submitDate);
+            var submitID = window.localStorage.getItem("currentID");
+            window.localStorage.setItem("submitID", submitID);
+        }
+        console.log('Date'+txt);
+        console.log('Leng'+arrayL)
     });
 
     $("#sympID").click(function() {  
@@ -116,26 +161,29 @@ function showNote(itemName){
 
 }
 
-function fillModalContentValue(checkID){
+function fillModalContentValue(checkID, btnId){
     var modalTitle = document.getElementById('modalContentTitle');
     var modalBody = document.getElementById('modalContentBd');
+    var btnMed = document.getElementById(btnId);
 
     if(checkID == 'confident'){
         modalTitle.innerHTML = 'Great!';
         modalBody.innerHTML = 'You can track your progress in the Medication Log.';
-        return;
+        btnMed.disabled = false;
     }
 
-    if(checkID == 'difficult'){
+    else if(checkID == 'difficult'){
         modalTitle.innerHTML = 'Change can be difficult!';
         modalBody.innerHTML = 'This app provides tools that should help make it easier for you. If you need to modify the plan please consult your health care provider.';
-        return;
+        btnMed.disabled = false;
     }
 
-    if(checkID == 'unknown'){
+    else if(checkID == 'unknown'){
         modalTitle.innerHTML = 'Attention!';
         modalBody.innerHTML = 'Use the medications tab on the dashboard to view your tapering schedule.';
-        return;
+        btnMed.disabled = false;
+    }else{
+        btnMed.disabled = true;
     }
 }
 

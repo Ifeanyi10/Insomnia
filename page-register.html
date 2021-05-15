@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Health enSuite Patient User Registration</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet">
     <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
@@ -49,8 +49,11 @@
     <script language="javascript">
 
         window.onload = function getPatientsProfile(){
-                            let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/id';
+                            var urlDomain = 'http://health001-env.eba-v5mudubf.us-east-2.elasticbeanstalk.com/';
+                            //var urlDomain = 'http://192.168.6.15:8083/';
+                            let url = urlDomain + 'insomnia/v1/patient/id';
                             var lastPart = window.location.href.split("code").pop();
+                            //var lastPart = 'o591ey1Txbw5YbAwyEvm3j1/vV9bUyDSUN4QhyMS51I=';
                             window.localStorage.setItem("patRegToken", lastPart);
                             $.ajax({
                                 url: url,
@@ -113,7 +116,7 @@
             <div class="row justify-content-center h-100">
                 <div class="col-xl-6">
                     <div class="form-input-content">
-                        <h4 class="bigHead">Health enSuite</h4>
+                        <h4 class="bigHead"><img src="images/logo-text.png" alt="" width="348" height="80" style="border-radius: 30px;"></h4>
                         <div class="card2 login-form mb-0">
                             <div class="card-body pt-5">
                                 
@@ -130,14 +133,26 @@
                                     <div class="form-group">
                                         <input type="text" class="form-control" id="lastN" placeholder="Last Name" required>
                                     </div>
-                                    <!-- <div class="form-group">
-                                        <select id="inputGender" class="form-control">
-                                            <option value="">Gender</option>
-                                            <option value="MALE">Male</option>
-                                            <option value="FEMALE">Female</option>
-                                            <option value="OTHER">Other</option>
+                                    <div class="form-group">
+                                        <select id="inputTimeZone" class="form-control" required>
+                                            <option value="">Time Zone</option>
+                                            <option value="America/Vancouver">Alberta</option>
+                                            <option value="America/Dawson">British Columbia</option>
+                                            <option value="US/Arizona">Manitoba</option>
+                                            <option value="America/Panama">New Brunswick</option>
+                                            <option value="America/Panama">Newfoundland and Labrador</option>
+                                            <option value="Atlantic/Azores">Newfoundland and Labrador (Southeastern Coast)</option>
+                                            <option value="America/Vancouver">Northwest Territories</option>
+                                            <option value="America/Panama">Nova Scotia</option>
+                                            <option value="America/Vancouver">Nunavut</option>
+                                            <option value="US/Central">Nunavut (Southampton Island)</option>
+                                            <option value="US/Central">Ontario</option>
+                                            <option value="America/Panama">Prince Edward Island</option>
+                                            <option value="US/Central">Quebec</option>
+                                            <option value="US/Arizona">Saskatchewan</option>
+                                            <option value="America/Vancouver">Yukon</option>
                                         </select>
-                                    </div> -->
+                                    </div>
                                     <div class="form-group">
                                         <input type="email" class="form-control"  id="email"  placeholder="Email" pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?" max="120" required>
                                     </div>

@@ -1,3 +1,4 @@
+var urlDomain = window.localStorage.getItem("urlDomain");
 
 function getCheckedValues(formID, elementName) {
     var abouts = document.forms[formID].elements[elementName];
@@ -24,6 +25,19 @@ function getCheckedStatus(formID, elementName, objPosition) {
     return isChecked;
 }
 
+function validateCheckoffs(btnId, formId, nameId){
+    var btnMed = document.getElementById(btnId);
+    var meds = document.forms[formId].elements[nameId];
+    for (i = 0; i < meds.length; i++) {    
+        if(meds[i].checked == true){
+            btnMed.disabled = false;
+            return
+        }else{
+            btnMed.disabled = true;
+        }
+    }
+}
+
 
 function calculateBedTime(firstDisplay, secondDisplay)
 {
@@ -48,8 +62,92 @@ function calculateBedTime(firstDisplay, secondDisplay)
 
 }
 
+function isEmail(email) {
+    // eslint-disable-next-line no-useless-escape
+    return RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i).test(email);
+  };
+
+function fillAllFields(){
+    var bt = document.getElementById('btnSubmitLV1');
+    var supName = $("#supName").val();
+    var supEmail = $("#supEmail").val();
+    var supRel = $("#supRelation").val();
+    if (supName != '' && supRel != '')  {
+        if (isEmail(supEmail)){
+            bt.disabled = false;
+            $("#supErrorContainer").html("");
+        }else{
+            $("#supErrorContainer").html("Please enter a valid email address.");
+            bt.disabled = true;
+        }
+        
+    } else {
+        $("#supErrorContainer").html("Please fill all the fields properly");
+        bt.disabled = true;
+    }
+}
+
+function checkFields1(){
+    var bt = document.getElementById('btnRealExpect1');
+    var supName = $("#realExpect1").val();
+    if (supName != '' ) {bt.disabled = false;
+    } else {bt.disabled = true;
+    }
+}
+
+function checkFields2(){
+    var bt = document.getElementById('btnRealExpect2');
+    var supName = $("#realExpect2").val();
+    if (supName != '' ) {bt.disabled = false;
+    } else {bt.disabled = true;
+    }
+}
+
+function checkFields3(){
+    var bt = document.getElementById('btnRealExpect3');
+    var supName = $("#realExpect3").val();
+    if (supName != '' ) {bt.disabled = false;
+    } else {bt.disabled = true;
+    }
+}
+
+function checkFields4(){
+    var bt = document.getElementById('btnOtherReason4');
+    var supName = $("#otherReason4").val();
+    if (supName != '' ) {bt.disabled = false;
+    } else {bt.disabled = true;
+    }
+}
+
+function checkFields5(){
+    var bt = document.getElementById('otherreason4');
+    var supName = $("#otherWays").val();
+    if (supName != '' ) {bt.disabled = false;
+    } else {bt.disabled = true;
+    }
+}
+
+function checkFieldsLevel6(){
+    var bt = document.getElementById('btnSubmitLV6');
+    var supName = $("#worriedTxt").val();
+    var supName2 = $("#strategyTxt").val();
+    if (supName != '' && supName2 != '') {bt.disabled = false;
+    } else {bt.disabled = true;
+    }
+}
+
 
 $(document).ready(function () {
+
+    // var btT1 = document.getElementById('btnSubmitLV1');
+    // btT1.disabled = true;
+    $('#supName, #supEmail, #supRelation').keyup(fillAllFields);
+    $('#realExpect1').keyup(checkFields1);
+    $('#realExpect2').keyup(checkFields2);
+    $('#realExpect3').keyup(checkFields3);
+    $('#otherReason4').keyup(checkFields4);
+    $('#otherWays').keyup(checkFields5);
+    $('#worriedTxt, #strategyTxt').keyup(checkFieldsLevel6);
 
     //Submit Level 1
     $('#btnSubmitLV1').on('click', function(event){
@@ -63,7 +161,7 @@ $(document).ready(function () {
         var supRelation = document.getElementById("supRelation").value;
 
         let authToken = window.localStorage.getItem("patientToken");
-        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/intervention/savelevelone';
+        let url = urlDomain + 'insomnia/v1/intervention/savelevelone';
         $.ajax({
             url: url,
             type: 'POST',
@@ -84,7 +182,7 @@ $(document).ready(function () {
                 console.log(result);
                 swal({title: "Congratulations!", text: "You have finished level 1!", type: "success"},
                 function(){ 
-                    window.location.href = "program-content.html";
+                    window.location.href = "patient-dashboard.html";
                 }
                 );
             }, 
@@ -108,7 +206,7 @@ $(document).ready(function () {
         var supRelation = "";
 
         let authToken = window.localStorage.getItem("patientToken");
-        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/intervention/savelevelone';
+        let url = urlDomain + 'insomnia/v1/intervention/savelevelone';
         $.ajax({
             url: url,
             type: 'POST',
@@ -129,7 +227,7 @@ $(document).ready(function () {
                 console.log(result);
                 swal({title: "Congratulations!", text: "You have finished level 1!", type: "success"},
                 function(){ 
-                    window.location.href = "program-content.html";
+                    window.location.href = "patient-dashboard.html";
                 }
                 );
             }, 
@@ -151,7 +249,7 @@ $(document).ready(function () {
         var clockRiseTime = window.localStorage.getItem("yAvRiseTime");
 
         let authToken = window.localStorage.getItem("patientToken");
-        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/dashboard/saveleepwindow';
+        let url = urlDomain + 'insomnia/v1/intervention/saveleveltwo';
         $.ajax({
             url: url,
             type: 'POST',
@@ -170,7 +268,7 @@ $(document).ready(function () {
                 console.log(result);
                 swal({title: "Congratulations!", text: "You have finished level 2!", type: "success"},
                 function(){ 
-                    window.location.href = "program-content.html";
+                    window.location.href = "patient-dashboard.html";
                 }
                 );
             }, 
@@ -199,7 +297,7 @@ $(document).ready(function () {
         var contAddNote = document.getElementById("contAddNote").value;
 
         let authToken = window.localStorage.getItem("patientToken");
-        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/intervention/savelevelthree';
+        let url = urlDomain + 'insomnia/v1/intervention/savelevelthree';
         $.ajax({
             url: url,
             type: 'POST',
@@ -225,7 +323,7 @@ $(document).ready(function () {
                 console.log(result);
                 swal({title: "Congratulations!", text: "You have finished level 3!", type: "success"},
                 function(){ 
-                    window.location.href = "program-content.html";
+                    window.location.href = "patient-dashboard.html";
                 }
                 );
             }, 
@@ -242,7 +340,7 @@ $(document).ready(function () {
         event.preventDefault();
 
         let authToken = window.localStorage.getItem("patientToken");
-        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/intervention/savelevelfour';
+        let url = urlDomain + 'insomnia/v1/intervention/savelevelfour';
         $.ajax({
             url: url,
             type: 'POST',
@@ -258,7 +356,7 @@ $(document).ready(function () {
                 console.log(result);
                 swal({title: "Congratulations!", text: "You have finished level 4!", type: "success"},
                 function(){ 
-                    window.location.href = "program-content.html";
+                    window.location.href = "patient-dashboard.html";
                 }
                 );
             }, 
@@ -280,7 +378,7 @@ $(document).ready(function () {
         var otherWays = document.getElementById("otherWays").value;
 
         let authToken = window.localStorage.getItem("patientToken");
-        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/intervention/savelevelfive';
+        let url = urlDomain + 'insomnia/v1/intervention/savelevelfive';
         $.ajax({
             url: url,
             type: 'POST',
@@ -300,7 +398,7 @@ $(document).ready(function () {
                 console.log(result);
                 swal({title: "Congratulations!", text: "You have finished level 5!", type: "success"},
                 function(){ 
-                    window.location.href = "program-content.html";
+                    window.location.href = "patient-dashboard.html";
                 }
                 );
             }, 
@@ -319,7 +417,7 @@ $(document).ready(function () {
         var strategyTxt = document.getElementById("strategyTxt").value;
 
         let authToken = window.localStorage.getItem("patientToken");
-        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/intervention/savelevelsix';
+        let url = urlDomain + 'insomnia/v1/intervention/savelevelsix';
         $.ajax({
             url: url,
             type: 'POST',
@@ -336,12 +434,58 @@ $(document).ready(function () {
                 console.log(result);
                 swal({title: "Congratulations!", text: "You have finished level 6!", type: "success"},
                 function(){ 
-                    window.location.href = "program-content.html";
+                    window.location.href = "patient-dashboard.html";
                 }
                 );
             }, 
             error: function(msg){
                 sweetAlert("Unable to submit level 6 responses!","Please try again shortly","error");
+            }
+        });
+    });
+
+
+    //Submit Psychoeducation
+    $('#btnSubmitPsycho').on('click', function(event){
+        event.preventDefault();
+    
+        var morethan30MinstoSleep = getCheckedStatus('formSituation', 'sit', 0);
+        var wakeupfrequentlyatnight = getCheckedStatus('formSituation', 'sit', 1);
+        var wakeuptooearly = getCheckedStatus('formSituation', 'sit', 2);
+        var sleepqualitypoor = getCheckedStatus('formSituation', 'sit', 3);
+        var ifeelconfident = getCheckedStatus('formFeeling', 'feel', 0);
+        var ithinkitsdifficult = getCheckedStatus('formFeeling', 'feel', 1);
+        var idontknow = getCheckedStatus('formFeeling', 'feel', 2);
+
+        let authToken = window.localStorage.getItem("patientToken");
+        let url = urlDomain + 'insomnia/v1/intervention/psycho';
+        $.ajax({
+            url: url,
+            type: 'POST',
+            headers: {
+                'Content-Type': 'application/json', 
+                'Accept': '*/*',
+                'Authorization': 'Bearer '+ authToken
+            },
+            data: JSON.stringify({
+                "morethan30MinstoSleep" : morethan30MinstoSleep,
+                "wakeupfrequentlyatnight" : wakeupfrequentlyatnight,
+                "wakeuptooearly" : wakeuptooearly,
+                "sleepqualitypoor" : sleepqualitypoor,
+                "ifeelconfident" : ifeelconfident,
+                "ithinkitsdifficult" : ithinkitsdifficult,
+                "idontknow" : idontknow
+                }),
+            success: function(result){
+                console.log(result);
+                swal({title: "Well Done!", text: "Your response have been submitted!", type: "success"},
+                function(){ 
+                    window.location.href = "patient-dashboard.html";
+                }
+                );
+            }, 
+            error: function(msg){
+                sweetAlert("Unable to submit your responses!","Please try again shortly","error");
             }
         });
     });

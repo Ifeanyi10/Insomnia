@@ -162,6 +162,7 @@ html {
   .justifyDiv{
     margin-top: 10px;
     text-align: justify;
+    font-family: "Roboto", sans-serif;
   }
 
   .buttonPlainTxt{
@@ -201,7 +202,8 @@ html {
   #divCheckPasswordMatch,
   #errorEmailContainer, #divResetPasswordMatch,
   #divCheckUsernameMatch, #errorFinalContainer,
-  #divCheckUpdatePWordMatch, #divEmailErrorMsg{
+  #divCheckUpdatePWordMatch, #divEmailErrorMsg,
+  #supErrorContainer{
     color: #8c0615;
     font-weight: bold;
     text-align: center;
@@ -275,7 +277,7 @@ html {
   }
 
   .txt1 {
-    font-family: Poppins-Regular;
+    font-family: "Roboto", sans-serif;
     font-size: 1.125rem;
     line-height: 1.5;
     color: #2087c8;
@@ -317,6 +319,10 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   
     .colorPrimary{
       color: #2087c8;
+    }
+
+    .boldText{
+      font-weight: bolder;
     }
   
     .btnColorPrimary{
@@ -797,7 +803,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
           }.consentInfoHead{
             font-size: 1.125rem;
           }.card-title {
-            font-size: 1.75rem;
+            font-size: 1.35rem;
           }.profileAlign{
             text-align: right;
           }
@@ -2117,8 +2123,8 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
         box-shadow: 0 0 0 0.2rem rgba(36, 160, 218, 0.5); }
       .btn-primary.disabled, .btn-primary:disabled {
         color: #fff;
-        background-color: #2087c8;
-        border-color: #2087c8; }
+        background-color: #bbc7cf;
+        border-color: #bbc7cf; }
       .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
       .show > .btn-primary.dropdown-toggle {
         color: #fff;
@@ -2173,8 +2179,8 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
           box-shadow: 0 0 0 0.2rem rgba(1, 170, 115, 0.5); }
         .btn-colorSec.disabled, .btn-colorSec:disabled {
           color: #fff;
-          background-color: #01AA73;
-          border-color: #01AA73; }
+          background-color: #9097c4;
+          border-color: #9097c4; }
         .btn-colorSec:not(:disabled):not(.disabled):active, .btn-colorSec:not(:disabled):not(.disabled).active,
         .show > .btn-colorSec.dropdown-toggle {
           color: #fff;

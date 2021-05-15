@@ -1,3 +1,5 @@
+var urlDomain = window.localStorage.getItem("urlDomain"); 
+
 function validateNewEmail(){
     var bt = document.getElementById('btnChangeEmail');
     var newE = $("#newEmail").val();
@@ -21,7 +23,7 @@ function validatePassword(){
     var password = $("#newPass").val();
     var confirm_password = $("#confirmNewPass").val();
     if(password != confirm_password) {
-        $("#divCheckUpdatePWordMatch").html("The passwords you have entered do not match. Please re-enter.");
+        $("#divCheckUpdatePWordMatch").html("You need to re-enter your new password to proceed.");
     } else {
         $("#divCheckUpdatePWordMatch").html(" ");
         bt.disabled = false;
@@ -55,7 +57,7 @@ $(document).ready(function () {
         var patEmail = window.localStorage.getItem("patientEmail");
 
         let authToken = window.localStorage.getItem("patientToken");
-        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/authentication/changepasswordinapp';
+        let url = urlDomain + 'insomnia/v1/authentication/changepasswordinapp';
         $.ajax({
             url: url,
             type: 'POST',
@@ -101,7 +103,7 @@ $(document).ready(function () {
             return;
         }
          
-        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/checkEmail';
+        let url = urlDomain + 'insomnia/v1/patient/checkEmail';
         $.ajax({
             url: url,
             type: 'POST',
@@ -154,7 +156,7 @@ $(document).ready(function () {
         }
 
         let authToken = window.localStorage.getItem("patientToken");
-        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/updateemail';
+        let url = urlDomain + 'insomnia/v1/patient/updateemail';
 
         if(emailIsElligible == true){
             $.ajax({

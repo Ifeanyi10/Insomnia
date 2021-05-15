@@ -1,3 +1,5 @@
+var urlDomain = window.localStorage.getItem("urlDomain");
+
 // function fillSleepDiaryFields(){
 //     var bt = document.getElementById('btnSDNext');
 //     var bedTime = $("#bedTime").val();
@@ -89,7 +91,7 @@ function displaySleepMed(div1, div2, hds){
             document.getElementById('trial2Med').style.display = 'block';
     }
     }else{
-        sweetAlert("Alert!","Please select the hour and minute properly","error");
+        sweetAlert("Alert!","Please select the hour and minute properly.","error");
     }
 }
 
@@ -309,7 +311,7 @@ $(document).ready(function () {
 
         //window.location.href = "sleep-medication.html";
 
-        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/submit-sleepdiary';
+        let url = urlDomain + 'insomnia/v1/patient/submit-sleepdiary';
         if(valueIsValid){
             if(trialNo == 1){
                 $.ajax({

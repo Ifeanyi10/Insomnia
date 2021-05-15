@@ -1,3 +1,6 @@
+var urlDomain = 'http://health001-env.eba-v5mudubf.us-east-2.elasticbeanstalk.com/';
+//var urlDomain = 'http://192.168.6.15:8083/';
+
 function validatePassword(){
     var bt = document.getElementById('btnSubmit');
     var password = $("#pass").val();
@@ -25,11 +28,11 @@ function validatePassword(){
         var conPass = document.getElementById('confirmPass');
         var fName = $("#firstN").val();
         var lName = $("#lastN").val();
-        var prov = $("#inputProvince").val();
+        var timeZ = $("#inputTimeZone").val();
         var em = $("#email").val();
         var usN = $("#usName").val();
         var ps = $("#pass").val();
-        if (fName != '' && lName != '' && prov != '' && em != '' && usN != '' && ps != '')  {
+        if (fName != '' && lName != '' && timeZ != '' && em != '' && usN != '' && ps != '')  {
             conPass.disabled = false;
             $("#confirmPass").keyup(validatePassword);
         } else {
@@ -41,7 +44,7 @@ function validatePassword(){
   $(document).ready(function () {
     var bt = document.getElementById('btnSubmit');
     bt.disabled = true;
-    $('#firstN, #lastN, #inputProvince, #email, #phone, #usName, #pass').keyup(fillAllFields);
+    $('#firstN, #lastN, #inputTimeZone, #email, #phone, #usName, #pass').keyup(fillAllFields);
     
  });
 
@@ -131,6 +134,7 @@ $(document).ready(function () {
     
         var email = document.getElementById("email").value;
         var mailAddress = document.getElementById("mailAdd").value;
+        var timeZone = document.getElementById("inputTimeZone").value;
         var password = document.getElementById("pass").value;
         var emailAccepted = getCommunicationMode(0);
         var smsAccepted = getCommunicationMode(1);
@@ -138,7 +142,7 @@ $(document).ready(function () {
         var inAppAccepted = getCommunicationMode(2);
         var noNotification = false;
         var token =window.localStorage.getItem("patRegToken");
-        let url = 'http://health.us-east-2.elasticbeanstalk.com/insomnia/v1/patient/create-dailyNotification';
+        let url = urlDomain + 'insomnia/v1/patient/create-dailyNotification';
     
         $.ajax({
             url: url,
@@ -153,12 +157,13 @@ $(document).ready(function () {
             "noNotification" : noNotification,
             "mailingAddress": mailAddress,
             "password" : password,
-            "emailAddress": email}),
+            "emailAddress": email,
+            "timeZoneID": timeZone}),
             success: function(result){
                 console.log(result);
-                swal({title: "Health enSuite welcomes you to the study!!", text: "Your account has been created updated. Please start filling your sleep diary!!", type: "success"},
+                swal({title: "Health enSuite welcomes you to the study!", text: "Your account has been created updated. Please login and start filling your sleep diary.", type: "success"},
                 function(){ 
-                    window.location.href = "patient-dashboard.html";
+                    window.location.href = "index.html";
                 }
                 );
             }, 

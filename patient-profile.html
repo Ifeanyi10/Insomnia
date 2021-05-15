@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Health enSuite Patient Profile</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
     <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
     <link href="./plugins/sweetalert/css/sweetalert.css" rel="stylesheet">
@@ -71,7 +71,7 @@
                         <!-- <img src="./images/logo-compact.png" alt=""> -->
                     </span>
                     <span class="brand-title">
-                        <!-- <img src="images/logo-text.png" alt=""> -->
+                        <img src="images/logo-text.png" alt="" width="174" height="40" style="border-radius: 15px;">
                     </span>
                 </a>
             </div>
@@ -145,7 +145,7 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <li class="mega-menu mega-menu-sm spDiary">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-note menu-icon"></i><span class="nav-text">Sleep Diary</span>
                         </a>
@@ -164,7 +164,7 @@
                         </ul>
                     </li>
 
-                    <li class="mega-menu mega-menu-sm">
+                    <li class="mega-menu mega-menu-sm spRep">
                         <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                             <i class="icon-graph menu-icon"></i><span class="nav-text">Sleep Report</span>
                         </a>
@@ -188,7 +188,8 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./task-list.html">My Task List</a></li>
-                            <li><a href="./program-content.html">My Progress</a></li>
+                            <li><a href="./program-content.html" class="progs">My Progress</a></li>
+                            <li><a href="./psycho-education.html" class="psyc">Psychoeducation</a></li>
                         </ul>
                     </li>
                     
@@ -331,6 +332,39 @@
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                     <button type="button" id="btnChangeEmail" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="bootstrap-modal">
+                                    <!-- Modal Change Email-->
+                                    <div class="modal fade" id="loginModal">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalTitle">Patient Quick Login</h5>
+                                                    <!-- <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                                    </button> -->
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="lookup">
+                                                        You have been away! Please sign in again. This is to ensure that your account is not access by someone else.
+                                                    </div>
+                                                    <form class="mt-5 mb-5 login-input">
+                
+                                                        <div class="form-group">
+                                                            <input type="email" class="form-control" id="quickUsername" placeholder="Username">
+                                                        </div>
+                
+                                                        <div class="form-group">
+                                                            <input type="password" class="form-control" id="quickPass" placeholder="Password">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" id="btnQuickLogin" class="btn btn-primary">Sign In</button>
                                                 </div>
                                             </div>
                                         </div>

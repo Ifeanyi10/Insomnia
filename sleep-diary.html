@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Health enSuite Patient Daily Sleep Diary</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/logo.png">
     <!-- Custom Stylesheet -->
     <link href="./plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
     <!-- Page plugins css -->
@@ -25,6 +25,11 @@
     <link href="css/style.css" rel="stylesheet">
 
     <script language="javascript">
+
+        function formatTime(myTime){
+            var newTime = moment(myTime, "hh:mm:ss").format("hh:mm");
+            return newTime;
+        }
 
         window.onload = function getPatientSleepMed(){
            
@@ -44,8 +49,8 @@
 
             var bdTime = mySleep.bedTime;
             if(bdTime != null){
-                document.getElementById('bedTime').value = mySleep.bedTime;
-                document.getElementById('trySleepTime').value = mySleep.tryTosleepTime;
+                document.getElementById('bedTime').value = formatTime(mySleep.bedTime);
+                document.getElementById('trySleepTime').value = formatTime(mySleep.tryTosleepTime);
                 var sduration = mySleep.durationBeforesleepoff;
                 let hrSp = parseInt(sduration / 60);
                 document.getElementById("spHourOpt").selectedIndex = hrSp + 1;
@@ -58,9 +63,9 @@
                 document.getElementById("hourOpt").selectedIndex = hrWk + 1;
                 let minWk = parseInt(wDuration % 60);
                 document.getElementById("minuteOpt").selectedIndex = minWk + 1;
-                document.getElementById('finalAwakeTime').value = mySleep.finalWakeupTime;
-                document.getElementById('outOfBedTime').value = mySleep.timeLeftbed;
-                var otherT = mySleep.otherNote;
+                document.getElementById('finalAwakeTime').value = formatTime(mySleep.finalWakeupTime);
+                document.getElementById('outOfBedTime').value = formatTime(mySleep.timeLeftbed);
+                var otherT = mySleep.otherThings;
                 if(otherT != null){
                     document.getElementById('otherNote').value = otherT;
                 }
@@ -182,7 +187,7 @@
                         <!-- <img src="./images/logo-compact.png" alt=""> -->
                     </span>
                     <span class="brand-title">
-                        <!-- <img src="images/logo-text.png" alt=""> -->
+                        <img src="images/logo-text.png" alt="" width="174" height="40" style="border-radius: 15px;">
                     </span>
                 </a>
             </div>
@@ -299,7 +304,8 @@
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="./task-list.html">My Task List</a></li>
-                            <li><a href="./program-content.html">My Progress</a></li>
+                            <li><a href="./program-content.html" class="progs">My Progress</a></li>
+                            <li><a href="./psycho-education.html" class="psyc">Psychoeducation</a></li>
                         </ul>
                     </li>
 
@@ -362,47 +368,55 @@
                                 <div id="sleepD">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label class="m-t-20">What time did you get into bed last? </label>
+                                            <label class="m-t-20 sleepMargin"><span class="colorPrimary boldText">1.</span> What time did you get into bed last? </label>
                                             <div class="input-group clockpicker">
                                                 <input type="text" class="form-control" id="bedTime" value="21:35"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
                                             </div>
-                                            <label class="m-t-40 sleepMargin">What time did you try to go to sleep?</label>
+                                            
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="m-t-20 sleepMargin"><span class="colorPrimary boldText">2.</span> What time did you try to go to sleep?</label>
                                             <div class="input-group clockpicker">
                                                 <input type="text" class="form-control" id="trySleepTime" value="21:35"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
                                             </div>
+                                            
                                         </div>
+
                                         <div class="col-md-6">
-                                            <label class="m-t-40">How long did it take you to fall asleep? (Please select hour then minute)</label>
+                                            <label class="m-t-40 sleepMargin"><span class="colorPrimary boldText">3.</span> How long did it take you to fall asleep? (Please select hour then minute)</label>
                                             <div class="input-group clockpicker">
                                                 <select class="form-control" id="spHourOpt" onchange="validateSelect('spHourOpt');"><option value="">Select Hour</option></select>
                                                 <select class="form-control" id="spMinuteOpt" onchange="validateSelect('spMinuteOpt');"><option value="">Select Minute</option></select>
                                                 <!-- <input type="text" class="form-control" id="sleepTime" value="21:40"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span> -->
                                             </div>
-                                            <label class="m-t-40 sleepMargin">How many times did you wake up, not counting your final awakening?(Number Only)</label>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="m-t-40 sleepMargin"><span class="colorPrimary boldText">4.</span> How many times did you wake up, not counting your final awakening? (Number Only)</label>
                                             <div class="form-control edittDiv NumberDiv" id="wakeUpCount" contenteditable="true" inputmode=numeric></div>
                                              <!-- <input type="number" class="form-control" id="wakeUpCount" placeholder="E.g 2">  -->
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label class="m-t-40 sleepMargin">What time was your final awakening?</label>
+                                            <label class="m-t-40 sleepMargin"><span class="colorPrimary boldText">5.</span> In total, how long did these awakenings last? (Please select hour then minute)</label>
+                                            <div class="input-group ">
+                                                <select class="form-control" id="hourOpt" onchange="validateSelect('hourOpt');"><option value="">Select Hour</option></select>
+                                                <select class="form-control" id="minuteOpt" onchange="validateSelect('minuteOpt');"><option value="">Select Minute</option></select>
+                                                <!-- <input type="text" class="form-control" id="awakeLast" value="01:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span> -->
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="m-t-40 sleepMargin"><span class="colorPrimary boldText">6.</span> What time was your final awakening?</label>
                                             <div class="input-group clockpicker">
                                                 <input type="text" class="form-control" id="finalAwakeTime" value="05:00"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
-                                            <label class="m-t-40 sleepMargin">What time did you get out of bed?</label>
+                                            <label class="m-t-40 sleepMargin"><span class="colorPrimary boldText">7.</span> What time did you get out of bed?</label>
                                             <div class="input-group clockpicker">
                                                 <input type="text" class="form-control" id="outOfBedTime" value="05:10"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <label class="m-t-40 sleepMargin">In total, how long did these awakenings last? (Please select hour then minute)</label>
-                                            <div class="input-group ">
-                                                <select class="form-control" id="hourOpt" onchange="validateSelect('hourOpt');"><option value="">Select Hour</option></select>
-                                                <select class="form-control" id="minuteOpt" onchange="validateSelect('minuteOpt');"><option value="">Select Minute</option></select>
-                                                <!-- <input type="text" class="form-control" id="awakeLast" value="01:30"> <span class="input-group-append"><span class="input-group-text"><i class="fa fa-clock-o"></i></span></span> -->
                                             </div>
                                         </div>
 
@@ -413,16 +427,8 @@
                                             </div>
                                         </div> -->
 
-                                        <div class="col-md-6 sleepMargin">
-                                            <label class="m-t-40 ">Anything else you would like to note:</label>
-                                            <div class="input-group">
-                                            <textarea rows="4" cols="85" name="comment" id="otherNote" form="usrform" placeholder="Enter note here..."> </textarea>
-                                            </div>
-                                        </div>
-                                        
-                                        
                                         <div class="col-md-6 sleepMargin" id="qtyBox">
-                                            <label class="m-t-40 ">Please rate the overall quality of your sleep:</label>
+                                            <label class="m-t-40 "><span class="colorPrimary boldText">8.</span> Please rate the overall quality of your sleep:</label>
                                             <form id="qtID">
                                                 <!-- <div class="custom-control custom-radio">
                                                     <input type="radio" class="custom-control-input" id="checkbox-1" onclick="checkWakeUpCount();" name="rate" value="Very Poor">
@@ -459,6 +465,14 @@
                                             </form><br/>
                                             
                                         </div>
+
+                                        <div class="col-md-6 sleepMargin">
+                                            <label class="m-t-40 "><span class="colorPrimary boldText">9.</span> Anything else you would like to note:</label>
+                                            <div class="input-group">
+                                            <textarea rows="4" cols="85" name="comment" id="otherNote" form="usrform" placeholder="Enter note here..."> </textarea>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
                                     <div class="general-button">
                                         <button type="submit" id="btnBackMain" class="btn-secondary" style="margin-right: 30px;">Back</button>
@@ -582,6 +596,39 @@
                                         <button type="button" id="btnSubSleepDiary" class="buttonBackTxt btnColorPrimary goRight">Submit</button>
                                     </div> -->
 
+                                </div>
+
+                                <div class="bootstrap-modal">
+                                    <!-- Modal Change Email-->
+                                    <div class="modal fade" id="loginModal">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalTitle">Patient Quick Login</h5>
+                                                    <!-- <button type="button" class="close" data-dismiss="modal"><span>&times;</span>
+                                                    </button> -->
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="lookup">
+                                                        You have been away! Please sign in again. This is to ensure that your account is not access by someone else.
+                                                    </div>
+                                                    <form class="mt-5 mb-5 login-input">
+                
+                                                        <div class="form-group">
+                                                            <input type="email" class="form-control" id="quickUsername" placeholder="Username">
+                                                        </div>
+                
+                                                        <div class="form-group">
+                                                            <input type="password" class="form-control" id="quickPass" placeholder="Password">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" id="btnQuickLogin" class="btn btn-primary">Sign In</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
